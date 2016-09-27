@@ -1,0 +1,26 @@
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'db_name',
+        'USER': 'username',
+        'PASSWORD': 'password',
+        'HOST': '127.0.0.1',
+        'PORT': '5432'
+    }
+}
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.example.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'admin'
+EMAIL_HOST_PASSWORD = 'password'
+DEFAULT_FROM_EMAIL = 'Vishleva.com <admin@example.ru>'
+SERVER_EMAIL = 'Vishleva.com <admin@example.ru>'
+
+ADMINS = (('Name', 'admin@example.com'),)
+MANAGERS = ADMINS
+
+SECRET_KEY = 'my_super_secret_key'
+ALLOWED_HOSTS = ['127.0.0.1']
+DEBUG = False
+
