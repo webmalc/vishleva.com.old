@@ -85,3 +85,4 @@ celerybeat.pid
 #Project
 /vishleva/local_settings.py
 /nbproject/private/
+node_modules

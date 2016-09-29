@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+from django.core.urlresolvers import reverse_lazy
 
 # Local settings
 try:
@@ -30,6 +31,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.flatpages',
+    'django_otp',
+    'django_otp.plugins.otp_static',
+    'django_otp.plugins.otp_totp',
+    'two_factor',
+
+    # vishleva apps
+    'pages'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -41,6 +51,8 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'vishleva.middleware.AdminLocaleMiddleware',
+    'django_otp.middleware.OTPMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware'
 ]
 
 ROOT_URLCONF = 'vishleva.urls'
@@ -48,7 +60,7 @@ ROOT_URLCONF = 'vishleva.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'vishleva/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -97,6 +109,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+SITE_ID = 1
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
@@ -107,10 +120,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'vishleva/static'),
-    os.path.join(BASE_DIR, 'bower_components'),
+    os.path.join(BASE_DIR, 'node_modules'),
 )
 FIXTURE_DIRS = (
     os.path.join(BASE_DIR, 'fixtures'),
 )
 
 EMAIL_SUBJECT_PREFIX = '[Vishleva.com] '
+
+# Two factor auth
+LOGIN_URL = 'two_factor:login'
+LOGOUT_URL = "admin:logout"
