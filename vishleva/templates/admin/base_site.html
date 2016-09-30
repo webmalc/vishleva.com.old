@@ -1,0 +1,12 @@
+{% extends "admin/base_site.html" %}
+{% load admin_static %}
+
+{% block extrahead %}
+    <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+{% endblock %}
+
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">Vishleva.com administration</a></h1>
+{% endblock %}
+

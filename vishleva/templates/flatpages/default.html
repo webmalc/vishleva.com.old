@@ -1,6 +1,5 @@
 {% extends  'layout.html' %}
 
-
 {% block content %}
-    {{ flatpage.content }}
+    {{ flatpage.content|safe }}
 {% endblock %}

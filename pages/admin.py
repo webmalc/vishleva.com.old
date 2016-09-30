@@ -22,6 +22,13 @@ class ExtendedFlatPageAdmin(FlatPageAdmin):
         }),
     )
 
+    class Media:
+        js = (
+            'ace-builds/src-min/ace.js',
+            'ace-builds/src-min/ext-language_tools.js',
+            'admin/js/pages.js'
+        )
+
 
 admin.site.unregister(FlatPage)
 admin.site.register(ExtendedFlatPage, ExtendedFlatPageAdmin)
