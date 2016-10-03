@@ -94,9 +94,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/1.10/topics/i18n/
 LANGUAGE_CODE = 'ru'
+
 LANGUAGES = (('ru', 'Russian'), ('en', 'English'),)
 
 ADMIN_LANGUAGE_CODE = 'en-US'
@@ -111,11 +110,12 @@ USE_TZ = True
 
 SITE_ID = 1
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.10/howto/static-files/
 STATIC_URL = '/static/'
+
 MEDIA_URL = '/media/'
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 STATICFILES_DIRS = (
@@ -125,9 +125,14 @@ STATICFILES_DIRS = (
 FIXTURE_DIRS = (
     os.path.join(BASE_DIR, 'fixtures'),
 )
+LOCALE_PATHS = (
+    os.path.join(os.path.dirname(__file__), "locale"),
+    os.path.join(os.path.dirname(__file__), "app_locale"),
+)
 
 EMAIL_SUBJECT_PREFIX = '[Vishleva.com] '
 
 # Two factor auth
 LOGIN_URL = 'two_factor:login'
+
 LOGOUT_URL = "admin:logout"

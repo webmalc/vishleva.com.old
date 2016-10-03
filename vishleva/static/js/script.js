@@ -1,8 +1,64 @@
 /*jslint browser: true, this*/
-/*global $, WOW*/
+/*global $, WOW, Cookies*/
 
 $(document).ready(function ($) {
     "use strict";
+
+    // Ajax CSRFToken
+    $.ajaxSetup({
+        beforeSend: function (xhr, settings) {
+            var csrfSafeMethod = function (method) {
+                // these HTTP methods do not require CSRF protection
+                return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+            };
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", Cookies.get("csrftoken"));
+            }
+        }
+    });
+
+    //Notify defaults
+    $.notifyDefaults({
+        type: "success",
+        placement: {
+            from: "top",
+            align: "center"
+        }
+    });
+
+    //Send contact form
+    var contactForm = $("#contact-form");
+    contactForm.submit(function (e) {
+        var button = $("#contact-form-button");
+        var button_icon = $("#contact-form-button-icon");
+
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "/send_email",
+            data: contactForm.serialize(),
+            success: function (response) {
+                button_icon.removeClass("fa-spinner fa-spin").addClass("fa-paper-plane")
+                if (response.success) {
+                    button.prop("disabled", false);
+                    $.notify({
+                        icon: "fa fa-check",
+                        message: response.message
+                    });
+                } else {
+                    $.notify({
+                        icon: "fa fa-exclamation-triangle",
+                        message: response.message
+                    }, {type: "danger"});
+                }
+                contactForm.find("input[type=text], textarea").val("");
+            },
+            beforeSend: function () {
+                button.prop("disabled", true);
+                button_icon.removeClass("fa-paper-plane").addClass("fa-spinner fa-spin");
+            }
+        });
+    });
 
     $(".scroll a, .navbar-brand, .gototop").click(function (event) {
         event.preventDefault();
