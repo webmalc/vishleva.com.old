@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-03 16:16+0300\n"
+"POT-Creation-Date: 2016-10-07 15:38+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,11 +52,35 @@ msgstr "ключевые слова"
 msgid "description"
 msgstr "описание"
 
-#: pages/views.py:32
+#: pages/views.py:34
+msgid "New message from user"
+msgstr ""
+
+#: pages/views.py:38
 msgid "Your message was successfully sent"
 msgstr "Ваше сообщение успешно отправлено"
 
-#: pages/views.py:36
+#: pages/views.py:42
 msgid ""
 "Sorry! Error while sending message! Please refresh the page and try again"
-msgstr "Извините! Произошла ошибка во время отправки сообщения. Пожалуйста перезагрузите страницу и попробуйте еще раз"
+msgstr ""
+"Извините! Произошла ошибка во время отправки сообщения. Пожалуйста "
+"перезагрузите страницу и попробуйте еще раз"
+
+#: vishleva/templates/emails/contact_form.html:6
+msgid "New message via contact form"
+msgstr "Новое сообщение с сайта"
+
+#: vishleva/templates/emails/contact_form.html:7
+msgid "Name"
+msgstr "Имя"
+
+#: vishleva/templates/emails/contact_form.html:8
+#, fuzzy
+#| msgid "contacts"
+msgid "Contacts"
+msgstr "Контакты"
+
+#: vishleva/templates/emails/contact_form.html:9
+msgid "Text"
+msgstr "Текст"

@@ -26,6 +26,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'django.contrib.humanize',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -130,7 +131,7 @@ LOCALE_PATHS = (
     os.path.join(os.path.dirname(__file__), "app_locale"),
 )
 
-EMAIL_SUBJECT_PREFIX = '[Vishleva.com] '
+EMAIL_SUBJECT_PREFIX = '[vishleva.com]: '
 
 # Two factor auth
 LOGIN_URL = 'two_factor:login'

@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from django.utils.translation import ugettext_lazy as _
 from .models import ExtendedFlatPage
 from .forms import ContactForm
+from vishleva.messengers.mailer import Mailer
 
 
 class MainView(TemplateView):
@@ -29,6 +30,11 @@ def send_email(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
+            Mailer.mail_managers(
+                subject=_('New message from user'),
+                template='emails/contact_form.html',
+                data=form.cleaned_data
+            )
             return JsonResponse({'success': True, 'message': _('Your message was successfully sent')})
 
     return JsonResponse({

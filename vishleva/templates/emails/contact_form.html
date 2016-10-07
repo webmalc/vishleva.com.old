@@ -1,0 +1,10 @@
+{% extends 'emails/base.html' %}
+{% load humanize %}
+{% load i18n %}
+
+{% block content %}
+    <h3>{% trans "New message via contact form" %}</h3>
+    <p><strong>{% trans "Name" %}</strong>: {{ name }}</p>
+    <p><strong>{% trans "Contacts" %}</strong>: {{ contacts }}</p>
+    <p><strong>{% trans "Text" %}</strong>: {{ message|linebreaksbr }}</p>
+{% endblock %}
