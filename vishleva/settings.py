@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'two_factor',
 
     # vishleva apps
+    'vishleva',
     'pages'
 ]
 

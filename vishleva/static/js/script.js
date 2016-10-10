@@ -1,5 +1,5 @@
 /*jslint browser: true, this*/
-/*global $, WOW, Cookies*/
+/*global $, WOW, Cookies, gettext*/
 
 $(document).ready(function ($) {
     "use strict";
@@ -17,6 +17,11 @@ $(document).ready(function ($) {
         }
     });
 
+    //tooltips
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+
     //Notify defaults
     $.notifyDefaults({
         type: "success",
@@ -29,8 +34,8 @@ $(document).ready(function ($) {
     //Send contact form
     var contactForm = $("#contact-form");
     contactForm.submit(function (e) {
-        var button = $("#contact-form-button");
-        var button_icon = $("#contact-form-button-icon");
+        var button = $("#contact-form-button"),
+            button_icon = $("#contact-form-button-icon");
 
         e.preventDefault();
         $.ajax({
@@ -52,6 +57,12 @@ $(document).ready(function ($) {
                     }, {type: "danger"});
                 }
                 contactForm.find("input[type=text], textarea").val("");
+            },
+            error: function () {
+                $.notify({
+                    icon: "fa fa-exclamation-triangle",
+                    message: gettext('Sorry! Error while sending message! Please refresh the page and try again')
+                }, {type: "danger"});
             },
             beforeSend: function () {
                 button.prop("disabled", true);

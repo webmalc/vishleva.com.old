@@ -23,7 +23,7 @@
 
     {% block css %}
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
-        <link href="{% static 'font-awesome/css/font-awesome.min.css'%}" rel="stylesheet">
+        <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
         <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}"/>
         <link rel="stylesheet" href="{% static 'animate.css/animate.min.css' %}"/>
         <link rel="stylesheet" href="{% static 'css/set.css' %}"/>
@@ -76,12 +76,21 @@
 
 <!-- Footer Starts -->
 <div class="footer text-center spacer">
-    <p class="wowload flipInX"><a href="#"><i class="fa fa-facebook fa-2x"></i></a> <a href="#"><i
-            class="fa fa-instagram fa-2x"></i></a> <a href="#"><i class="fa fa-twitter fa-2x"></i></a> <a href="#"><i
-            class="fa fa-flickr fa-2x"></i></a></p>
-    Copyright 2014 Cyrus Creative Studio. All rights reserved.
+    <p class="wowload flipInX">
+        <a data-toggle="tooltip" data-placement="top" title="Я в VK" href="https://vk.com/id4429612" target="_blank"><i
+                class="fa fa-vk fa-2x"></i></a>
+        <a data-toggle="tooltip" data-placement="top" title="Я в instagram" href="https://www.instagram.com/vishleva"
+           target="_blank"><i class="fa fa-instagram fa-2x"></i></a>
+        <a data-toggle="tooltip" data-placement="top" title="Я на 500px" href="https://500px.com/vishleva"
+           target="_blank"><i class="fa fa-500px fa-2x"></i></a>
+        <a data-toggle="tooltip" data-placement="top" title="Я на flickr" href="https://www.flickr.com/photos/webmalc"
+           target="_blank"><i class="fa fa-flickr fa-2x"></i></a>
+    </p>
+    © 2015-{% now "Y" %} vishlela.com. Все права защищены.
 </div>
 <!-- # Footer Ends -->
+
+
 <a href="#top" class="gototop"><i class="fa fa-angle-up  fa-3x"></i></a>
 
 
@@ -107,6 +116,7 @@
     <script src="{% static 'blueimp-gallery/js/blueimp-gallery.min.js' %}"></script>
     <script src="{% static 'js-cookie/src/js.cookie.js' %}"></script>
     <script src="{% static 'bootstrap-notify/bootstrap-notify.min.js' %}"></script>
+    <script src="{% url 'javascript-catalog' %}"></script>
     <script src="{% static 'js/script.js' %}"></script>
 {% endblock %}
 

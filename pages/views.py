@@ -31,7 +31,7 @@ def send_email(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             Mailer.mail_managers(
-                subject=_('New message from user'),
+                subject=_('New message via contact form'),
                 template='emails/contact_form.html',
                 data=form.cleaned_data
             )
