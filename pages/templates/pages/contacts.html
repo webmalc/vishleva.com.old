@@ -1,0 +1,27 @@
+<div id="contact" class="spacer">
+    <div class="container contactform center">
+        <h2 class="text-center  wowload fadeInUp">
+            Заказать фотографа<br>
+            <small>
+                <small><i class="fa fa-map-marker" aria-hidden="true"></i> Россия, Москва и Подмосковье</small>
+            </small>
+            <br>
+            <small><i class="fa fa-mobile"></i> <a href="tel:+79037356096">+7 (903) 735-60-96</a></small>
+            <br>
+            <small><i class="fa fa-envelope-o"></i> <a href="mailto:mail@vishleva.com">mail@vishleva.com</a></small>
+        </h2>
+        <div class="row wowload fadeInLeftBig">
+            <div class="col-sm-6 col-sm-offset-3 col-xs-12">
+                <form action="{% url 'send_email' %}" method="post" id="contact-form">
+                    {% csrf_token %}
+                    {{ form.name }}
+                    {{ form.contacts }}
+                    {{ form.message }}
+                    <button class="btn btn-primary" id="contact-form-button">
+                        <i class="fa fa-paper-plane" id="contact-form-button-icon"></i> Отправить
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

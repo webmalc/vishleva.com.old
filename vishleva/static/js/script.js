@@ -72,6 +72,10 @@ $(document).ready(function ($) {
     });
 
     $(".scroll a, .navbar-brand, .gototop").click(function (event) {
+        var target = $(this.hash);
+        if (!target.length) {
+            return;
+        }
         event.preventDefault();
         $("html,body").animate({scrollTop: $(this.hash).offset().top - 50}, 600, "swing");
         $(".scroll li").removeClass("active");

@@ -3,118 +3,12 @@
 {% load staticfiles %}
 
 {% block content %}
-    <!-- works -->
-    <div id="works" class=" clearfix grid">
-        <figure class="effect-oscar  wowload fadeIn">
-            <img src="{% static 'images/portfolio/1.jpg' %}" alt="img01"/>
-            <figcaption>
-                <h2>Nature</h2>
-                <p>Lily likes to play with crayons and pencils<br>
-                    <a href="{% static 'images/portfolio/1.jpg' %}" title="1" data-gallery>View more</a></p>
-            </figcaption>
-        </figure>
-        <figure class="effect-oscar  wowload fadeInUp">
-            <img src="{% static 'images/portfolio/2.jpg' %}" alt="img01"/>
-            <figcaption>
-                <h2>Events</h2>
-                <p>Lily likes to play with crayons and pencils<br>
-                    <a href="{% static 'images/portfolio/2.jpg' %}" title="1" data-gallery>View more</a></p>
-            </figcaption>
-        </figure>
-        <figure class="effect-oscar  wowload fadeInUp">
-            <img src="{% static 'images/portfolio/3.jpg' %}" alt="img01"/>
-            <figcaption>
-                <h2>music</h2>
-                <p>Lily likes to play with crayons and pencils<br>
-                    <a href="{% static 'images/portfolio/3.jpg' %}" title="1" data-gallery>View more</a></p>
-            </figcaption>
-        </figure>
-        <figure class="effect-oscar  wowload fadeInUp">
-            <img src="{% static 'images/portfolio/4.jpg' %}" alt="img01"/>
-            <figcaption>
-                <h2>Vintage</h2>
-                <p>Lily likes to play with crayons and pencils<br>
-                    <a href="{% static 'images/portfolio/4.jpg' %}" title="1" data-gallery>View more</a></p>
-            </figcaption>
-        </figure>
-        <figure class="effect-oscar  wowload fadeInUp">
-            <img src="{% static 'images/portfolio/5.jpg' %}" alt="img01"/>
-            <figcaption>
-                <h2>Typers</h2>
-                <p>Lily likes to play with crayons and pencils<br>
-                    <a href="{% static 'images/portfolio/5.jpg' %}" title="1" data-gallery>View more</a></p>
-            </figcaption>
-        </figure>
-
-        <figure class="effect-oscar  wowload fadeInUp">
-            <img src="{% static 'images/portfolio/6.jpg' %}" alt="img01"/>
-            <figcaption>
-                <h2>hotel</h2>
-                <p>Lily likes to play with crayons and pencils<br>
-                    <a href="{% static 'images/portfolio/6.jpg' %}" title="1" data-gallery>View more</a></p>
-            </figcaption>
-        </figure>
-        <figure class="effect-oscar  wowload fadeInUp">
-            <img src="{% static 'images/portfolio/7.jpg' %}" alt="img01"/>
-            <figcaption>
-                <h2>Chinese</h2>
-                <p>Lily likes to play with crayons and pencils<br>
-                    <a href="{% static 'images/portfolio/7.jpg' %}" title="1" data-gallery>View more</a></p>
-            </figcaption>
-        </figure>
-        <figure class="effect-oscar  wowload fadeInUp">
-            <img src="{% static 'images/portfolio/8.jpg' %}" alt="img01"/>
-            <figcaption>
-                <h2>Dicrap</h2>
-                <p>Lily likes to play with crayons and pencils<br>
-                    <a href="{% static 'images/portfolio/8.jpg' %}" title="1" data-gallery>View more</a></p>
-            </figcaption>
-        </figure>
-        <figure class="effect-oscar  wowload fadeInUp">
-            <img src="{% static 'images/portfolio/9.jpg' %}" alt="img01"/>
-            <figcaption>
-                <h2>Coffee</h2>
-                <p>Lily likes to play with crayons and pencils<br>
-                    <a href="{% static 'images/portfolio/9.jpg' %}" title="1" data-gallery>View more</a></p>
-            </figcaption>
-        </figure>
-        <figure class="effect-oscar  wowload fadeInUp">
-            <img src="{% static 'images/portfolio/10.jpg' %}" alt="img01"/>
-            <figcaption>
-                <h2>cameras</h2>
-                <p>Lily likes to play with crayons and pencils<br>
-                    <a href="{% static 'images/portfolio/10.jpg' %}" title="1" data-gallery>View more</a></p>
-            </figcaption>
-        </figure>
-        <figure class="effect-oscar  wowload fadeInUp">
-            <img src="{% static 'images/portfolio/11.jpg' %}" alt="img01"/>
-            <figcaption>
-                <h2>design</h2>
-                <p>Lily likes to play with crayons and pencils<br>
-                    <a href="{% static 'images/portfolio/11.jpg' %}" title="1" data-gallery>View more</a></p>
-            </figcaption>
-        </figure>
-        <figure class="effect-oscar  wowload fadeInUp">
-            <img src="{% static 'images/portfolio/12.jpg' %}" alt="img01"/>
-            <figcaption>
-                <h2>studio</h2>
-                <p>Lily likes to play with crayons and pencils<br>
-                    <a href="{% static 'images/portfolio/12.jpg' %}" title="1" data-gallery>View more</a></p>
-            </figcaption>
-        </figure>
-
-
-    </div>
-    <!-- works -->
-
+    {% include 'pages/galleries.html' %}
 
 
     <div id="about" class="container spacer about">
         {{ about.content|safe }}
     </div>
-
-
-
 
     <!-- About Starts -->
     <div class="highlight-info">
@@ -138,12 +32,6 @@
         </div>
     </div>
     <!-- About Ends -->
-
-
-
-
-
-
 
     <div id="partners" class="container spacer ">
         <h2 class="text-center  wowload fadeInUp">Some of our happy clients</h2>
@@ -267,29 +155,6 @@
 
     </div>
 
-
-    <div id="contact" class="spacer">
-        <div class="container contactform center">
-            <h2 class="text-center  wowload fadeInUp">
-                Заказать фотографа<br>
-                <small><small><i class="fa fa-map-marker" aria-hidden="true"></i> Россия, Москва и Подмосковье</small></small><br>
-                <small><i class="fa fa-mobile"></i> <a href="tel:+79037356096">+7 (903) 735-60-96</a></small><br>
-                <small><i class="fa fa-envelope-o"></i> <a href="mailto:mail@vishleva.com">mail@vishleva.com</a></small>
-            </h2>
-            <div class="row wowload fadeInLeftBig">
-                <div class="col-sm-6 col-sm-offset-3 col-xs-12">
-                    <form action="{% url 'send_email' %}" method="post" id="contact-form">
-                        {% csrf_token %}
-                        {{ form.name }}
-                        {{ form.contacts }}
-                        {{ form.message }}
-                        <button class="btn btn-primary" id="contact-form-button">
-                            <i class="fa fa-paper-plane" id="contact-form-button-icon"></i> Отправить</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    {% include 'pages/contacts.html' %}
 
 {% endblock %}

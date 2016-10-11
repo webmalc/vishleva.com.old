@@ -4,6 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from .models import ExtendedFlatPage
 from .forms import ContactForm
 from vishleva.messengers.mailer import Mailer
+from photologue.models import Gallery
 
 
 class MainView(TemplateView):
@@ -16,6 +17,8 @@ class MainView(TemplateView):
         context = super(MainView, self).get_context_data(**kwargs)
         context['about'] = ExtendedFlatPage.objects.all().filter(url='/about/').first()
         context['form'] = ContactForm()
+        context['galleries'] = Gallery.objects.on_site().is_public()
+
         return context
 
 

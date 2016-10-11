@@ -43,7 +43,7 @@
         <div class="navbar navbar-default navbar-fixed-top" role="navigation" id="top-nav">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="scroll navbar-brand" href="#top">
+                    <a class="scroll navbar-brand" href="{% url 'index' %}#works">
                         <h1>
                             <span class="background-blue">В</span>ишлева <span class="color-blue">Александра</span>
                         </h1>
@@ -60,10 +60,10 @@
 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right scroll">
-                        <li class="active"><a href="#works">Фото</a></li>
-                        <li><a href="#about">Обо мне</a></li>
-                        <li><a href="#partners">Цены</a></li>
-                        <li><a href="#contact">Контакты</a></li>
+                        <li><a href="{% url 'index' %}#works">Фото</a></li>
+                        <li><a href="{% url 'index' %}#about">Обо мне</a></li>
+                        <li><a href="{% url 'index' %}#partners">Цены</a></li>
+                        <li><a href="{% url 'index' %}#contact">Контакты</a></li>
                     </ul>
                 </div>
             </div>

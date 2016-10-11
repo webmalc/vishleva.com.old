@@ -1,0 +1,17 @@
+{% load staticfiles %}
+
+<div id="works" class=" clearfix grid">
+
+    {% for gallery in galleries %}
+        {% with photo=gallery.photos.all|first %}
+            <figure class="effect-oscar  wowload fadeIn">
+                <img src="{{ photo.get_thumbnail_gallery_url }}" alt="{{ photo.title }}">
+                <figcaption onclick="window.location='{{ gallery.get_absolute_url }}'">
+                    <h2>{{ gallery.title }}</h2>
+                    <p>{{ gallery.description }}<br>
+                        <a href="{{ gallery.get_absolute_url }}">Посмотреть</a></p>
+                </figcaption>
+            </figure>
+        {% endwith %}
+    {% endfor %}
+</div>

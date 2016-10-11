@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django_otp.plugins.otp_static',
     'django_otp.plugins.otp_totp',
     'two_factor',
+    'photologue',
+    'sortedm2m',
+    'debug_toolbar',
 
     # vishleva apps
     'vishleva',
@@ -45,6 +48,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE_CLASSES = [
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -54,7 +58,7 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'vishleva.middleware.AdminLocaleMiddleware',
     'django_otp.middleware.OTPMiddleware',
-    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware'
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'vishleva.urls'
@@ -115,6 +119,8 @@ SITE_ID = 1
 STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
+
+INTERNAL_IPS = ['127.0.0.1']
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
