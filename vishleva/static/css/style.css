@@ -60,7 +60,7 @@ p {
 }
 
 .spacer {
-    padding: 6em 0;
+    padding: 3em 0;
 }
 
 .btn {
@@ -315,6 +315,7 @@ p {
 .footer a {
     color: #aaa;
     margin: 0 1em;
+    cursor: pointer;
 }
 
 .gototop {
@@ -434,7 +435,6 @@ p {
     }
 
     h2.text-center {
-        text-align: left;
         font-size: 1.7em;
     }
 
@@ -504,4 +504,8 @@ p {
 }
 .background-blue {
     background-color: #21abca; color: #ffffff;
+}
+
+#contact a {
+    color: #777;
 }
