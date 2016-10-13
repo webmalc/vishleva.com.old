@@ -451,9 +451,24 @@ figcaption {
 }
 figcaption h2 {
   white-space: nowrap;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
 }
 figcaption h2 a {
   border: 0px !important;
   padding: 0px !important;
   margin: 0px !important;
+}
+#gallery-photos li {
+  width: 300px;
+  height: auto;
+  overflow: hidden;
+  background-color: black;
+}
+#gallery-photos img {
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+  opacity: 1;
+}
+#gallery-photos img:hover {
+  opacity: .5;
 }
