@@ -1,5 +1,5 @@
 /*jslint browser: true, this*/
-/*global $, WOW, Cookies, gettext*/
+/*global $, WOW, Cookies, gettext, blueimp, window*/
 
 $(document).ready(function ($) {
     "use strict";
@@ -17,10 +17,8 @@ $(document).ready(function ($) {
         }
     });
 
-    //tooltips
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip();
-    });
+    // tooltip
+    $('[data-toggle="tooltip"]').tooltip();
 
     //Notify defaults
     $.notifyDefaults({
@@ -30,6 +28,27 @@ $(document).ready(function ($) {
             align: "center"
         }
     });
+
+    (function () {
+        var gallery = $('#gallery');
+        if (!gallery.length) {
+            return;
+        }
+        document.getElementById('gallery-photos').onclick = function (event) {
+            event = event || window.event;
+            var target = event.target || event.srcElement,
+                link = target.src ? target.parentNode : target,
+                options = {index: link, event: event},
+                links = this.getElementsByTagName('a');
+            blueimp.Gallery(links, options);
+        };
+
+        gallery.imagesLoaded(function () {
+            $('#gallery-photos').wookmark({
+                autoResize: true
+            });
+        });
+    }());
 
     //Send contact form
     var contactForm = $("#contact-form");

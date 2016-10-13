@@ -1,0 +1,32 @@
+{% extends "photologue/root.html" %}
+{% load i18n %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <div id="gallery-description" class="wowload fadeInLeft">
+        <strong>{{ gallery.title }}</strong> <small>{{ gallery.description }}</small>
+    </div>
+    <div id="gallery" class="wowload fadeIn">
+        <ul id="gallery-photos">
+            {% for photo in gallery.public %}
+                <li>
+                    <a href="{{ photo.get_display_url }}" title="{{ photo.title }}">
+                        <img height="{{ photo.get_thumbnail_size.1 }}" width="{{ photo.get_thumbnail_size.0 }}"
+                             src="{{ photo.get_thumbnail_url }}" alt="{{ photo.title }}">
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+        <div class="slides"></div>
+        <h3 class="title"></h3>
+        <a class="prev">‹</a>
+        <a class="next">›</a>
+        <a class="close">×</a>
+        <a class="play-pause"></a>
+        <ol class="indicator"></ol>
+    </div>
+{% endblock %}

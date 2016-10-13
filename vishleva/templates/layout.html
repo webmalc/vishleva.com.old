@@ -22,8 +22,9 @@
     </title>
 
     {% block css %}
-        <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
-        <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+        <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' type='text/css'>
+        <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
+        <link rel="stylesheet" src="{% static 'wookmark/css/main.css' %}">
         <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}"/>
         <link rel="stylesheet" href="{% static 'animate.css/animate.min.css' %}"/>
         <link rel="stylesheet" href="{% static 'css/set.css' %}"/>
@@ -75,7 +76,6 @@
 
 {% block content %}{% endblock %}
 
-
 <!-- Footer Starts -->
 <div class="footer text-center spacer">
     <p>Я в социальных сетях</p>
@@ -98,20 +98,6 @@
 
 <a href="#top" class="gototop"><i class="fa fa-angle-up  fa-3x"></i></a>
 
-
-<!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
-<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
-    <!-- The container for the modal slides -->
-    <div class="slides"></div>
-    <!-- Controls for the borderless lightbox -->
-    <h3 class="title">Title</h3>
-    <a class="prev">‹</a>
-    <a class="next">›</a>
-    <a class="close">×</a>
-    <!-- The modal dialog, which will be used to wrap the lightbox content -->
-</div>
-
-
 {% block js %}
     <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
     <script src="{% static 'wowjs/dist/wow.min.js' %}"></script>
@@ -121,6 +107,8 @@
     <script src="{% static 'blueimp-gallery/js/blueimp-gallery.min.js' %}"></script>
     <script src="{% static 'js-cookie/src/js.cookie.js' %}"></script>
     <script src="{% static 'bootstrap-notify/bootstrap-notify.min.js' %}"></script>
+    <script src="{% static 'imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'wookmark/wookmark.min.js' %}"></script>
     <script src="{% url 'javascript-catalog' %}"></script>
     <script src="{% static 'js/script.js' %}"></script>
 {% endblock %}
