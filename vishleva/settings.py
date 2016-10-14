@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'photologue',
     'sortedm2m',
     'debug_toolbar',
+    'compressor',
 
     # vishleva apps
     'vishleva',
@@ -129,6 +130,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'vishleva/static'),
     os.path.join(BASE_DIR, 'node_modules'),
+)
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder'
 )
 FIXTURE_DIRS = (
     os.path.join(BASE_DIR, 'fixtures'),
