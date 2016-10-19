@@ -152,4 +152,4 @@ LOGIN_URL = 'two_factor:login'
 
 LOGOUT_URL = "admin:logout"
 
-SITE_START_DATE = date(2015, 11, 30)
+SITE_START_DATE = date(2015, 3, 28)

@@ -476,6 +476,9 @@ figcaption h2 a {
 #gallery-photos img:hover {
   opacity: .5;
 }
+#about img {
+  margin: 0 2em 2em 0;
+}
 .pricing {
   margin: auto;
   background: #21abca;
