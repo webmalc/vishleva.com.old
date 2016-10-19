@@ -2,6 +2,8 @@
 {% load i18n %}
 {% load staticfiles %}
 
+{% block title %}{{ block.super }}. {{ gallery.title }}{% endblock %}
+
 {% block content %}
 
     <div id="gallery-description" class="wowload fadeInLeft">

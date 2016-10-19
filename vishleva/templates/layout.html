@@ -7,8 +7,8 @@
     <meta charset="utf-8"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="keywords" content=""/>
-    <meta name="description" content=""/>
+    <meta name="keywords" content="профессиональный фотограф Москва, услуги фотографа, заказать фотосъемку в Москве, фото профессионального фотографа, цены на услуги фотографа, стоимость профессиональной фотосъемки, фотосьемка в студии, love story, романтическая фотосессия, свадебная фотосессия" />
+    <meta name="description" content="Фотограф Александра Вишлева - профессиональный фотограф Москва . Фотографы Москвы . Фотосессия в Москве . Рекламная фотосъемка . Фотограф знаменитостей. Фотосессия в студии как знаменитости . Профессиональная фотосессия . Услуги фотографа цены . Фотосессия в студии в Москве. Услуги рекламного фотографа . Красивые портреты в студии и на выезде. Свадебная фотосессия"/>
 
     <link rel="apple-touch-icon" sizes="76x76" href="{% static 'images/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" href="{% static 'images/favicon-16x16.png' %}" sizes="16x16">
@@ -19,7 +19,7 @@
     <meta name="theme-color" content="#ffffff">
 
     <title>
-        {% block title %}Александра Вишлева - Фотограф{% endblock %}
+        {% block title %}Фотограф Александра Вишлева - профессиональный фотограф Москва {% endblock %}
     </title>
 
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' type='text/css'>
@@ -64,7 +64,7 @@
                     <ul class="nav navbar-nav navbar-right scroll">
                         <li><a href="{% url 'index' %}#works">Фото</a></li>
                         <li><a href="{% url 'index' %}#about">Обо мне</a></li>
-                        <li><a href="{% url 'index' %}#partners">Цены</a></li>
+                        <li><a href="{% url 'index' %}#prices">Цены</a></li>
                         <li><a href="{% url 'index' %}#contact">Контакты</a></li>
                     </ul>
                 </div>
@@ -98,7 +98,7 @@
 
 
 <a href="#top" class="gototop"><i class="fa fa-angle-up  fa-3x"></i></a>
-
+    <script src="{% url 'javascript-catalog' %}"></script>
     {% compress js %}
         {% block js %}
             <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
@@ -111,7 +111,6 @@
             <script src="{% static 'bootstrap-notify/bootstrap-notify.min.js' %}"></script>
             <script src="{% static 'imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
             <script src="{% static 'wookmark/wookmark.min.js' %}"></script>
-            <script src="{% url 'javascript-catalog' %}"></script>
             <script src="{% static 'js/script.js' %}"></script>
         {% endblock %}
     {% endcompress %}

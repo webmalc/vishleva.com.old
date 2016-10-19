@@ -1,3 +1,6 @@
+@accent: #21abca;
+@accent_hover: #0f6d82;
+
 body {
   color: #666;
   font: 300 15px/15px Roboto, Arial, Helvetica;
@@ -61,6 +64,9 @@ p {
 
 .spacer {
   padding: 3em 0;
+}
+.spacer-bottom {
+  padding-bottom: 3em;
 }
 
 .btn {
@@ -230,7 +236,7 @@ p {
 }
 
 /*works*/
-#works, #gallery {
+#works, #gallery, #content {
   padding-top: 6em;
 }
 
@@ -562,5 +568,105 @@ figcaption {
   }
   img:hover {
     opacity: .5;
+  }
+}
+
+.pricing {
+  margin: auto;
+  background: @accent;
+  width: 280px;
+  padding: 40px 0 20px;
+  color: #fff;
+  -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+  -moz-box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+  box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+  & .thumbnail {
+    background: #fff; /* IE Fall */
+    background: rgba(255, 255, 255, .2);
+    display: block;
+    width: 90px;
+    height: 90px;
+    margin: 0 auto;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    font-size: 36px;
+    line-height: 90px;
+    text-align: center;
+  }
+  & .title {
+    background: @accent_hover;
+    margin: 40px 0 0;
+    padding: 10px;
+    font-size: 18px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  & .content {
+    & .sub-title {
+      background: #eee;
+      padding: 10px;
+      color: #666;
+      font-size: 14px;
+      font-weight: 700;
+      text-align: center;
+    }
+    & ul {
+      list-style: none;
+      background: #fff;
+      margin: 0;
+      padding: 0;
+      color: #666;
+      font-size: 14px;
+      & li {
+        padding: 10px 20px;
+        &:nth-child(2n) {
+          background: #f3f3f3;
+        }
+        & .fa {
+          width: 16px;
+          margin-right: 10px;
+          text-align: center;
+        }
+        & .fa-check {
+          color: #2ecc71;
+        }
+        & .fa-close {
+          color: #e74c3c;
+        }
+      }
+    }
+    & .description {
+      background-color: #ffffff;
+      color: #666;
+      padding: 1em 0;
+      p {
+        padding: 0;
+        margin: 0;
+      }
+    }
+    & a {
+      display: block;
+      background: @accent_hover;
+      max-width: 150px;
+      margin: 0 auto;
+      margin-top: 20px;
+      padding: 10px 15px;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+      text-align: center;
+      text-decoration: none;
+      -webkit-transition: 0.2s linear;
+      -moz-transition: 0.2s linear;
+      -ms-transition: 0.2s linear;
+      -o-transition: 0.2s linear;
+      transition: 0.2s linear;
+      &:hover {
+        background: #34495e; /* IE Fallback */
+        background: rgba(52, 73, 94, .7);
+      }
+    }
   }
 }

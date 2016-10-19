@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 from django.core.urlresolvers import reverse_lazy
+from datetime import date
 
 # Local settings
 try:
@@ -150,3 +151,5 @@ EMAIL_SUBJECT_PREFIX = '[vishleva.com]: '
 LOGIN_URL = 'two_factor:login'
 
 LOGOUT_URL = "admin:logout"
+
+SITE_START_DATE = date(2015, 11, 30)

@@ -1,4 +1,7 @@
 from django.views.generic import TemplateView
+from django.conf import settings
+from random import randint
+from datetime import date
 from django.http import JsonResponse
 from django.utils.translation import ugettext_lazy as _
 from .models import ExtendedFlatPage
@@ -14,8 +17,14 @@ class MainView(TemplateView):
     template_name = 'pages/index.html'
 
     def get_context_data(self, **kwargs):
+        days = (date.today() - settings.SITE_START_DATE).days
         context = super(MainView, self).get_context_data(**kwargs)
+        context['days'] = days
+        context['clients'] = days // 7
+        context['orders'] = days // 5
+        context['photos'] = days * 3 + date.today().weekday()
         context['about'] = ExtendedFlatPage.objects.all().filter(url='/about/').first()
+        context['prices'] = ExtendedFlatPage.objects.all().filter(url='/prices/').first()
         context['form'] = ContactForm()
         context['galleries'] = Gallery.objects.on_site().is_public()
 
