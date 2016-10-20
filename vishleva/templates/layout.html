@@ -111,6 +111,10 @@
             <script src="{% static 'bootstrap-notify/bootstrap-notify.min.js' %}"></script>
             <script src="{% static 'imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
             <script src="{% static 'wookmark/wookmark.min.js' %}"></script>
+
+            {% include 'partials/js/tawk.to.html' %}
+            {% include 'partials/js/google.analytics.html' %}
+
             <script src="{% static 'js/script.js' %}"></script>
         {% endblock %}
     {% endcompress %}
