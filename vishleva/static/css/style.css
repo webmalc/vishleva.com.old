@@ -285,6 +285,9 @@ p {
 .gototop i {
   line-height: 0.5em;
 }
+.grid figure h2 {
+  font-size: 2em;
+}
 @media (max-width: 1200px) {
   body {
     font: 300 13px/13px Roboto, Arial, Helvetica;
@@ -462,6 +465,11 @@ figcaption h2 a {
   padding: 0px !important;
   margin: 0px !important;
 }
+figcaption a.no-border {
+  border: 0px !important;
+  padding: 0px !important;
+  margin: 0px !important;
+}
 #gallery-photos li {
   width: 300px;
   height: auto;
@@ -584,4 +592,7 @@ figcaption h2 a {
   background: #34495e;
   /* IE Fallback */
   background: rgba(52, 73, 94, 0.7);
+}
+#blueimp-gallery {
+  z-index: 3000000000 !important;
 }
