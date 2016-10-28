@@ -7,8 +7,21 @@
 {% block content %}
 
     <div id="gallery-description" class="wowload fadeInLeft">
-        <strong>{{ gallery.title }}</strong> <small>{{ gallery.description }}</small>
+        <strong>{{ gallery.title }}</strong>
+        <small>{{ gallery.description }}</small>
     </div>
+
+    <div class="text-center">
+    {% if photos.paginator.num_pages > 1 %}
+            <ul class="pagination">
+                {% for i in photos.paginator.page_range %}
+                    <li {% if photos.number == i %}class="active"{% endif %}><a
+                            href="{% url 'photologue:pl-gallery' slug=gallery.slug page=i %}">{{ i }}</a></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+
     <div id="gallery" class="wowload fadeIn text-center">
         <ul id="gallery-photos">
             {% for photo in photos %}
@@ -23,9 +36,10 @@
 
         {% if photos.paginator.num_pages > 1 %}
             <ul class="pagination">
-              {% for i in photos.paginator.page_range %}
-                <li {% if photos.number == i %}class="active"{% endif %}><a href="{% url 'photologue:pl-gallery' slug=gallery.slug page=i %}">{{ i }}</a></li>
-              {% endfor %}
+                {% for i in photos.paginator.page_range %}
+                    <li {% if photos.number == i %}class="active"{% endif %}><a
+                            href="{% url 'photologue:pl-gallery' slug=gallery.slug page=i %}">{{ i }}</a></li>
+                {% endfor %}
             </ul>
         {% endif %}
     </div>
