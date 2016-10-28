@@ -596,3 +596,11 @@ figcaption a.no-border {
 #blueimp-gallery {
   z-index: 3000000000 !important;
 }
+.pagination li a {
+  border-width: 0px;
+  color: #00a9c6;
+}
+.pagination li.active a {
+  background-color: #21ABCA;
+  border-radius: 0px !important;
+}

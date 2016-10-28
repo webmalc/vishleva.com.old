@@ -1,6 +1,5 @@
 from django.views.generic import TemplateView
 from django.conf import settings
-from random import randint
 from datetime import date
 from django.http import JsonResponse
 from django.utils.translation import ugettext_lazy as _
@@ -8,6 +7,24 @@ from .models import ExtendedFlatPage
 from .forms import ContactForm
 from vishleva.messengers.mailer import Mailer
 from photologue.models import Gallery
+from photologue.views import GalleryDetailView
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+
+class GalleryView(GalleryDetailView):
+    """
+    Gallery vie
+    """
+    def get_context_data(self, **kwargs):
+        context = super(GalleryDetailView, self).get_context_data(**kwargs)
+        paginator = Paginator(self.object.photos.all(), settings.PHOTOS_PER_PAGE)
+        page = self.kwargs.get('page', 1)
+        try:
+            context['photos'] = paginator.page(page)
+        except (PageNotAnInteger, EmptyPage):
+            context['photos'] = paginator.page(1)
+
+        return context
 
 
 class MainView(TemplateView):

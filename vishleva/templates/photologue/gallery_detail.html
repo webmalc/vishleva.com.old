@@ -9,9 +9,9 @@
     <div id="gallery-description" class="wowload fadeInLeft">
         <strong>{{ gallery.title }}</strong> <small>{{ gallery.description }}</small>
     </div>
-    <div id="gallery" class="wowload fadeIn">
+    <div id="gallery" class="wowload fadeIn text-center">
         <ul id="gallery-photos">
-            {% for photo in gallery.public %}
+            {% for photo in photos %}
                 <li>
                     <a href="{{ photo.get_display_url }}" title="{{ photo.title }}">
                         <img height="{{ photo.get_thumbnail_size.1 }}" width="{{ photo.get_thumbnail_size.0 }}"
@@ -20,6 +20,14 @@
                 </li>
             {% endfor %}
         </ul>
+
+        {% if photos.paginator.num_pages > 1 %}
+            <ul class="pagination">
+              {% for i in photos.paginator.page_range %}
+                <li {% if photos.number == i %}class="active"{% endif %}><a href="{% url 'photologue:pl-gallery' slug=gallery.slug page=i %}">{{ i }}</a></li>
+              {% endfor %}
+            </ul>
+        {% endif %}
     </div>
 
     <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">

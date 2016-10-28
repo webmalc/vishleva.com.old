@@ -153,3 +153,4 @@ LOGIN_URL = 'two_factor:login'
 LOGOUT_URL = "admin:logout"
 
 SITE_START_DATE = date(2015, 3, 28)
+PHOTOS_PER_PAGE = 20

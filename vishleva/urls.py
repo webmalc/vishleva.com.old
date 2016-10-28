@@ -1,10 +1,10 @@
 from django.conf.urls import url, include
 from django.contrib import admin
-from photologue.views import GalleryDetailView, PhotoDetailView
+from photologue.views import PhotoDetailView
 from django.views.i18n import javascript_catalog
 from django.conf import settings
 from django.conf.urls.static import static
-from pages.views import MainView, send_email
+from pages.views import MainView, send_email, GalleryView
 
 js_info_dict = {
     'domain': 'django',
@@ -22,7 +22,7 @@ urlpatterns = [
     # photologue
     url(r'^photo/', include(
         [
-            url(r'^gallery/(?P<slug>[\-\d\w]+)/$', GalleryDetailView.as_view(), name='pl-gallery'),
+            url(r'^gallery/(?P<slug>[\-\d\w]+)(?:/(?P<page>\d+))?/$', GalleryView.as_view(), name='pl-gallery'),
             url(r'^photo/(?P<slug>[\-\d\w]+)/$', PhotoDetailView.as_view(), name='pl-photo'),
          ],
         namespace='photologue'
