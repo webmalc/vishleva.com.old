@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'^jsi18n/$', javascript_catalog, js_info_dict, name='javascript-catalog'),
     url(r'^admin/', admin.site.urls),
     url(r'', include('two_factor.urls', 'two_factor')),
+    url(r'^pages/', include('pages.urls', namespace='pages')),
     url(r'^$', MainView.as_view(), name='index'),
     url(r'^send_email$', send_email, name='send_email'),
     url(r'^jsi18n/$', javascript_catalog, js_info_dict, name='javascript-catalog'),

@@ -42,8 +42,9 @@ class MainView(TemplateView):
         context['photos'] = days * 3 + date.today().weekday()
         context['about'] = ExtendedFlatPage.objects.all().filter(url='/about/').first()
         context['prices'] = ExtendedFlatPage.objects.all().filter(url='/prices/').first()
+        context['special'] = ExtendedFlatPage.objects.all().filter(url='/special/').first()
         context['form'] = ContactForm()
-        context['galleries'] = Gallery.objects.on_site().is_public()
+        context['galleries'] = Gallery.objects.on_site().is_public().exclude(slug='special')
 
         return context
 

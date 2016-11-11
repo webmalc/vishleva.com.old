@@ -6,6 +6,11 @@
 {% block content %}
     {% include 'pages/galleries.html' %}
 
+    {% if special %}
+    <div id="special">
+         {{ special.content|safe }}
+    </div>
+    {% endif %}
 
     <div id="about" class="container spacer about">
         {{ about.content|safe }}

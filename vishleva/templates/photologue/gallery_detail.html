@@ -7,8 +7,8 @@
 {% block content %}
 
     <div id="gallery-description" class="wowload fadeInLeft">
-        <strong>{{ gallery.title }}</strong>
-        <small>{{ gallery.description }}</small>
+        <strong>{{ gallery.title|safe }}</strong>
+        <small>{{ gallery.description|safe }}</small>
     </div>
 
     <div class="text-center">
