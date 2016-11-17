@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'sortedm2m',
     'debug_toolbar',
     'compressor',
+    'django_extensions',
 
     # vishleva apps
     'vishleva',
