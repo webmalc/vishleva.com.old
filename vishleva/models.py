@@ -22,7 +22,7 @@ class CommonInfo(models.Model):
 
 
 class CommentMixin(models.Model):
-    comment = models.TextField(null=True, blank=True)
+    comment = models.TextField(null=True, blank=True, db_index=True)
 
     class Meta:
         abstract = True

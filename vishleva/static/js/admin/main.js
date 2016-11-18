@@ -33,4 +33,25 @@ $(document).ready(function ($) {
     });
 
     admin.aceEditor($('#gallery_form #id_description'));
+
+    $('.vTimeField').inputmask({mask: "99:99[:99]"});
+    $('.vDateField').inputmask({mask: "9999-99-99"});
+
+    /**
+     * begin & end inputs
+     */
+    (function () {
+        var begin = $('#id_begin_0'),
+            end = $('#id_end_0');
+
+        if (!begin.length || !end.length) {
+            return;
+        }
+
+        begin.on('change, blur', function () {
+            if (!end.val()) {
+                end.val(begin.val());
+            }
+        });
+    }());
 });

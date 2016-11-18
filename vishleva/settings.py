@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'compressor',
     'django_extensions',
+    'reversion',
 
     # vishleva apps
     'vishleva',
@@ -112,6 +113,8 @@ ADMIN_LANGUAGE_CODE = 'en-US'
 
 TIME_ZONE = 'Europe/Moscow'
 
+DATETIME_FORMAT = "N j, Y, P"
+
 USE_I18N = True
 
 USE_L10N = True
@@ -156,3 +159,8 @@ LOGOUT_URL = "admin:logout"
 
 SITE_START_DATE = date(2015, 3, 28)
 PHOTOS_PER_PAGE = 20
+
+# Django phonenumber
+PHONENUMBER_DB_FORMAT = 'NATIONAL'
+PHONENUMBER_DEFAULT_REGION = 'RU'
+
