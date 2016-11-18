@@ -47,7 +47,8 @@ INSTALLED_APPS = [
 
     # vishleva apps
     'vishleva',
-    'pages'
+    'pages',
+    'events'
 ]
 
 MIDDLEWARE_CLASSES = [

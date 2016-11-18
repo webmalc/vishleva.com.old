@@ -1,14 +1,17 @@
 from django.db import models
+from django.conf import settings
 
 
 class CommonInfo(models.Model):
     """ CommonInfo abstract model """
 
+    AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
+
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True, editable=False)
     modified_at = models.DateTimeField(auto_now=True, null=True, blank=True, editable=False)
-    created_by = models.ForeignKey('django.contrib.auth.models.User', null=True, blank=True, on_delete=models.CASCADE,
+    created_by = models.ForeignKey(AUTH_USER_MODEL, null=True, blank=True, on_delete=models.CASCADE,
                                    editable=False, related_name="%(app_label)s_%(class)s_created_by")
-    modified_by = models.ForeignKey('django.contrib.auth.models', null=True, blank=True, on_delete=models.CASCADE,
+    modified_by = models.ForeignKey(AUTH_USER_MODEL, null=True, blank=True, on_delete=models.CASCADE,
                                     editable=False, related_name="%(app_label)s_%(class)s_modified_by")
 
     def __str__(self):
