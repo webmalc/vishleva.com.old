@@ -5,6 +5,7 @@ from django.core.validators import MinValueValidator
 from vishleva.models import CommonInfo, CommentMixin
 from phonenumber_field.modelfields import PhoneNumberField
 from django.core.exceptions import ValidationError
+from vishleva.models import NullableEmailField
 
 
 class Event(CommonInfo, CommentMixin):
@@ -70,10 +71,10 @@ class Client(CommonInfo, CommentMixin):
         ('F', 'Female'),
     )
     first_name = models.CharField(max_length=100, db_index=True)
-    last_name = models.CharField(max_length=100, db_index=True)
+    last_name = models.CharField(max_length=100, db_index=True, null=True, blank=True)
     patronymic = models.CharField(max_length=100, db_index=True, null=True, blank=True)
     phone = PhoneNumberField(max_length=30, db_index=True, unique=True)
-    email = models.EmailField(max_length=200, db_index=True, unique=True, null=True, blank=True)
+    email = NullableEmailField(max_length=200, db_index=True, unique=True, null=True, blank=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, db_index=True)
 
     def __str__(self):
