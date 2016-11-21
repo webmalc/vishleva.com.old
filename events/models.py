@@ -12,11 +12,19 @@ class Event(CommonInfo, CommentMixin):
     """
     Event model
     """
+
+    STATUSES = (
+        ('not_confirmed', 'not confirmed'),
+        ('open', 'open'),
+        ('closed', 'closed'),
+    )
+
     begin = models.DateTimeField(db_index=True)
     end = models.DateTimeField(db_index=True)
     title = models.CharField(max_length=255, db_index=True)
     total = models.PositiveIntegerField(default=0, db_index=True, validators=[MinValueValidator(0)])
     paid = models.PositiveIntegerField(default=0, db_index=True, validators=[MinValueValidator(0)])
+    status = models.CharField(max_length=15, choices=STATUSES, db_index=True)
     client = models.ForeignKey('Client', null=True, blank=False, on_delete=models.SET_NULL, related_name="events")
 
     def is_paid(self):
@@ -74,6 +82,8 @@ class Client(CommonInfo, CommentMixin):
     last_name = models.CharField(max_length=100, db_index=True, null=True, blank=True)
     patronymic = models.CharField(max_length=100, db_index=True, null=True, blank=True)
     phone = PhoneNumberField(max_length=30, db_index=True, unique=True)
+    social_url = models.URLField(
+        max_length=250, null=True, blank=True, help_text='social profile url (vk, facebook, ect)')
     email = NullableEmailField(max_length=200, db_index=True, unique=True, null=True, blank=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, db_index=True)
 

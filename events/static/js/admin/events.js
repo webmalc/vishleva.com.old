@@ -3,5 +3,8 @@
 
 $(document).ready(function () {
     "use strict";
-    return;
+
+    $('.field-status:contains("not confirmed")').addClass('text-red');
+    $('.field-status:contains("open")').addClass('text-green');
+    $('.field-status:contains("closed")').addClass('text-muted');
 });

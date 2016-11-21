@@ -7,17 +7,17 @@ from .models import Event, Client
 class EventAdmin(VersionAdmin):
     model = Event
     list_display = (
-        'id', 'title', 'begin', 'duration', 'total', 'is_paid', 'client', 'comment'
+        'id', 'title', 'begin', 'duration', 'total', 'is_paid', 'client', 'status'
     )
     list_display_links = ('id', 'title')
     search_fields = (
         'id', 'title', 'comment', 'client__last_name', 'client__phone', 'client__email'
     )
-    list_filter = ('begin', 'created_at')
+    list_filter = ('begin', 'status', 'created_at')
     raw_id_fields = ['client']
     fieldsets = (
         ('General', {
-            'fields': ('title', 'begin', 'end', 'comment')
+            'fields': ('title', 'begin', 'end', 'comment', 'status')
         }),
         ('Calculation', {
             'fields': ('total', 'paid')
@@ -29,13 +29,16 @@ class EventAdmin(VersionAdmin):
 
     class Media:
         js = ('js/admin/events.js',)
+        css = {
+            'all': ('css/admin/events.css',)
+        }
 
 
 @admin.register(Client)
 class ClientAdmin(VersionAdmin):
     model = Client
     list_display = (
-        'id', 'last_name', 'first_name', 'patronymic', 'phone', 'email', 'comment'
+        'id', 'last_name', 'first_name', 'patronymic', 'phone', 'email', 'social_url'
     )
     list_display_links = ('id', 'last_name', 'first_name')
     search_fields = (
@@ -47,6 +50,6 @@ class ClientAdmin(VersionAdmin):
             'fields': ('first_name', 'last_name', 'patronymic', 'comment', 'gender')
         }),
         ('Contacts', {
-            'fields': ('phone', 'email')
+            'fields': ('phone', 'social_url', 'email')
         }),
     )
