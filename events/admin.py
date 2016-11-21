@@ -37,7 +37,7 @@ class ClientAdmin(VersionAdmin):
     list_display = (
         'id', 'last_name', 'first_name', 'patronymic', 'phone', 'email', 'comment'
     )
-    list_display_links = ('id', 'last_name')
+    list_display_links = ('id', 'last_name', 'first_name')
     search_fields = (
         'id', 'last_name', 'phone', 'email', 'comment'
     )
