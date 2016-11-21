@@ -13,6 +13,7 @@ def deploy():
         with prefix(env.activate):
             run('git pull origin master')
             run('pip install -r requirements.txt')
+            run('npm install')
             run('./manage.py collectstatic --no-input')
             run('./manage.py migrate --no-input')
     sudo('sudo supervisorctl restart vishleva')

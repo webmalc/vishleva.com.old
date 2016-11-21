@@ -86,3 +86,4 @@ celerybeat.pid
 /vishleva/local_settings.py
 /nbproject/private/
 node_modules
+google_api_key.json
