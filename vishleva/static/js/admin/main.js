@@ -34,7 +34,7 @@ $(document).ready(function ($) {
 
     admin.aceEditor($('#gallery_form #id_description'));
 
-    $('.vTimeField').inputmask({mask: "99:99[:99]"});
+    $('.vTimeField').inputmask({mask: "99:99:99"});
     $('.vDateField').inputmask({mask: "9999-99-99"});
 
     /**

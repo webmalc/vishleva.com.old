@@ -26,6 +26,8 @@ class Event(CommonInfo, CommentMixin):
     paid = models.PositiveIntegerField(default=0, db_index=True, validators=[MinValueValidator(0)])
     status = models.CharField(max_length=15, choices=STATUSES, db_index=True)
     client = models.ForeignKey('Client', null=True, blank=False, on_delete=models.SET_NULL, related_name="events")
+    google_calendar_id = models.CharField(
+        max_length=255, db_index=True, null=True, blank=True, help_text='google calendar event id')
 
     def is_paid(self):
         return self.total - self.paid <= 0

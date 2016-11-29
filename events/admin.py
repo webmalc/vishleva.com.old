@@ -17,7 +17,7 @@ class EventAdmin(VersionAdmin):
     raw_id_fields = ['client']
     fieldsets = (
         ('General', {
-            'fields': ('title', 'begin', 'end', 'comment', 'status')
+            'fields': ('title', 'begin', 'end', 'comment', 'status', 'google_calendar_id')
         }),
         ('Calculation', {
             'fields': ('total', 'paid')
@@ -26,9 +26,8 @@ class EventAdmin(VersionAdmin):
             'fields': ('client',)
         }),
     )
-
     class Media:
-        js = ('js/admin/events.js',)
+        js = ('js/admin/events.js', 'https://apis.google.com/js/client.js?onload=checkAuth')
         css = {
             'all': ('css/admin/events.css',)
         }

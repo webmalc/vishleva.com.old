@@ -7,8 +7,10 @@
     <meta charset="utf-8"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="keywords" content="профессиональный фотограф Москва, услуги фотографа, заказать фотосъемку в Москве, фото профессионального фотографа, цены на услуги фотографа, стоимость профессиональной фотосъемки, фотосьемка в студии, love story, романтическая фотосессия, свадебная фотосессия" />
-    <meta name="description" content="Фотограф Александра Вишлева - профессиональный фотограф Москва . Фотографы Москвы . Фотосессия в Москве . Рекламная фотосъемка . Фотограф знаменитостей. Фотосессия в студии как знаменитости . Профессиональная фотосессия . Услуги фотографа цены . Фотосессия в студии в Москве. Услуги рекламного фотографа . Красивые портреты в студии и на выезде. Свадебная фотосессия"/>
+    <meta name="keywords"
+          content="профессиональный фотограф Москва, услуги фотографа, заказать фотосъемку в Москве, фото профессионального фотографа, цены на услуги фотографа, стоимость профессиональной фотосъемки, фотосьемка в студии, love story, романтическая фотосессия, свадебная фотосессия"/>
+    <meta name="description"
+          content="Фотограф Александра Вишлева - профессиональный фотограф Москва . Фотографы Москвы . Фотосессия в Москве . Рекламная фотосъемка . Фотограф знаменитостей. Фотосессия в студии как знаменитости . Профессиональная фотосессия . Услуги фотографа цены . Фотосессия в студии в Москве. Услуги рекламного фотографа . Красивые портреты в студии и на выезде. Свадебная фотосессия"/>
 
     <link rel="apple-touch-icon" sizes="76x76" href="{% static 'images/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" href="{% static 'images/favicon-16x16.png' %}" sizes="16x16">
@@ -22,7 +24,8 @@
         {% block title %}Фотограф Александра Вишлева - профессиональный фотограф Москва {% endblock %}
     </title>
 
-    <link href="https://fonts.googleapis.com/css?family=Andika|Lobster|Roboto:300,400,700&amp;subset=cyrillic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Andika|Lobster|Roboto:300,400,700&amp;subset=cyrillic"
+          rel="stylesheet">
     {% compress css %}
         {% block css %}
             <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
@@ -37,6 +40,7 @@
 </head>
 
 <body>
+
 <div class="topbar animated fadeInLeftBig"></div>
 
 <div class="navbar-wrapper">
@@ -78,17 +82,24 @@
 </div>
 <a id="top"></a>
 
-{% block content %}{% endblock %}
 
+
+{% block content %}{% endblock %}
+<button id="authorize-button" onclick="handleAuthClick(event)">
+        Authorize
+      </button>
 <!-- Footer Starts -->
 <div class="footer text-center spacer">
     <p>Я в социальных сетях</p>
     <p class="wowload flipInX">
-        <a data-toggle="tooltip" data-placement="top" title="Я в VK" href="https://vk.com/albums4429612" target="_blank"><i
+        <a data-toggle="tooltip" data-placement="top" title="Я в VK" href="https://vk.com/albums4429612"
+           target="_blank"><i
                 class="fa fa-vk fa-2x"></i></a>
-        <a data-toggle="tooltip" data-placement="top" title="Я в Одноклассниках" href="https://ok.ru/vishleva/photos" target="_blank"><i
+        <a data-toggle="tooltip" data-placement="top" title="Я в Одноклассниках" href="https://ok.ru/vishleva/photos"
+           target="_blank"><i
                 class="fa fa-odnoklassniki fa-2x"></i></a>
-        <a data-toggle="tooltip" data-placement="top" title="Я в Facebook" href="https://www.facebook.com/vishleva/photos" target="_blank"><i
+        <a data-toggle="tooltip" data-placement="top" title="Я в Facebook"
+           href="https://www.facebook.com/vishleva/photos" target="_blank"><i
                 class="fa fa-facebook fa-2x"></i></a>
         <a data-toggle="tooltip" data-placement="top" title="Я в instagram" href="https://www.instagram.com/vishleva"
            target="_blank"><i class="fa fa-instagram fa-2x"></i></a>
@@ -103,26 +114,88 @@
 
 
 <a href="#top" class="gototop"><i class="fa fa-angle-up  fa-3x"></i></a>
-    <script src="{% url 'javascript-catalog' %}"></script>
-    {% compress js %}
-        {% block js %}
-            <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
-            <script src="{% static 'wowjs/dist/wow.min.js' %}"></script>
-            <script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}" type="text/javascript"></script>
-            <script src="{% static 'jquery-touchswipe/jquery.touchSwipe.min.js' %}"></script>
-            <script src="{% static 'respond.js/src/respond.js' %}"></script>
-            <script src="{% static 'blueimp-gallery/js/blueimp-gallery.min.js' %}"></script>
-            <script src="{% static 'js-cookie/src/js.cookie.js' %}"></script>
-            <script src="{% static 'bootstrap-notify/bootstrap-notify.min.js' %}"></script>
-            <script src="{% static 'imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
-            <script src="{% static 'wookmark/wookmark.min.js' %}"></script>
+<script src="{% url 'javascript-catalog' %}"></script>
+<script type="text/javascript">
+    // Your Client ID can be retrieved from your project in the Google
+    // Developer Console, https://console.developers.google.com
+    var CLIENT_ID = '844817189895-a3eqkbt9va6hh1jqlm37s742gpnl8285.apps.googleusercontent.com';
 
-            {% include 'partials/js/tawk.to.html' %}
-            {% include 'partials/js/google.analytics.html' %}
+    var SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"];
 
-            <script src="{% static 'js/script.js' %}"></script>
-        {% endblock %}
-    {% endcompress %}
+    /**
+     * Check if current user has authorized this application.
+     */
+    function checkAuth() {
+        gapi.auth.authorize(
+                {
+                    'client_id': CLIENT_ID,
+                    'scope': SCOPES.join(' '),
+                    'immediate': true
+                }, handleAuthResult);
+    }
+
+    function handleAuthClick(event) {
+        gapi.auth.authorize(
+                {
+                    'client_id': CLIENT_ID,
+                    'scope': SCOPES.join(' '),
+                    'immediate': false
+                }, handleAuthResult);
+        return false;
+    }
+
+
+    /**
+     * Handle response from authorization server.
+     *
+     * @param {Object} authResult Authorization result.
+     */
+    function handleAuthResult(authResult) {
+
+        if (authResult && !authResult.error) {
+            gapi.client.load('calendar', 'v3', function () {
+                var request = gapi.client.calendar.events.list({
+                    'calendarId': 'primary',
+                    'timeMin': (new Date()).toISOString(),
+                    'showDeleted': false,
+                    'singleEvents': true,
+                    'maxResults': 10,
+                    'orderBy': 'startTime'
+                });
+
+                request.execute(function (resp) {
+                    var events = resp.items;
+                    console.log(events);
+
+                });
+            });
+        } else {
+            document.getElementById('authorize-button').click();
+        }
+
+
+    }
+</script>
+<script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
+{% compress js %}
+    {% block js %}
+        <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+        <script src="{% static 'wowjs/dist/wow.min.js' %}"></script>
+        <script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'jquery-touchswipe/jquery.touchSwipe.min.js' %}"></script>
+        <script src="{% static 'respond.js/src/respond.js' %}"></script>
+        <script src="{% static 'blueimp-gallery/js/blueimp-gallery.min.js' %}"></script>
+        <script src="{% static 'js-cookie/src/js.cookie.js' %}"></script>
+        <script src="{% static 'bootstrap-notify/bootstrap-notify.min.js' %}"></script>
+        <script src="{% static 'imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+        <script src="{% static 'wookmark/wookmark.min.js' %}"></script>
+
+        {% include 'partials/js/tawk.to.html' %}
+        {% include 'partials/js/google.analytics.html' %}
+
+        <script src="{% static 'js/script.js' %}"></script>
+    {% endblock %}
+{% endcompress %}
 
 </body>
 </html>

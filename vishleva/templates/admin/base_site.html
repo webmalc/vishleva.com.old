@@ -1,19 +1,16 @@
 {% extends "admin/base_site.html" %}
 {% load admin_static %}
 
-{% block extrahead %}
+{% block extrastyle %}
+    {{ block.super }}
     <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
     <script src="{% static 'jquery.inputmask/dist/inputmask/inputmask.js' %}"></script>
     <script src="{% static 'jquery.inputmask/dist/inputmask/jquery.inputmask.js' %}"></script>
     <script src="{% static 'ace-builds/src-min/ace.js' %}"></script>
     <script src="{% static 'ace-builds/src-min/ext-language_tools.js' %}"></script>
     <script src="{% static 'js/admin/main.js' %}"></script>
-{% endblock %}
-
-{% block extrastyle %}
     <link rel="stylesheet"  type="text/css" href="{% static 'css/admin/main.css' %}">
 {% endblock %}
-
 
 {% block branding %}
 <h1 id="site-name"><a href="{% url 'admin:index' %}">Vishleva.com administration</a></h1>
