@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 import os
 from django.core.urlresolvers import reverse_lazy
 from datetime import date
+from urllib.parse import quote
 
 # Local settings
 try:
@@ -22,7 +23,6 @@ except ImportError:
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Application definition
 INSTALLED_APPS = [
@@ -104,7 +104,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 LANGUAGE_CODE = 'ru'
 
 LANGUAGES = (('ru', 'Russian'), ('en', 'English'),)
@@ -157,10 +156,22 @@ LOGIN_URL = 'two_factor:login'
 
 LOGOUT_URL = "admin:logout"
 
-SITE_START_DATE = date(2015, 3, 28)
-PHOTOS_PER_PAGE = 20
+# Celery
+BROKER_URL = 'sqs://{0}:{1}@'.format(
+    quote(AWS_ACCESS_KEY_ID, safe=''),
+    quote(AWS_SECRET_ACCESS_KEY, safe='')
+)
+CELERY_SEND_TASK_ERROR_EMAILS = True
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Europe/Moscow'
+CELERYBEAT_SCHEDULE = {}
 
 # Django phonenumber
 PHONENUMBER_DB_FORMAT = 'NATIONAL'
 PHONENUMBER_DEFAULT_REGION = 'RU'
 
+# Vishleva.com
+SITE_START_DATE = date(2015, 3, 28)
+PHOTOS_PER_PAGE = 20

@@ -9,7 +9,7 @@ from vishleva.messengers.mailer import Mailer
 from photologue.models import Gallery
 from photologue.views import GalleryDetailView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
+from vishleva.tasks import mail_managers_task
 
 class GalleryView(GalleryDetailView):
     """
@@ -60,7 +60,7 @@ def send_email(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            Mailer.mail_managers(
+            mail_managers_task.delay(
                 subject=_('New message via contact form'),
                 template='emails/contact_form.html',
                 data=form.cleaned_data
