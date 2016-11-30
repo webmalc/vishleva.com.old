@@ -115,68 +115,6 @@
 
 <a href="#top" class="gototop"><i class="fa fa-angle-up  fa-3x"></i></a>
 <script src="{% url 'javascript-catalog' %}"></script>
-<script type="text/javascript">
-    // Your Client ID can be retrieved from your project in the Google
-    // Developer Console, https://console.developers.google.com
-    var CLIENT_ID = '844817189895-a3eqkbt9va6hh1jqlm37s742gpnl8285.apps.googleusercontent.com';
-
-    var SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"];
-
-    /**
-     * Check if current user has authorized this application.
-     */
-    function checkAuth() {
-        gapi.auth.authorize(
-                {
-                    'client_id': CLIENT_ID,
-                    'scope': SCOPES.join(' '),
-                    'immediate': true
-                }, handleAuthResult);
-    }
-
-    function handleAuthClick(event) {
-        gapi.auth.authorize(
-                {
-                    'client_id': CLIENT_ID,
-                    'scope': SCOPES.join(' '),
-                    'immediate': false
-                }, handleAuthResult);
-        return false;
-    }
-
-
-    /**
-     * Handle response from authorization server.
-     *
-     * @param {Object} authResult Authorization result.
-     */
-    function handleAuthResult(authResult) {
-
-        if (authResult && !authResult.error) {
-            gapi.client.load('calendar', 'v3', function () {
-                var request = gapi.client.calendar.events.list({
-                    'calendarId': 'primary',
-                    'timeMin': (new Date()).toISOString(),
-                    'showDeleted': false,
-                    'singleEvents': true,
-                    'maxResults': 10,
-                    'orderBy': 'startTime'
-                });
-
-                request.execute(function (resp) {
-                    var events = resp.items;
-                    console.log(events);
-
-                });
-            });
-        } else {
-            document.getElementById('authorize-button').click();
-        }
-
-
-    }
-</script>
-<script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
 {% compress js %}
     {% block js %}
         <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
