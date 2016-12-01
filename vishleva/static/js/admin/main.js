@@ -9,10 +9,10 @@ var admin = {
         if (!textarea.length) {
             return null;
         }
-
+        var id = 'id_content_div' + textarea.prop('id');
         textarea.hide();
-        textarea.after("<div id='id_content_div' style='width: 80%; height: 500px;'></div>");
-        var editor = ace.edit("id_content_div");
+        textarea.after("<div id='" + id + "' style='width: 80%; height: 500px;'></div>");
+        var editor = ace.edit(id);
         editor.setOptions({enableBasicAutocompletion: true});
         editor.getSession().setValue(textarea.val());
         editor.setTheme("ace/theme/monokai");
@@ -33,6 +33,7 @@ $(document).ready(function ($) {
     });
 
     admin.aceEditor($('#gallery_form #id_description'));
+    admin.aceEditor($('#gallery_form #id_extended-0-small_description'));
 
     $('.vTimeField').inputmask({mask: "99:99:99"});
     $('.vDateField').inputmask({mask: "9999-99-99"});

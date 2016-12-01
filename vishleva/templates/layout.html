@@ -37,6 +37,8 @@
             <link rel="stylesheet" href="{% static 'css/style.css' %}">
         {% endblock %}
     {% endcompress %}
+
+    {% block extrahead %}{% endblock %}
 </head>
 
 <body>
@@ -82,12 +84,7 @@
 </div>
 <a id="top"></a>
 
-
-
 {% block content %}{% endblock %}
-<button id="authorize-button" onclick="handleAuthClick(event)">
-        Authorize
-      </button>
 <!-- Footer Starts -->
 <div class="footer text-center spacer">
     <p>Я в социальных сетях</p>

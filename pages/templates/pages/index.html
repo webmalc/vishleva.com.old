@@ -3,6 +3,10 @@
 {% load staticfiles %}
 {% load i18n %}
 
+{% block extrahead %}
+    {{ extrahead.content|safe }}
+{% endblock %}
+
 {% block content %}
     {% include 'pages/galleries.html' %}
 

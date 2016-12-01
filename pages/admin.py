@@ -4,6 +4,18 @@ from django.contrib.flatpages.forms import FlatpageForm
 from django.contrib.flatpages.models import FlatPage
 from django.utils.translation import ugettext_lazy as _
 from .models import ExtendedFlatPage
+from photologue.admin import GalleryAdmin as GalleryAdminDefault
+from photologue.models import Gallery
+from .models import GalleryExtended
+
+
+class GalleryExtendedInline(admin.StackedInline):
+    model = GalleryExtended
+    can_delete = False
+
+
+class GalleryAdmin(GalleryAdminDefault):
+    inlines = [GalleryExtendedInline, ]
 
 
 class ExtendedFlatPageForm(FlatpageForm):
@@ -28,3 +40,6 @@ class ExtendedFlatPageAdmin(FlatPageAdmin):
 
 admin.site.unregister(FlatPage)
 admin.site.register(ExtendedFlatPage, ExtendedFlatPageAdmin)
+admin.site.unregister(Gallery)
+admin.site.register(Gallery, GalleryAdmin)
+

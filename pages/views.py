@@ -43,8 +43,9 @@ class MainView(TemplateView):
         context['about'] = ExtendedFlatPage.objects.all().filter(url='/about/').first()
         context['prices'] = ExtendedFlatPage.objects.all().filter(url='/prices/').first()
         context['special'] = ExtendedFlatPage.objects.all().filter(url='/special/').first()
+        context['extrahead'] = ExtendedFlatPage.objects.all().filter(url='/extrahead/').first()
         context['form'] = ContactForm()
-        context['galleries'] = Gallery.objects.on_site().is_public().exclude(slug='special')
+        context['galleries'] = Gallery.objects.on_site().is_public()  # .exclude(slug='special')
 
         return context
 
