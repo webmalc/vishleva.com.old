@@ -6,6 +6,7 @@ from .models import Event, Client
 @admin.register(Event)
 class EventAdmin(VersionAdmin):
     model = Event
+    change_list_template = 'admin/events/change_list.html'
     list_display = (
         'id', 'title', 'begin', 'duration', 'total', 'is_paid', 'client', 'status'
     )
@@ -20,12 +21,19 @@ class EventAdmin(VersionAdmin):
             'fields': ('title', 'begin', 'end', 'comment', 'status', 'google_calendar_id')
         }),
         ('Calculation', {
-            'fields': ('total', 'paid')
+            'fields': ('total', 'expenses', 'paid')
         }),
         ('Client', {
             'fields': ('client',)
         }),
     )
+
+    def changelist_view(self, request, extra_context=None):
+        extra_context = extra_context or {}
+        extra_context['total'] = Event.objects.get_total(with_expenses=True)
+        extra_context['paid'] = Event.objects.get_paid()
+        return super(EventAdmin, self).changelist_view(request, extra_context=extra_context)
+
     class Media:
         js = ('js/admin/events.js', 'https://apis.google.com/js/client.js?onload=checkAuth')
         css = {

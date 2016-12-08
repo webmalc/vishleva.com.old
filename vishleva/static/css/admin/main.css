@@ -12,3 +12,12 @@
 .text-muted {
   color: #777;
 }
+.admin-additional-info {
+  margin: 0px !important;
+  padding: 0px;
+}
+.admin-additional-info li {
+  list-style-type: none;
+  display: inline-block;
+  margin: 0px 10px 0px 0px;
+}

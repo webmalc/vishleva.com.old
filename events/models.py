@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Sum
 from django.template.defaultfilters import pluralize
 from django.utils import timezone
 from django.core.validators import MinValueValidator
@@ -6,6 +7,26 @@ from vishleva.models import CommonInfo, CommentMixin
 from phonenumber_field.modelfields import PhoneNumberField
 from django.core.exceptions import ValidationError
 from vishleva.models import NullableEmailField
+
+
+class EventManager(models.Manager):
+    """ Event model manager """
+
+    def get_expenses(self) -> int:
+        return self.extra().aggregate(Sum('expenses'))['expenses__sum']
+
+    def get_total(self, with_expenses=False) -> int:
+        """
+        :param with_expenses: with expenses?
+        :type with_expenses: bool
+        :return: total sum
+        :rtype: int
+        """
+        total = self.extra().aggregate(Sum('total'))['total__sum']
+        return total - self.get_expenses() if with_expenses else total
+
+    def get_paid(self) -> int:
+        return self.extra().aggregate(Sum('paid'))['paid__sum']
 
 
 class Event(CommonInfo, CommentMixin):
@@ -18,11 +39,12 @@ class Event(CommonInfo, CommentMixin):
         ('open', 'open'),
         ('closed', 'closed'),
     )
-
+    objects = EventManager()
     begin = models.DateTimeField(db_index=True)
     end = models.DateTimeField(db_index=True)
     title = models.CharField(max_length=255, db_index=True)
     total = models.PositiveIntegerField(default=0, db_index=True, validators=[MinValueValidator(0)])
+    expenses = models.PositiveIntegerField(default=0, db_index=True, validators=[MinValueValidator(0)])
     paid = models.PositiveIntegerField(default=0, db_index=True, validators=[MinValueValidator(0)])
     status = models.CharField(max_length=15, choices=STATUSES, db_index=True)
     client = models.ForeignKey('Client', null=True, blank=False, on_delete=models.SET_NULL, related_name="events")

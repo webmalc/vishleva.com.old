@@ -5,11 +5,11 @@ from django.http import JsonResponse
 from django.utils.translation import ugettext_lazy as _
 from .models import ExtendedFlatPage
 from .forms import ContactForm
-from vishleva.messengers.mailer import Mailer
 from photologue.models import Gallery
 from photologue.views import GalleryDetailView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from vishleva.tasks import mail_managers_task
+
 
 class GalleryView(GalleryDetailView):
     """
@@ -37,9 +37,9 @@ class MainView(TemplateView):
         days = (date.today() - settings.SITE_START_DATE).days
         context = super(MainView, self).get_context_data(**kwargs)
         context['days'] = days
-        context['clients'] = days // 7
-        context['orders'] = days // 5
-        context['photos'] = days * 3 + date.today().weekday()
+        context['clients'] = days // 3
+        context['orders'] = days // 4
+        context['photos'] = days * 12 + date.today().weekday()
         context['about'] = ExtendedFlatPage.objects.all().filter(url='/about/').first()
         context['prices'] = ExtendedFlatPage.objects.all().filter(url='/prices/').first()
         context['special'] = ExtendedFlatPage.objects.all().filter(url='/special/').first()
