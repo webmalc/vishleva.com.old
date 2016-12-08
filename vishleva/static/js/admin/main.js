@@ -38,6 +38,17 @@ $(document).ready(function ($) {
     $('.vTimeField').inputmask({mask: "99:99:99"});
     $('.vDateField').inputmask({mask: "9999-99-99"});
 
+    /** datarange filter **/
+    (function () {
+        $('#changelist-filter input[type="reset"]').click(function (event) {
+            event.preventDefault();
+            var form = $(this).closest("form");
+            form.attr('action', window.location.href);
+            form.find('input[type="text"]').val('');
+            form.submit();
+        });
+    }());
+
     /**
      * begin & end inputs
      */

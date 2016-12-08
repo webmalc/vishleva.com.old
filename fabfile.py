@@ -12,6 +12,7 @@ def deploy():
     with cd(env.project_dir):
         with prefix(env.activate):
             run('git pull origin master')
+            run('pip install --upgrade pip')
             run('pip install -r requirements.txt')
             run('npm install')
             run('./manage.py collectstatic --no-input')

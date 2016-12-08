@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'compressor',
     'django_extensions',
     'reversion',
+    'daterange_filter',
 
     # vishleva apps
     'vishleva',

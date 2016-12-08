@@ -12,21 +12,41 @@ from vishleva.models import NullableEmailField
 class EventManager(models.Manager):
     """ Event model manager """
 
-    def get_expenses(self) -> int:
-        return self.extra().aggregate(Sum('expenses'))['expenses__sum']
-
-    def get_total(self, with_expenses=False) -> int:
+    def get_expenses(self, queryset=None) -> int:
         """
+        :param queryset: EventManager queryset
+        :type queryset: EventManager queryset
+        :return: expenses sum
+        :rtype: int
+        """
+        queryset = queryset if queryset is not None else self.get_queryset()
+        result = queryset.extra().aggregate(Sum('expenses'))
+        return result['expenses__sum'] if result['expenses__sum'] else 0
+
+    def get_total(self, queryset=None, with_expenses=False) -> int:
+        """
+        :param queryset: EventManager queryset
+        :type queryset: EventManager queryset
         :param with_expenses: with expenses?
         :type with_expenses: bool
         :return: total sum
         :rtype: int
         """
-        total = self.extra().aggregate(Sum('total'))['total__sum']
-        return total - self.get_expenses() if with_expenses else total
+        queryset = queryset if queryset is not None else self.get_queryset()
+        result = queryset.extra().aggregate(Sum('total'))
+        total = result['total__sum'] if result['total__sum'] else 0
+        return total - self.get_expenses(queryset=queryset) if with_expenses else total
 
-    def get_paid(self) -> int:
-        return self.extra().aggregate(Sum('paid'))['paid__sum']
+    def get_paid(self, queryset=None,) -> int:
+        """
+        :param queryset: EventManager queryset
+        :type queryset: EventManager queryset
+        :return: expenses sum
+        :rtype: int
+        """
+        queryset = queryset if queryset is not None else self.get_queryset()
+        result = queryset.extra().aggregate(Sum('paid'))
+        return result['paid__sum'] if result['paid__sum'] else 0
 
 
 class Event(CommonInfo, CommentMixin):

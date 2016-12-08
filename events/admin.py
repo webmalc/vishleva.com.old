@@ -1,3 +1,4 @@
+from daterange_filter.filter import DateRangeFilter
 from django.contrib import admin
 from reversion.admin import VersionAdmin
 from .models import Event, Client
@@ -14,7 +15,7 @@ class EventAdmin(VersionAdmin):
     search_fields = (
         'id', 'title', 'comment', 'client__last_name', 'client__phone', 'client__email'
     )
-    list_filter = ('begin', 'status', 'created_at')
+    list_filter = (('begin', DateRangeFilter), 'status', ('created_at', DateRangeFilter))
     raw_id_fields = ['client']
     fieldsets = (
         ('General', {
@@ -29,9 +30,11 @@ class EventAdmin(VersionAdmin):
     )
 
     def changelist_view(self, request, extra_context=None):
+        response = super(EventAdmin, self).changelist_view(request, extra_context)
+        query_set = response.context_data["cl"].queryset
         extra_context = extra_context or {}
-        extra_context['total'] = Event.objects.get_total(with_expenses=True)
-        extra_context['paid'] = Event.objects.get_paid()
+        extra_context['total'] = Event.objects.get_total(queryset=query_set, with_expenses=True)
+        extra_context['paid'] = Event.objects.get_paid(queryset=query_set)
         return super(EventAdmin, self).changelist_view(request, extra_context=extra_context)
 
     class Media:
