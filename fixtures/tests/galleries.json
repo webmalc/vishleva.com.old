@@ -1,0 +1,32 @@
+[
+  {
+    "model": "photologue.gallery",
+    "pk": 1,
+    "fields": {
+      "date_added": "2016-10-11T12:02:15.844Z",
+      "title": "test one gallery title",
+      "slug": "gallery_one",
+      "description": "test gallery description",
+      "is_public": true,
+      "photos": [],
+      "sites": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "photologue.gallery",
+    "pk": 2,
+    "fields": {
+      "date_added": "2016-10-11T12:02:15.844Z",
+      "title": "test two gallery title",
+      "slug": "gallery_two",
+      "description": "test two gallery description",
+      "is_public": true,
+      "photos": [],
+      "sites": [
+        1
+      ]
+    }
+  }
+]

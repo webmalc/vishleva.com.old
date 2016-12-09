@@ -1,0 +1,106 @@
+[
+{
+    "model": "flatpages.flatpage",
+    "pk": 1,
+    "fields": {
+        "url": "/about/",
+        "title": "about title",
+        "content": "about content",
+        "enable_comments": false,
+        "template_name": "",
+        "registration_required": false,
+        "sites": [
+            1
+        ]
+    }
+},
+{
+    "model": "flatpages.flatpage",
+    "pk": 2,
+    "fields": {
+        "url": "/prices/",
+        "title": "prices title",
+        "content": "prices content",
+        "enable_comments": false,
+        "template_name": "",
+        "registration_required": false,
+        "sites": [
+            1
+        ]
+    }
+},
+{
+    "model": "flatpages.flatpage",
+    "pk": 3,
+    "fields": {
+        "url": "/special/",
+        "title": "special title",
+        "content": "special content",
+        "enable_comments": false,
+        "template_name": "",
+        "registration_required": false,
+        "sites": [
+            1
+        ]
+    }
+},
+{
+    "model": "flatpages.flatpage",
+    "pk": 4,
+    "fields": {
+        "url": "/extrahead/",
+        "title": "extrahead title",
+        "content": "extrahead content",
+        "enable_comments": false,
+        "template_name": "",
+        "registration_required": false,
+        "sites": [
+            1
+        ]
+    }
+},
+{
+    "model": "pages.extendedflatpage",
+    "pk": 1,
+    "fields": {
+        "keywords": "about keywords",
+        "description": "about description",
+        "sites": [
+            1
+        ]
+    }
+},
+{
+    "model": "pages.extendedflatpage",
+    "pk": 4,
+    "fields": {
+        "keywords": "extrahead",
+        "description": "extrahead",
+        "sites": [
+            1
+        ]
+    }
+},
+{
+    "model": "pages.extendedflatpage",
+    "pk": 2,
+    "fields": {
+        "keywords": "prices keywords",
+        "description": "prices description",
+        "sites": [
+            1
+        ]
+    }
+},
+{
+    "model": "pages.extendedflatpage",
+    "pk": 3,
+    "fields": {
+        "keywords": "",
+        "description": "special keywords",
+        "sites": [
+            1
+        ]
+    }
+}
+]

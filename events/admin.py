@@ -33,8 +33,10 @@ class EventAdmin(VersionAdmin):
         response = super(EventAdmin, self).changelist_view(request, extra_context)
         query_set = response.context_data["cl"].queryset
         extra_context = extra_context or {}
-        extra_context['total'] = Event.objects.get_total(queryset=query_set, with_expenses=True)
+        extra_context['total'] = Event.objects.get_total(queryset=query_set)
+        extra_context['expenses'] = Event.objects.get_expenses(queryset=query_set)
         extra_context['paid'] = Event.objects.get_paid(queryset=query_set)
+        extra_context['result'] = extra_context['total'] - extra_context['expenses']
         return super(EventAdmin, self).changelist_view(request, extra_context=extra_context)
 
     class Media:

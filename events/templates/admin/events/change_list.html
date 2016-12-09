@@ -4,7 +4,9 @@
 {% block pagination %}
     {{ block.super }}
     <ul class="admin-additional-info">
-        <li>Всего: <strong>{{ total|intcomma }}</strong></li>
-        <li>Оплачено: <strong>{{ paid|intcomma }}</strong></li>
+        <li>total: <strong>{{ total|intcomma }}</strong></li>
+        <li>expenses: <strong>{{ expenses|intcomma }}</strong></li>
+        <li>paid: <strong>{{ paid|intcomma }}</strong></li>
+        <li>result: <strong>{{ result|intcomma }}</strong></li>
     </ul>
 {% endblock %}

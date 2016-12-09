@@ -1,0 +1,156 @@
+[
+{
+    "model": "events.event",
+    "pk": 14,
+    "fields": {
+        "created_at": "2016-11-29T12:26:23.919Z",
+        "modified_at": "2016-12-09T12:41:22.032Z",
+        "created_by": null,
+        "modified_by": null,
+        "comment": "event one comment",
+        "begin": "2016-12-02T09:00:00Z",
+        "end": "2016-12-03T08:00:00Z",
+        "title": "event one",
+        "total": 22500,
+        "expenses": 1050,
+        "paid": 1500,
+        "status": "open",
+        "client": 1,
+        "google_calendar_id": ""
+    }
+},
+{
+    "model": "events.event",
+    "pk": 15,
+    "fields": {
+        "created_at": "2016-12-08T10:36:43.921Z",
+        "modified_at": "2016-12-09T12:42:10.240Z",
+        "created_by": null,
+        "modified_by": null,
+        "comment": "",
+        "begin": "2016-12-08T10:36:25Z",
+        "end": "2016-12-12T15:00:00Z",
+        "title": "event two",
+        "total": 3000,
+        "expenses": 0,
+        "paid": 500,
+        "status": "open",
+        "client": 2,
+        "google_calendar_id": ""
+    }
+},
+{
+    "model": "events.event",
+    "pk": 16,
+    "fields": {
+        "created_at": "2016-12-09T12:43:04.757Z",
+        "modified_at": "2016-12-09T12:43:04.757Z",
+        "created_by": null,
+        "modified_by": null,
+        "comment": "event three comment",
+        "begin": "2016-12-20T21:00:00Z",
+        "end": "2016-12-21T15:00:00Z",
+        "title": "event three",
+        "total": 0,
+        "expenses": 0,
+        "paid": 0,
+        "status": "not_confirmed",
+        "client": 3,
+        "google_calendar_id": ""
+    }
+},
+{
+    "model": "events.event",
+    "pk": 17,
+    "fields": {
+        "created_at": "2016-12-09T12:59:27.024Z",
+        "modified_at": "2016-12-09T12:59:27.024Z",
+        "created_by": null,
+        "modified_by": null,
+        "comment": "",
+        "begin": "2017-02-10T09:00:00Z",
+        "end": "2017-02-20T12:59:07Z",
+        "title": "event four",
+        "total": 0,
+        "expenses": 0,
+        "paid": 0,
+        "status": "closed",
+        "client": 1,
+        "google_calendar_id": ""
+    }
+},
+{
+    "model": "events.event",
+    "pk": 18,
+    "fields": {
+        "created_at": "2016-12-09T13:00:59.420Z",
+        "modified_at": "2016-12-09T13:00:59.420Z",
+        "created_by": null,
+        "modified_by": null,
+        "comment": "",
+        "begin": "2017-01-19T13:00:06Z",
+        "end": "2017-01-21T13:00:07Z",
+        "title": "event five",
+        "total": 8080,
+        "expenses": 0,
+        "paid": 0,
+        "status": "not_confirmed",
+        "client": 3,
+        "google_calendar_id": ""
+    }
+},
+{
+    "model": "events.client",
+    "pk": 1,
+    "fields": {
+        "created_at": "2016-11-18T09:03:01.174Z",
+        "modified_at": "2016-12-09T12:39:41.040Z",
+        "created_by": null,
+        "modified_by": null,
+        "comment": "John comments",
+        "first_name": "John",
+        "last_name": "Smith",
+        "patronymic": "",
+        "phone": "+79253172878",
+        "social_url": "http://facebook.url",
+        "email": "smith@example.com",
+        "gender": "M"
+    }
+},
+{
+    "model": "events.client",
+    "pk": 2,
+    "fields": {
+        "created_at": "2016-11-18T09:46:19.351Z",
+        "modified_at": "2016-12-09T12:37:54.174Z",
+        "created_by": null,
+        "modified_by": null,
+        "comment": "Sergey comment text",
+        "first_name": "Sergey",
+        "last_name": "Ivanov",
+        "patronymic": "Ivanovich",
+        "phone": "+79253172873",
+        "social_url": "http://vk.url",
+        "email": "example@example.com",
+        "gender": "M"
+    }
+},
+{
+    "model": "events.client",
+    "pk": 3,
+    "fields": {
+        "created_at": "2016-12-09T12:40:32.881Z",
+        "modified_at": "2016-12-09T12:40:32.881Z",
+        "created_by": null,
+        "modified_by": null,
+        "comment": "",
+        "first_name": "Lisa",
+        "last_name": "",
+        "patronymic": "",
+        "phone": "+79253172877",
+        "social_url": "",
+        "email": "",
+        "gender": "F"
+    }
+}
+]
