@@ -1,9 +1,19 @@
 from vishleva.lib.test import ModelTestCase
 from events.models import Event, Client
+from django.utils import timezone
+import pytz
 
 
 class EventModelTest(ModelTestCase):
     fixtures = ['tests/events.json']
+
+    def test_get_for_notification(self):
+        date = timezone.datetime(2016, 12, 8, 10, 0, 0, 0, pytz.UTC)
+        queryset = Event.objects.get_for_notification(date)
+        self.assertGreater(queryset.count(), 0)
+        for event in queryset:
+            self.assertTrue(event.begin >= date)
+            self.assertTrue(event.notified_at is None)
 
     def test_events_total(self):
         manager = Event.objects

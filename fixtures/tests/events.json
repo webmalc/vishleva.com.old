@@ -5,6 +5,7 @@
     "fields": {
         "created_at": "2016-11-29T12:26:23.919Z",
         "modified_at": "2016-12-09T12:41:22.032Z",
+        "notified_at": null,
         "created_by": null,
         "modified_by": null,
         "comment": "event one comment",
@@ -25,6 +26,7 @@
     "fields": {
         "created_at": "2016-12-08T10:36:43.921Z",
         "modified_at": "2016-12-09T12:42:10.240Z",
+        "notified_at": null,
         "created_by": null,
         "modified_by": null,
         "comment": "",
@@ -45,6 +47,7 @@
     "fields": {
         "created_at": "2016-12-09T12:43:04.757Z",
         "modified_at": "2016-12-09T12:43:04.757Z",
+        "notified_at": null,
         "created_by": null,
         "modified_by": null,
         "comment": "event three comment",
@@ -65,6 +68,7 @@
     "fields": {
         "created_at": "2016-12-09T12:59:27.024Z",
         "modified_at": "2016-12-09T12:59:27.024Z",
+        "notified_at": "2016-12-09T10:59:27.024Z",
         "created_by": null,
         "modified_by": null,
         "comment": "",
@@ -85,6 +89,7 @@
     "fields": {
         "created_at": "2016-12-09T13:00:59.420Z",
         "modified_at": "2016-12-09T13:00:59.420Z",
+        "notified_at": null,
         "created_by": null,
         "modified_by": null,
         "comment": "",

@@ -79,8 +79,8 @@ bower_components/*
 /htmlcov
 
 #celery
-celerybeat-schedule
 celerybeat.pid
+celerybeat-schedule*
 
 #Project
 /vishleva/local_settings.py

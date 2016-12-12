@@ -48,6 +48,20 @@ class EventManager(models.Manager):
         result = queryset.extra().aggregate(Sum('paid'))
         return result['paid__sum'] if result['paid__sum'] else 0
 
+    def get_for_notification(self, begin=None, end=None):
+        """
+        :param begin: from datetime
+        :type begin: datetime.datetime
+        :param end: to datetime
+        :type end: datetime.datetime
+        :return: Events
+        :rtype: queryset
+        """
+        begin = begin if begin else timezone.datetime.now()
+        end = end if end else begin + timezone.timedelta(hours=6)
+        queryset = self.get_queryset()
+        return queryset.filter(notified_at__isnull=True, status='open', begin__gte=begin, begin__lte=end)
+
 
 class Event(CommonInfo, CommentMixin):
     """
@@ -70,6 +84,7 @@ class Event(CommonInfo, CommentMixin):
     client = models.ForeignKey('Client', null=True, blank=False, on_delete=models.SET_NULL, related_name="events")
     google_calendar_id = models.CharField(
         max_length=255, db_index=True, null=True, blank=True, help_text='google calendar event id')
+    notified_at = models.DateTimeField(null=True, blank=True)
 
     def is_paid(self):
         return self.total - self.paid <= 0

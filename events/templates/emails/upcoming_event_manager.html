@@ -1,0 +1,17 @@
+{% extends 'emails/base.html' %}
+{% load humanize %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Upcoming event" %}
+{% endblock %}
+
+{% block content %}
+    <strong>ID:</strong> {{ event.id }}<br>
+    <strong>BEGIN:</strong> {{ event.begin }}<br>
+    <strong>END:</strong> {{ event.end }}<br>
+    <strong>COMMENT:</strong> {{ event.comment|linebreaks }}<br>
+    <strong>CLIENT:</strong> {{ event.client }}<br>
+    <strong>PHONE:</strong> {{ event.client.phone }}<br>
+    <strong>E-MAIL:</strong> {{ event.client.email }}<br>
+{% endblock %}

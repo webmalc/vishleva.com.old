@@ -17,9 +17,10 @@ class EventAdmin(VersionAdmin):
     )
     list_filter = (('begin', DateRangeFilter), 'status', ('created_at', DateRangeFilter))
     raw_id_fields = ['client']
+    readonly_fields = ('notified_at',)
     fieldsets = (
         ('General', {
-            'fields': ('title', 'begin', 'end', 'comment', 'status', 'google_calendar_id')
+            'fields': ('title', 'begin', 'end', 'comment', 'status', 'google_calendar_id', 'notified_at')
         }),
         ('Calculation', {
             'fields': ('total', 'expenses', 'paid')

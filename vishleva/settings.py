@@ -12,8 +12,9 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 from django.core.urlresolvers import reverse_lazy
-from datetime import date
+from datetime import date, timedelta
 from urllib.parse import quote
+from celery.schedules import crontab
 
 # Local settings
 try:
@@ -158,16 +159,19 @@ LOGIN_URL = 'two_factor:login'
 LOGOUT_URL = "admin:logout"
 
 # Celery
-BROKER_URL = 'sqs://{0}:{1}@'.format(
-    quote(AWS_ACCESS_KEY_ID, safe=''),
-    quote(AWS_SECRET_ACCESS_KEY, safe='')
-)
+BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 CELERY_SEND_TASK_ERROR_EMAILS = True
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Europe/Moscow'
-CELERYBEAT_SCHEDULE = {}
+CELERYBEAT_SCHEDULE = {
+    'event_notifications_task': {
+        'task': 'events.tasks.event_notifications_task',
+        'schedule': crontab(minute=0, hour='0,6,12,18')
+    },
+}
 
 # Django phonenumber
 PHONENUMBER_DB_FORMAT = 'NATIONAL'
