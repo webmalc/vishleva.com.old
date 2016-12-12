@@ -1,6 +1,6 @@
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
-from vishleva.lib.test import ViewTestCase
+from vishleva.lib.test import ViewTestCase, LiveTestCase
 from pages.models import ExtendedFlatPage
 from photologue.models import Gallery
 
@@ -63,4 +63,20 @@ class PageViewTest(ViewTestCase):
         url = reverse('photologue:pl-gallery', kwargs={'slug': 'gallery_private'})
         response = self.client.get(url)
         self.assertEqual(response.status_code, 404)
+
+
+class PageLiveTests(LiveTestCase):
+
+    def test_login(self):
+        """
+        Test message form
+        """
+        self.selenium.get(self.live_server_url)
+        self.selenium.find_element_by_id('id_name').send_keys('test selenium user')
+        self.selenium.find_element_by_id('id_contacts').send_keys('test selenium contacts')
+        self.selenium.find_element_by_id('id_message').send_keys('test selenium message text')
+        self.selenium.find_element_by_id('contact-form-button').click()
+        self._wait('span[data-notify="message"]')
+        assert 'Ваше сообщение успешно отправлено' in self.selenium.page_source
+
 

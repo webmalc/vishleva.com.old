@@ -1,8 +1,8 @@
-from django.test import TestCase
+from vishleva.lib.test import ModelTestCase
 from events.models import Event, Client
 
 
-class EventModelTest(TestCase):
+class EventModelTest(ModelTestCase):
     fixtures = ['tests/events.json']
 
     def test_events_total(self):
