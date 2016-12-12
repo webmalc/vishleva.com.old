@@ -2,6 +2,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from vishleva.lib.test import ViewTestCase
 from pages.models import ExtendedFlatPage
+from photologue.models import Gallery
 
 
 class PageViewTest(ViewTestCase):
@@ -52,5 +53,14 @@ class PageViewTest(ViewTestCase):
         """
         test gallery display
         """
-        # TODO: complete
-        self.assertTrue(False)
+        gallery_one = Gallery.objects.filter(slug='gallery_one').first()
+        url = reverse('photologue:pl-gallery', kwargs={'slug': 'gallery_one'})
+        response = self.client.get(url)
+        self._is_succesful(
+            response, title='Фотограф Александра Вишлева - профессиональный фотограф Москва . ' + gallery_one.title
+        )
+        self.assertContains(response, gallery_one.description)
+        url = reverse('photologue:pl-gallery', kwargs={'slug': 'gallery_private'})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 404)
+

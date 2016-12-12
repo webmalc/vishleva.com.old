@@ -28,5 +28,20 @@
         1
       ]
     }
+  },
+  {
+    "model": "photologue.gallery",
+    "pk": 3,
+    "fields": {
+      "date_added": "2016-10-11T12:02:15.844Z",
+      "title": "test gallery private title",
+      "slug": "gallery_private",
+      "description": "test gallery private description",
+      "is_public": false,
+      "photos": [],
+      "sites": [
+        1
+      ]
+    }
   }
 ]
