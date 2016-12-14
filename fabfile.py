@@ -19,4 +19,5 @@ def deploy():
             run('./manage.py migrate --no-input')
     sudo('sudo supervisorctl restart vishleva')
     sudo('sudo supervisorctl restart celery')
+    sudo('sudo supervisorctl restart celery-beat')
     sudo('sudo service nginx restart')

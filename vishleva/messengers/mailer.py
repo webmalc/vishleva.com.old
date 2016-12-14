@@ -9,11 +9,11 @@ class Mailer:
         mail_managers(subject=subject, message='', html_message=render_to_string(template, data))
 
     @staticmethod
-    def mail_user(subject, template, data, user=None, email=None):
+    def mail_user(subject, template, data,  email=None, user=None):
         send_mail(
-            recipient_list=[email] if email else user.get_emails(),
+            recipient_list=[email] if email else user.email(),
             from_email=settings.DEFAULT_FROM_EMAIL,
-            subject='{prefix} {text}'.format(prefix=settings.EMAIL_SUBJECT_PREFIX, text=subject),
+            subject='{prefix}{text}'.format(prefix=settings.EMAIL_SUBJECT_PREFIX, text=subject),
             message='',
             html_message=render_to_string(template, data)
         )
