@@ -1,0 +1,14 @@
+{% extends 'emails/base.html' %}
+{% load humanize %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Напоминание о фотосессии" %}
+{% endblock %}
+
+{% block content %}
+    <p>Здравствуйте, {{ event.client }}!</p>
+    <p>Напоминаю Вам, что у Вас <strong>{{ event.begin }}</strong> запланирована фотосессия.</p>
+    <p>По всем вопросам обращайтесь по телефону +7(903)735-60-96 или e-mail <a href="mailto:mail@vishleva.com">mail@vishleva.com</a>.</p>
+    <p>С уважением, Александра Вишлева.</p>
+{% endblock %}

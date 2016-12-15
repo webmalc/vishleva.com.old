@@ -48,17 +48,19 @@ class EventManager(models.Manager):
         result = queryset.extra().aggregate(Sum('paid'))
         return result['paid__sum'] if result['paid__sum'] else 0
 
-    def get_for_notification(self, begin=None, end=None):
+    def get_for_notification(self, begin=None, end=None, hours=24):
         """
         :param begin: from datetime
         :type begin: datetime.datetime
         :param end: to datetime
+        :type hours: timedelta hours
+        :param hours: int
         :type end: datetime.datetime
         :return: Events
         :rtype: queryset
         """
         begin = begin if begin else timezone.datetime.now()
-        end = end if end else begin + timezone.timedelta(hours=6)
+        end = end if end else begin + timezone.timedelta(hours=hours)
         queryset = self.get_queryset()
         return queryset.filter(notified_at__isnull=True, status='open', begin__gte=begin, begin__lte=end)
 

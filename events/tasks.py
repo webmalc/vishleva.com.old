@@ -14,5 +14,13 @@ def event_notifications_task():
             template='emails/upcoming_event_manager.html',
             data={'event': event}
         )
+        client = event.client
+        if client.email:
+            Mailer.mail_user(
+                subject='Напоминание о предстоящей фотосессии',
+                template='emails/upcoming_event_client.html',
+                data={'event': event},
+                email=client.email
+            )
         event.notified_at = timezone.now()
         event.save()

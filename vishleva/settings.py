@@ -166,6 +166,7 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Europe/Moscow'
+CELERY_ALWAYS_EAGER = False
 CELERYBEAT_SCHEDULE = {
     'event_notifications_task': {
         'task': 'events.tasks.event_notifications_task',

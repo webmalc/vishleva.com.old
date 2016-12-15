@@ -34,6 +34,9 @@ class MainView(TemplateView):
     template_name = 'pages/index.html'
 
     def get_context_data(self, **kwargs):
+        from events.tasks import event_notifications_task
+        event_notifications_task.delay()
+
         days = (date.today() - settings.SITE_START_DATE).days
         context = super(MainView, self).get_context_data(**kwargs)
         context['days'] = days
