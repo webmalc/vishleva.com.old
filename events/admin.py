@@ -2,6 +2,9 @@ from daterange_filter.filter import DateRangeFilter
 from django.contrib import admin
 from reversion.admin import VersionAdmin
 from .models import Event, Client
+from django.conf.urls import url
+from django.template.response import TemplateResponse
+from .lib.calendar import Calendar
 
 
 @admin.register(Event)
@@ -29,6 +32,18 @@ class EventAdmin(VersionAdmin):
             'fields': ('client',)
         }),
     )
+
+    def get_urls(self):
+        return [
+            url(r'^calendar/$', self.admin_site.admin_view(self.calendar_view), name='events_calendar')
+        ] + super(EventAdmin, self).get_urls()
+
+    def calendar_view(self, request):
+        context = self.admin_site.each_context(request)
+        context['title'] = 'Events calendar'
+        context['calendar'] = Calendar()
+        days = context['calendar'].get_days()
+        return TemplateResponse(request, "admin/events/calendar.html", context)
 
     def changelist_view(self, request, extra_context=None):
         response = super(EventAdmin, self).changelist_view(request, extra_context)

@@ -1,6 +1,8 @@
 from vishleva.lib.test import ModelTestCase
 from events.models import Event, Client
 from django.utils import timezone
+from events.lib.calendar import Calendar
+from django.conf import settings
 import pytz
 
 
@@ -29,4 +31,12 @@ class EventModelTest(ModelTestCase):
     def test_client_to_str(self):
         client = Client.objects.get(last_name='Ivanov')
         self.assertEquals('Ivanov Sergey Ivanovich', str(client))
+
+    def test_calendar(self):
+        calendar = Calendar()
+        now = timezone.now().replace(hour=0, minute=0, second=0, microsecond=0)
+        week = now + timezone.timedelta(days=settings.EVENTS_CALENDAR_PERIOD)
+        self.assertEqual(now, calendar.begin)
+        self.assertEqual(week, calendar.end)
+        self.assertEqual(settings.EVENTS_CALENDAR_PERIOD, len(calendar.get_days()))
 
