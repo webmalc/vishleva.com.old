@@ -31,7 +31,6 @@
 #events-calendar tbody td .events-calendar-time,
 #events-calendar tbody th .events-calendar-time {
   display: none;
-  color: #999;
 }
 #events-calendar tbody td {
   min-width: 80px;

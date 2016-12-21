@@ -64,7 +64,7 @@
                                     </a>
                                 {% endfor %}
                                 {% if not events|length %}
-                                    <small class="events-calendar-time">{{ day.date|date:"j b" }} {{ first_hour.date|date:"H:i" }}</small>
+                                    <small class="events-calendar-time {% if day.date|date:"w" == "0" or day.date|date:"w" == "6" %}text-red{% endif %}">{{ day.date|date:"j b" }} {{ first_hour.date|date:"H:i" }}</small>
                                 {% endif %}
                             {% endwith %}
                             </td>
