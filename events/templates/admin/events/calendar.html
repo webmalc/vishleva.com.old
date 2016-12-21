@@ -51,7 +51,7 @@
                             {% with events=day|calendar_get_events_by_hour:first_hour.date %}
                                 {% for event in events %}
                                     <a href="{% url 'admin:events_event_change' event.id %}" class="calendar-event {% if not event.is_paid and event.status == 'closed' %}calendar-event-not-paid{% endif %} calendar-event-{{ event.status }}">
-                                        <strong>{{ event.title|truncatechars:30 }}</strong>
+                                        <strong>{{ event.title|truncatechars:25 }}</strong>
                                         <div class="calendar-event-additional-info">
                                             <p><strong>{{ event }}</strong></p>
                                             <p>{{ event.client }} {{ event.client.phone }} {{ event.client.email }}<p>
