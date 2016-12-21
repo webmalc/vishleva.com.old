@@ -7,6 +7,7 @@ from vishleva.models import CommonInfo, CommentMixin
 from phonenumber_field.modelfields import PhoneNumberField
 from django.core.exceptions import ValidationError
 from vishleva.models import NullableEmailField
+from django.db.models import Q
 
 
 class EventManager(models.Manager):
@@ -47,6 +48,20 @@ class EventManager(models.Manager):
         queryset = queryset if queryset is not None else self.get_queryset()
         result = queryset.extra().aggregate(Sum('paid'))
         return result['paid__sum'] if result['paid__sum'] else 0
+
+    def get_by_dates(self, begin, end, grouped = False):
+        """
+        :param begin: datetime.datetime
+        :type begin: datetime.datetime
+        :param end: datetime.datetime
+        :type end: datetime.datetime
+        :return: Events
+        :rtype: queryset
+        """
+        queryset = self.get_queryset().filter(
+            Q(end__range=(begin, end)) | Q(end__range=(begin, end)) | Q(begin__lte=begin, end__gte=end))
+        return queryset
+
 
     def get_for_notification(self, begin=None, end=None, hours=24):
         """

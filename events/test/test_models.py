@@ -4,6 +4,7 @@ from django.utils import timezone
 from events.lib.calendar import Calendar
 from django.conf import settings
 import pytz
+import arrow
 
 
 class EventModelTest(ModelTestCase):
@@ -34,9 +35,27 @@ class EventModelTest(ModelTestCase):
 
     def test_calendar(self):
         calendar = Calendar()
-        now = timezone.now().replace(hour=0, minute=0, second=0, microsecond=0)
+        now = arrow.now().floor('day').to('UTC').datetime
         week = now + timezone.timedelta(days=settings.EVENTS_CALENDAR_PERIOD)
         self.assertEqual(now, calendar.begin)
         self.assertEqual(week, calendar.end)
-        self.assertEqual(settings.EVENTS_CALENDAR_PERIOD, len(calendar.get_days()))
+
+        event = Event()
+        event.begin = now + timezone.timedelta(days=3)
+        event.end = now + timezone.timedelta(days=4)
+        event.title = 'test_title_now'
+        event.status = 'open'
+        event.save()
+
+        days = calendar.get_days()
+        self.assertEqual(settings.EVENTS_CALENDAR_PERIOD, len(days))
+
+        for element in days:
+            if event.begin <= element.date <= event.end:
+                self.assertIn(event, element.events)
+            for hour in element.hours:
+                if event.begin <= hour.date <= event.end:
+                    self.assertIn(event, hour.events)
+
+
 

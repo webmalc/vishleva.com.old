@@ -1,0 +1,80 @@
+#events-calendar-wrapper {
+  width: 100%;
+  overflow: scroll;
+}
+#events-calendar-help {
+  padding: 0px;
+  margin: 0px 0px 10px 0px;
+}
+#events-calendar-help li {
+  padding: 0px 0px 0px 5px;
+  display: inline-block;
+}
+#events-calendar thead {
+  text-align: center !important;
+}
+#events-calendar thead .events-calendar-date {
+  font-weight: bold;
+}
+#events-calendar thead th {
+  min-width: 50px;
+  border-left: 1px solid #e5e5e5;
+  text-align: center;
+}
+#events-calendar tbody td,
+#events-calendar tbody th {
+  padding: 2px 5px;
+  border-left: 1px solid #e5e5e5;
+  text-align: center;
+  vertical-align: middle;
+}
+#events-calendar tbody td .events-calendar-time,
+#events-calendar tbody th .events-calendar-time {
+  display: none;
+  color: #999;
+}
+#events-calendar tbody td:hover .events-calendar-time {
+  display: inline;
+}
+#events-calendar tbody tr:nth-child(2n+1) > td,
+#events-calendar tbody .table-striped > tbody > tr:nth-child(2n+1) > th {
+  background-color: #eee;
+}
+#events-calendar .calendar-event {
+  background-color: #00a65a;
+  border: 1px solid #00a65a;
+  padding: 5px;
+  color: #ffffff;
+  display: block;
+  height: 20px;
+  width: 200px;
+  overflow: visible;
+  text-align: left;
+}
+#events-calendar .calendar-event .calendar-event-additional-info {
+  display: none;
+}
+#events-calendar .calendar-event-not_confirmed {
+  background-color: #bf4c4e;
+  border: 1px solid #bf4c4e;
+}
+#events-calendar .calendar-event-closed {
+  background-color: #777;
+  border: 1px solid #777;
+}
+#events-calendar .calendar-event-not-paid {
+  border: 1px dotted #bf4c4e;
+}
+#events-calendar .calendar-event:hover .calendar-event-additional-info {
+  display: block;
+  position: relative;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  background-color: #fff;
+  top: 5px;
+  color: #333;
+  min-height: 150px;
+  width: 400px;
+  padding: 10px;
+  overflow: visible;
+}

@@ -1,6 +1,16 @@
 {% extends 'admin/change_list.html' %}
 {% load humanize %}
 
+{% block search %}
+    <div class="calendar-link">Calendar</div>
+    {{ block.super }}
+{% endblock %}
+
+{% block object-tools-items %}
+    <li><a href="{% url 'admin:events_calendar' %}">Calendar</a></li>
+    {{ block.super }}
+{% endblock %}
+
 {% block pagination %}
     {{ block.super }}
     <ul class="admin-additional-info">

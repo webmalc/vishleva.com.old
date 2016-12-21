@@ -1,5 +1,6 @@
 from daterange_filter.filter import DateRangeFilter
 from django.contrib import admin
+from django.utils import timezone
 from reversion.admin import VersionAdmin
 from .models import Event, Client
 from django.conf.urls import url
@@ -41,8 +42,11 @@ class EventAdmin(VersionAdmin):
     def calendar_view(self, request):
         context = self.admin_site.each_context(request)
         context['title'] = 'Events calendar'
-        context['calendar'] = Calendar()
-        days = context['calendar'].get_days()
+        calendar = Calendar()
+        context['calendar'] = calendar
+        context['days'] = calendar.get_days()
+        context['year'] = timezone.now().strftime(format='%Y')
+        context['hours'] = range(0, 24)
         return TemplateResponse(request, "admin/events/calendar.html", context)
 
     def changelist_view(self, request, extra_context=None):

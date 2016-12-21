@@ -1,4 +1,78 @@
 {% extends "admin/base_site.html" %}
+{% load i18n static tz calendar humanize %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/admin/events.css' %}">
+{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+        &rsaquo; <a href="{% url 'admin:events_event_changelist' %}">Events</a>
+        {% if title %} &rsaquo; {{ title }}{% endif %}
+    </div>
+{% endblock %}
+
 {% block content %}
-    test12 1212 1212
+    {{ now|date:"H:i" }}
+    <div id="events-calendar-wrapper">
+        <ul id="events-calendar-help">
+            <li class="text-red"> - not confirmed</li>
+            <li class="text-green"> - open</li>
+            <li class="text-muted"> - closed</li>
+        </ul>
+        <table class="table table-striped" width="100%" id="events-calendar">
+            <thead>
+            <tr>
+                <th></th>
+                {% for element in days %}
+                    <th {% if element.date|date:"w" == "0" or element.date|date:"w" == "6" %}class="events-calendar-weekend text-red"{% endif %}>
+                        {% if year != element.date|date:"Y" %}
+                            <div class="events-calendar-year">
+                                <small>{{ element.date|date:"Y" }}</small>
+                            </div>
+                        {% endif %}
+                        <div class="events-calendar-date">{{ element.date|date:"j b" }}</div>
+                        <div class="events-calendar-weekday">
+                            <small>{{ element.date|date:"l" }}</small>
+                        </div>
+                    </th>
+                {% endfor %}
+            </tr>
+            </thead>
+            <tbody>
+            {% with days|first as first_element %}
+                {% for first_hour in first_element.hours %}
+                    <tr>
+                        <th>{{ first_hour.date|date:"H:i" }}</th>
+                        {% for day in days %}
+                            <td>
+                            {% with events=day|calendar_get_events_by_hour:first_hour.date %}
+                                {% for event in events %}
+                                    <a href="{% url 'admin:events_event_change' event.id %}" class="calendar-event {% if not event.is_paid and event.status == 'closed' %}calendar-event-not-paid{% endif %} calendar-event-{{ event.status }}">
+                                        <strong>{{ event.title|truncatechars:30 }}</strong>
+                                        <div class="calendar-event-additional-info">
+                                            <p><strong>{{ event }}</strong></p>
+                                            <p>{{ event.client }} {{ event.client.phone }} {{ event.client.email }}<p>
+                                            <p><strong>total</strong>: {{ event.total|intcomma }}<br>
+                                            <strong>expenses</strong>: {{ event.expenses|intcomma }}<br>
+                                            <strong>paid</strong>: {{ event.paid|intcomma }}<p>
+                                            <p><strong>status</strong>: {{ event.get_status_display }}<p>
+                                            <p><strong>comment</strong>: {{ event.comment|linebreaksbr }}<p>
+                                        </div>
+                                    </a>
+                                {% endfor %}
+                                {% if not events|length %}
+                                    <small class="events-calendar-time">{{ first_hour.date|date:"H:i" }}</small>
+                                {% endif %}
+                            {% endwith %}
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            {% endwith %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
