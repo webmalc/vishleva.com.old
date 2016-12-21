@@ -27,13 +27,15 @@
   border-left: 1px solid #e5e5e5;
   text-align: center;
   vertical-align: middle;
-  min-width: 80px;
-  height: 30px;
 }
 #events-calendar tbody td .events-calendar-time,
 #events-calendar tbody th .events-calendar-time {
   display: none;
   color: #999;
+}
+#events-calendar tbody td {
+  min-width: 80px;
+  height: 30px;
 }
 #events-calendar tbody td:hover .events-calendar-time {
   display: inline;
