@@ -33,7 +33,7 @@
                                 <small>{{ element.date|date:"Y" }}</small>
                             </div>
                         {% endif %}
-                        <div class="events-calendar-date">{{ element.date|date:"j b H:i" }}</div>
+                        <div class="events-calendar-date">{{ element.date|date:"j b" }}</div>
                         <div class="events-calendar-weekday">
                             <small>{{ element.date|date:"l" }}</small>
                         </div>
@@ -64,7 +64,7 @@
                                     </a>
                                 {% endfor %}
                                 {% if not events|length %}
-                                    <small class="events-calendar-time">{{ first_hour.date|date:"H:i" }}</small>
+                                    <small class="events-calendar-time">{{ day.date|date:"j b" }} {{ first_hour.date|date:"H:i" }}</small>
                                 {% endif %}
                             {% endwith %}
                             </td>
