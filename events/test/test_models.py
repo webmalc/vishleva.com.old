@@ -51,10 +51,10 @@ class EventModelTest(ModelTestCase):
         self.assertEqual(settings.EVENTS_CALENDAR_PERIOD, len(days))
 
         for element in days:
-            if event.begin <= element.date <= event.end:
+            if event.begin <= element.date < event.end:
                 self.assertIn(event, element.events)
             for hour in element.hours:
-                if event.begin <= hour.date <= event.end:
+                if event.begin <= hour.date < event.end:
                     self.assertIn(event, hour.events)
 
 

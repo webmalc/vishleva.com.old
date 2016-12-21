@@ -1,6 +1,8 @@
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from vishleva.lib.test import ViewTestCase
+from events.models import Event
+import arrow
 
 
 class EventsViewTest(ViewTestCase):
@@ -18,10 +20,19 @@ class EventsViewTest(ViewTestCase):
 
     def test_calendar(self):
         """
-        test main page
+        test calendar page
         """
+        now = arrow.utcnow()
+        event = Event()
+        event.begin = now.replace(hours=+24).datetime
+        event.end = now.replace(hours=+36).datetime
+        event.title = 'test_title_now'
+        event.status = 'open'
+        event.save()
+
         self._login_superuser()
         url = reverse('admin:events_calendar')
         response = self.client.get(url)
         self._is_succesful(response, title='Events calendar | Django site admin')
+        self.assertContains(response, 'test_title_now')
 
