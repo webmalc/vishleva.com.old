@@ -5,7 +5,7 @@ import arrow
 
 
 def _get_date_events(begin, end, events):
-    return [e for e in events if begin <= e.begin <= end or begin <= e.end <= end or (e.begin <= begin and e.end >= end)]
+    return [e for e in events if begin <= e.begin <= end or begin < e.end <= end or (e.begin <= begin and e.end >= end)]
 
 
 class Calendar(object):
@@ -29,9 +29,8 @@ class Calendar(object):
         """
         result = []
         for date in self._daterange():
-            begin = arrow.get(date).floor('day').datetime
-            end = arrow.get(date).ceil('day').datetime
-            element = CalendarDay(date=date, events=_get_date_events(begin, end, self.events))
+            end = arrow.get(date).replace(hours=+24).datetime
+            element = CalendarDay(date=date, events=_get_date_events(date, end, self.events))
             result.append(element)
         return result
 
@@ -46,7 +45,7 @@ class CalendarDay(object):
         self.events = events
         self.hours = []
         for h in range(0, 24):
-            hour = arrow.get(self.date).floor('day').replace(hours=+h).datetime
+            hour = arrow.get(self.date).replace(hours=+h).datetime
             begin = arrow.get(hour).floor('hour').datetime
             end = arrow.get(hour).ceil('hour').datetime
             self.hours.append(CalendarHour(hour, events=_get_date_events(begin, end, self.events)))
