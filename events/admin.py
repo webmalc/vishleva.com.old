@@ -6,6 +6,9 @@ from .models import Event, Client
 from django.conf.urls import url
 from django.template.response import TemplateResponse
 from .lib.calendar import Calendar
+from django.conf import settings
+import arrow
+from datetime import datetime
 
 
 @admin.register(Event)
@@ -35,11 +38,23 @@ class EventAdmin(VersionAdmin):
     )
 
     def get_urls(self):
+        """
+        Additional events urls
+        :return:
+        :rtype:
+        """
         return [
             url(r'^calendar/$', self.admin_site.admin_view(self.calendar_view), name='events_calendar')
         ] + super(EventAdmin, self).get_urls()
 
     def calendar_view(self, request):
+        """
+        Events calendar view
+        :param request:
+        :type request:
+        :return:
+        :rtype:
+        """
         context = self.admin_site.each_context(request)
         context['title'] = 'Events calendar'
         calendar = Calendar()
@@ -48,6 +63,19 @@ class EventAdmin(VersionAdmin):
         context['year'] = timezone.now().strftime(format='%Y')
         context['hours'] = range(0, 24)
         return TemplateResponse(request, "admin/events/calendar.html", context)
+
+    def get_changeform_initial_data(self, request):
+        initial = super(EventAdmin, self).get_changeform_initial_data(request)
+        begin_date = request.GET.get('begin_date')
+        begin_time = request.GET.get('begin_time')
+        end_date = request.GET.get('end_date')
+        end_time = request.GET.get('end_time')
+        try:
+            initial['begin'] = datetime.strptime(begin_date + ' ' + begin_time, '%Y-%m-%d %H:%M:%S') if begin_date and begin_time else None
+            initial['end'] = datetime.strptime(end_date + ' ' + end_time, '%Y-%m-%d %H:%M:%S') if end_date and end_time else None
+        except ValueError:
+            pass
+        return initial
 
     def changelist_view(self, request, extra_context=None):
         response = super(EventAdmin, self).changelist_view(request, extra_context)

@@ -4,6 +4,7 @@
 {% block extrastyle %}
     {{ block.super }}
     <link rel="stylesheet" type="text/css" href="{% static 'css/admin/events.css' %}">
+    <script src="{% static 'js/admin/calendar.js' %}"></script>
 {% endblock %}
 
 {% block breadcrumbs %}
@@ -22,7 +23,7 @@
             <li class="text-green"> - open</li>
             <li class="text-muted"> - closed</li>
         </ul>
-        <table class="table table-striped" width="100%" id="events-calendar">
+        <table class="table table-striped" width="100%" id="events-calendar" data-url="{% url 'admin:events_event_add' %}">
             <thead>
             <tr>
                 <th></th>
@@ -47,7 +48,7 @@
                     <tr>
                         <th>{{ first_hour.date|date:"H:i" }}</th>
                         {% for day in days %}
-                            <td>
+                            <td data-data="{{ day.date|date:'Y-m-d' }}" data-time="{{ first_hour.date|date:'H:i:s' }}">
                             {% with events=day|calendar_get_events_by_hour:first_hour.date %}
                                 {% for event in events %}
                                     <a href="{% url 'admin:events_event_change' event.id %}" class="calendar-event {% if not event.is_paid and event.status == 'closed' %}calendar-event-not-paid{% endif %} calendar-event-{{ event.status }}">

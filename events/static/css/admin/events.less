@@ -28,7 +28,7 @@
       border-left: 1px solid #e5e5e5;
       text-align: center;
       vertical-align: middle;
-      .events-calendar-time {
+      .events-calendar-time:not(.display) {
         display: none;
       }
     }
@@ -36,6 +36,7 @@
     td {
       min-width: 80px;
       height: 30px;
+      cursor: pointer;
     }
     td:hover {
       .events-calendar-time {
@@ -72,6 +73,9 @@
   }
   .calendar-event-not-paid {
     border: 1px dotted #bf4c4e;
+  }
+  .calendar-select-begin {
+    font-weight: bold;
   }
   .calendar-event:hover {
     .calendar-event-additional-info {
