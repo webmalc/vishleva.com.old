@@ -57,7 +57,7 @@ class EventAdmin(VersionAdmin):
         """
         context = self.admin_site.each_context(request)
         context['title'] = 'Events calendar'
-        calendar = Calendar()
+        calendar = Calendar(begin=request.GET.get('begin'), end=request.GET.get('end'))
         context['calendar'] = calendar
         context['days'] = calendar.get_days()
         context['year'] = timezone.now().strftime(format='%Y')

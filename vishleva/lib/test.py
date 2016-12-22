@@ -54,6 +54,15 @@ class LiveTestCase(StaticLiveServerTestCase):
             EC.presence_of_element_located((By.CSS_SELECTOR, wait_css_selector))
         )
 
+    def _login_as_superuser(self):
+        self.selenium.get(self.live_server_url + '/admin/')
+        username_field = self.selenium.find_element_by_id('id_auth-username')
+        password_field = self.selenium.find_element_by_id('id_auth-password')
+        username_field.send_keys('admin')
+        password_field.send_keys('password')
+        submit = self.selenium.find_element_by_css_selector('form button[type="submit"]')
+        submit.click()
+
 
 @tag('unit', 'form')
 class FormTestCase(TestCase):

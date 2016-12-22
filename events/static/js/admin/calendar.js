@@ -5,17 +5,25 @@
 $(document).ready(function () {
     "use strict";
 
+    var resize = function () {
+        var height = $(window).height();
+        height = height - 210;
+        $("#events-calendar-wrapper").css('height', height);
+    };
+    resize();
+    $(window).bind('resize', resize);
+
     var link = function (end) {
             var begin = $('.calendar-select-begin'),
-                beginDate = begin.attr('data-data'),
+                beginDate = begin.attr('data-date'),
                 beginTime = begin.attr('data-time'),
-                endDate = end.attr('data-data'),
+                endDate = end.attr('data-date'),
                 endTime = end.attr('data-time');
             window.location = $('#events-calendar').attr('data-url')
-                + '?begin_date=' + beginDate
-                + '&begin_time=' + beginTime
-                + '&end_date=' + endDate
-                + '&end_time=' + endTime;
+                    + '?begin_date=' + beginDate
+                    + '&begin_time=' + beginTime
+                    + '&end_date=' + endDate
+                    + '&end_time=' + endTime;
         },
         removeSelected = function () {
             if (!$('.calendar-select-begin').length) {

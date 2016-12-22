@@ -5,7 +5,14 @@
     {{ block.super }}
     <link rel="stylesheet" type="text/css" href="{% static 'css/admin/events.css' %}">
     <script src="{% static 'js/admin/calendar.js' %}"></script>
+    <style>
+        #content {
+          padding-bottom: 0px;
+        }
+    </style>
 {% endblock %}
+
+{% block footer %}{% endblock %}
 
 {% block breadcrumbs %}
     <div class="breadcrumbs">
@@ -15,14 +22,25 @@
     </div>
 {% endblock %}
 
+{% block content_title %}
+    {% if title %}
+        <h1>
+            {{ title }}
+            <small id="event-calendar-navigation">
+                <a id="event-calendar-prev-link" href="{% url 'admin:events_calendar' %}?end={{ calendar.begin|date:'Y-m-d' }}"><i class="fa fa-angle-left" aria-hidden="true"></i> prev</a>
+                <a id="event-calendar-next-link" href="{% url 'admin:events_calendar' %}?begin={{ calendar.end|date:'Y-m-d' }}">next <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+            </small>
+        </h1>
+    {% endif %}
+{% endblock %}
+
 {% block content %}
-    {{ now|date:"H:i" }}
+    <ul id="events-calendar-help">
+        <li class="text-red"> - not confirmed</li>
+        <li class="text-green"> - open</li>
+        <li class="text-muted"> - closed</li>
+    </ul>
     <div id="events-calendar-wrapper">
-        <ul id="events-calendar-help">
-            <li class="text-red"> - not confirmed</li>
-            <li class="text-green"> - open</li>
-            <li class="text-muted"> - closed</li>
-        </ul>
         <table class="table table-striped" width="100%" id="events-calendar" data-url="{% url 'admin:events_event_add' %}">
             <thead>
             <tr>
@@ -48,7 +66,7 @@
                     <tr>
                         <th>{{ first_hour.date|date:"H:i" }}</th>
                         {% for day in days %}
-                            <td data-data="{{ day.date|date:'Y-m-d' }}" data-time="{{ first_hour.date|date:'H:i:s' }}">
+                            <td data-date="{{ day.date|date:'Y-m-d' }}" data-time="{{ first_hour.date|date:'H:i:s' }}">
                             {% with events=day|calendar_get_events_by_hour:first_hour.date %}
                                 {% for event in events %}
                                     <a href="{% url 'admin:events_event_change' event.id %}" class="calendar-event {% if not event.is_paid and event.status == 'closed' %}calendar-event-not-paid{% endif %} calendar-event-{{ event.status }}">

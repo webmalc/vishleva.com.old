@@ -13,8 +13,21 @@ class Calendar(object):
     Event calendar generator
     """
     def __init__(self, begin=None, end=None):
-        self.begin = begin if begin else arrow.now().floor('day').to('UTC').datetime
-        self.end = end if end else self.begin + timezone.timedelta(days=settings.EVENTS_CALENDAR_PERIOD)
+        if begin:
+            self.begin = arrow.Arrow.strptime(begin, '%Y-%m-%d', settings.TIME_ZONE) if begin else arrow.now()
+            self.begin = self.begin.floor('day').to('UTC').datetime
+        elif end:
+            to = arrow.Arrow.strptime(end, '%Y-%m-%d', settings.TIME_ZONE).floor('day').to('UTC').datetime
+            self.begin = to - timezone.timedelta(days=settings.EVENTS_CALENDAR_PERIOD)
+        else:
+            self.begin = arrow.now()
+            self.begin = self.begin.floor('day').to('UTC').datetime
+
+        if end:
+            self.end = arrow.Arrow.strptime(end, '%Y-%m-%d', settings.TIME_ZONE).floor('day').to('UTC').datetime
+        else:
+            self.end = self.begin + timezone.timedelta(days=settings.EVENTS_CALENDAR_PERIOD)
+
         self.events = Event.objects.get_by_dates(begin=self.begin, end=self.end)
 
     def _daterange(self):
