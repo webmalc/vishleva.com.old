@@ -24,3 +24,22 @@ def event_notifications_task():
             )
         event.notified_at = timezone.now()
         event.save()
+
+
+@app.task
+def event_autoclose_task():
+    events = Event.objects.get_for_closing()
+    print(list(events))
+    for event in events:
+        event.status = 'closed'
+        event.save()
+
+    if events.count():
+        Mailer.mail_managers(
+            subject='Auto closed events',
+            template='emails/closed_events_manager.html',
+            data={'events': events},
+        )
+
+
+

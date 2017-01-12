@@ -172,6 +172,10 @@ CELERYBEAT_SCHEDULE = {
         'task': 'events.tasks.event_notifications_task',
         'schedule': crontab(minute=0, hour='0,6,12,18')
     },
+    'event_autoclose_task': {
+        'task': 'events.tasks.event_autoclose_task',
+        'schedule': crontab(minute=0, hour='1')
+    },
 }
 
 # Django phonenumber

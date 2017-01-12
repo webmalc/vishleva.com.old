@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.db.models import Sum
 from django.template.defaultfilters import pluralize
@@ -8,6 +9,8 @@ from phonenumber_field.modelfields import PhoneNumberField
 from django.core.exceptions import ValidationError
 from vishleva.models import NullableEmailField
 from django.db.models import Q
+from django.db.models import F
+import arrow
 
 
 class EventManager(models.Manager):
@@ -77,6 +80,19 @@ class EventManager(models.Manager):
         end = end if end else begin + timezone.timedelta(hours=hours)
         queryset = self.get_queryset()
         return queryset.filter(notified_at__isnull=True, status='open', begin__gte=begin, begin__lte=end)
+
+    def get_for_closing(self, date=None):
+        """
+        :param date: close from date
+        :type date: datetime.datetime
+        :return: Events
+        :rtype: queryset
+        """
+        date = arrow.Arrow.strptime(date, '%Y-%m-%d', settings.TIME_ZONE) if date else arrow.now()
+        date = date.floor('day').to('UTC').datetime
+        queryset = self.get_queryset()
+
+        return queryset.filter(end__lt=date, paid__gte=F('total')).exclude(status='closed')
 
 
 class Event(CommonInfo, CommentMixin):

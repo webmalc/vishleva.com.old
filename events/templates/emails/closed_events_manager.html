@@ -1,0 +1,13 @@
+{% extends 'emails/base.html' %}
+{% load humanize %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Auto closed events" %}
+{% endblock %}
+
+{% block content %}
+    {% for event in events %}
+        <p>{{ event }}. {{ event.client }}</p>
+    {% endfor %}
+{% endblock %}

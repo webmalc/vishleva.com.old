@@ -5,6 +5,7 @@ from events.lib.calendar import Calendar
 from django.conf import settings
 import pytz
 import arrow
+import copy
 
 
 class EventModelTest(ModelTestCase):
@@ -17,6 +18,32 @@ class EventModelTest(ModelTestCase):
         for event in queryset:
             self.assertTrue(event.begin >= date)
             self.assertTrue(event.notified_at is None)
+
+    def test_get_for_closing(self):
+        now = arrow.now().floor('day').to('UTC').datetime
+
+        event_before = Event()
+        event_before.begin = now - timezone.timedelta(days=3)
+        event_before.end = now - timezone.timedelta(days=4)
+        event_before.title = 'test_title_now'
+        event_before.status = 'open'
+        event_before.save()
+
+        event_after = copy.copy(event_before)
+        event_after.id = None
+        event_after.begin = now + timezone.timedelta(days=3)
+        event_after.end = now + timezone.timedelta(days=4)
+        event_after.save()
+
+        queryset = Event.objects.get_for_closing()
+
+        self.assertTrue(event_before in queryset)
+        self.assertTrue(event_after not in queryset)
+        self.assertEqual(queryset.count(), 2)
+
+        for event in queryset:
+            self.assertTrue(event.end < now)
+            self.assertTrue(event.paid >= event.total)
 
     def test_events_total(self):
         manager = Event.objects
