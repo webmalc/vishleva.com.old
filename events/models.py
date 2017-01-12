@@ -62,7 +62,6 @@ class EventManager(models.Manager):
             Q(end__range=(begin, end)) | Q(end__range=(begin, end)) | Q(begin__lte=begin, end__gte=end))
         return queryset
 
-
     def get_for_notification(self, begin=None, end=None, hours=24):
         """
         :param begin: from datetime

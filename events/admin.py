@@ -6,9 +6,33 @@ from .models import Event, Client
 from django.conf.urls import url
 from django.template.response import TemplateResponse
 from .lib.calendar import Calendar
-from django.conf import settings
-import arrow
 from datetime import datetime
+from django.utils.translation import ugettext_lazy as _
+
+
+class EventClosedFilter(admin.SimpleListFilter):
+    title = _('Filter closed')
+    parameter_name = 'closed'
+
+    def lookups(self, request, model_admin):
+        return (
+            (None, _('Yes')),
+            ('show', _('No')),
+        )
+
+    def choices(self, cl):
+        for lookup, title in self.lookup_choices:
+            yield {
+                'selected': self.value() == lookup,
+                'query_string': cl.get_query_string({
+                    self.parameter_name: lookup,
+                }, []),
+                'display': title,
+            }
+
+    def queryset(self, request, queryset):
+        if self.value() != 'show':
+            return queryset.exclude(status='closed')
 
 
 @admin.register(Event)
@@ -22,7 +46,7 @@ class EventAdmin(VersionAdmin):
     search_fields = (
         'id', 'title', 'comment', 'client__last_name', 'client__phone', 'client__email'
     )
-    list_filter = (('begin', DateRangeFilter), 'status', ('created_at', DateRangeFilter))
+    list_filter = (('begin', DateRangeFilter), EventClosedFilter, 'status', ('created_at', DateRangeFilter))
     raw_id_fields = ['client']
     readonly_fields = ('notified_at',)
     fieldsets = (
