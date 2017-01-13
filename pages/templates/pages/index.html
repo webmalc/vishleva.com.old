@@ -11,9 +11,9 @@
     {% include 'pages/galleries.html' %}
 
     {% if special %}
-    <div id="special">
-         {{ special.content|safe }}
-    </div>
+        <div id="special">
+            {{ special.content|safe }}
+        </div>
     {% endif %}
 
     <div id="about" class="container spacer about">
@@ -47,6 +47,60 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div id="reviews" class="container spacer">
+        <h2 class="text-center  wowload fadeInUp">Отзывы моих довольных клиентов</h2>
+        <div class="clearfix">
+
+
+            <div id="carousel-testimonials" class="carousel slide testimonails  wowload fadeInRight"
+                 data-ride="carousel">
+
+                <div class="carousel-inner">
+                    <div class="item active animated bounceInRight row">
+                        <div class="animated slideInLeft col-xs-2">
+                            <img alt="portfolio" src="/media/photologue/photos/cache/7QHcy7K_Imc_thumbnail.jpg" class="img-responsive">
+                        </div>
+                        <div class="col-xs-10">
+                            <p> Было очень сложно выбрать фотографии для отзыва, потому что влюбилась я практически в каждый кадр, запечатленный Леной!
+                                Никогда не думала, что два, столь не фотогеничных человека могут выглядеть на фотографиях так здорово и при этом оставаться самими собой.
+                                Спасибо тебе большое, за то, что творишь такие чудеса! Ты воодушевляешь и вдохновляешь!</p>
+                            <span><strong>Ярослав и Ольга (свадьба 23 июля 2016)</strong></span>
+                        </div>
+                    </div>
+                    <div class="item  animated bounceInRight row">
+                        <div class="col-xs-10 col-xs-offset-1">
+                            <p>No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because
+                                those who do not know how to pursue pleasure rationally encounter consequences that are
+                                extremely painful.</p>
+                            <span>John Partic - <b>Crazy Pixel</b></span>
+                        </div>
+                    </div>
+                    <div class="item  animated bounceInRight row">
+                        <div class="col-xs-10 col-xs-offset-1">
+                            <p>On the other hand, we denounce with righteous indignation and dislike men who are so
+                                beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire,
+                                that they cannot foresee the pain and trouble that are bound to ensue.</p>
+                            <span>Harris David - <b>Jet London</b></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-testimonials" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-testimonials" data-slide-to="1"></li>
+                    <li data-target="#carousel-testimonials" data-slide-to="2"></li>
+                </ol>
+                <!-- Indicators -->
+            </div>
+
+            <button class="btn btn-primary pull-right btn-sm" id="review-add-button">
+                <i class="fa fa-comment-o " id="review-add-button-icon"></i> Написать отзыв
+            </button>
+
         </div>
     </div>
 
