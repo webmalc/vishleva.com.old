@@ -644,26 +644,3 @@ figcaption a.no-border {
     background-position: 500px 1000px, 400px 400px, 300px 300px;
   }
 }
-#special {
-  text-align: center;
-  padding: 0px;
-  margin: 20px 0px 0px 0px;
-  letter-spacing: 2px;
-  width: 100%;
-  background-color: #AC323E;
-  background-image: url('/static/images/newyear/snow.png'), url('/static/images/newyear/snow3.png'), url('/static/images/newyear/snow2.png');
-  -webkit-animation: snow 20s linear infinite;
-  -moz-animation: snow 20s linear infinite;
-  -ms-animation: snow 20s linear infinite;
-  animation: snow 20s linear infinite;
-}
-#special h2 {
-  font-family: 'Lobster', cursive;
-  font-size: 2em;
-  font-weight: 100;
-  color: #FFFFFF;
-  margin: 0px;
-}
-#special h2 a {
-  color: #ffffff;
-}
