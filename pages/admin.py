@@ -1,4 +1,5 @@
 from django.contrib import admin
+from daterange_filter.filter import DateRangeFilter
 from django.contrib.flatpages.admin import FlatPageAdmin
 from django.contrib.flatpages.forms import FlatpageForm
 from django.contrib.flatpages.models import FlatPage
@@ -6,7 +7,32 @@ from django.utils.translation import ugettext_lazy as _
 from .models import ExtendedFlatPage
 from photologue.admin import GalleryAdmin as GalleryAdminDefault
 from photologue.models import Gallery
-from .models import GalleryExtended
+from .models import GalleryExtended, Review
+from reversion.admin import VersionAdmin
+from ordered_model.admin import OrderedModelAdmin
+
+
+@admin.register(Review)
+class ReviewAdmin(VersionAdmin, OrderedModelAdmin):
+    model = Review
+    list_display = (
+        'id', 'client', 'admin_thumbnail', 'created_at', 'is_enabled', 'move_up_down_links'
+    )
+    list_display_links = ('id', 'client')
+    search_fields = (
+         'id', 'text', 'client__last_name', 'client__first_name', 'client__phone', 'client__email'
+    )
+    list_filter = (('created_at', DateRangeFilter),)
+    raw_id_fields = ['client', 'photo']
+    fieldsets = (
+        ('General', {
+            'fields': ('text', 'client', 'photo')
+        }),
+        ('Configuration', {
+            'classes': ('collapse',),
+            'fields': ('is_enabled',)
+        }),
+    )
 
 
 class GalleryExtendedInline(admin.StackedInline):
@@ -42,4 +68,3 @@ admin.site.unregister(FlatPage)
 admin.site.register(ExtendedFlatPage, ExtendedFlatPageAdmin)
 admin.site.unregister(Gallery)
 admin.site.register(Gallery, GalleryAdmin)
-

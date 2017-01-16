@@ -44,7 +44,7 @@ class EventAdmin(VersionAdmin):
     )
     list_display_links = ('id', 'title')
     search_fields = (
-        'id', 'title', 'comment', 'client__last_name', 'client__phone', 'client__email'
+        'id', 'title', 'comment', 'client__last_name', 'client__first_name', 'client__phone', 'client__email'
     )
     list_filter = (('begin', DateRangeFilter), EventClosedFilter, 'status', ('created_at', DateRangeFilter))
     raw_id_fields = ['client']

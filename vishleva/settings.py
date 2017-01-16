@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'reversion',
     'daterange_filter',
+    'ordered_model',
 
     # vishleva apps
     'vishleva',
