@@ -6,7 +6,11 @@ from photologue.models import Gallery
 
 
 class PageViewTest(ViewTestCase):
-    fixtures = ['tests/users.json', 'tests/pages.json', 'tests/galleries.json']
+    fixtures = [
+        'tests/users.json', 'tests/pages.json',
+        'tests/galleries.json', 'tests/events.json',
+        'tests/reviews.json',
+    ]
 
     def setUp(self):
 
@@ -63,6 +67,13 @@ class PageViewTest(ViewTestCase):
         url = reverse('photologue:pl-gallery', kwargs={'slug': 'gallery_private'})
         response = self.client.get(url)
         self.assertEqual(response.status_code, 404)
+
+    def test_reviews_display(self):
+        url = reverse('index')
+        response = self.client.get(url)
+        self.assertContains(response, 'review one')
+        self.assertContains(response, 'review two')
+        self.assertNotContains(response, 'review three')
 
 
 class PageLiveTests(LiveTestCase):

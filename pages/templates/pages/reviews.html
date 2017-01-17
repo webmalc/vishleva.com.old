@@ -1,0 +1,49 @@
+<div id="reviews" class="container spacer">
+    <h2 class="text-center  wowload fadeInUp">Отзывы моих довольных клиентов</h2>
+    <div class="clearfix"></div>
+
+
+    <div id="carousel-testimonials" class="carousel slide testimonails  wowload fadeInRight"
+         data-ride="carousel">
+
+        <div class="carousel-inner">
+            {% for review in reviews %}
+                <div class="item {{ forloop.counter0|yesno:",active" }} animated bounceInRight row">
+                    <div class="animated slideInLeft col-xs-2">
+                        {% with gallery=review.photo.galleries.all|first %}
+                            {% if review.photo %}
+                                {% if gallery %}
+                                    <a href="{{ gallery.get_absolute_url }}" title="{{ gallery.title }}">
+                                {% endif %}
+                            <img height="{{ review.photo.get_thumbnail_size.1 }}"
+                                 width="{{ review.photo.get_thumbnail_size.0 }}"
+                                 src="{{ review.photo.get_thumbnail_url }}" alt="{{ review.photo.title }}"
+                                 class="img-responsive">
+                            {% if gallery %}</a>{% endif %}
+                            {% endif %}
+                        {% endwith %}
+                    </div>
+                    <div class="col-xs-10">
+                        {{ review.text|safe }}
+                        <div><strong>{{ review.client }}</strong></div>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <!-- Indicators -->
+            <div></div>
+            <ol class="carousel-indicators">
+                {% for review in reviews %}
+                    <li data-target="#carousel-testimonials" data-slide-to="{{ forloop.counter0 }}"
+                        class="{{ forloop.counter0|yesno:",active" }}"></li>
+                {% endfor %}
+            </ol>
+            <!-- Indicators -->
+        </div>
+
+        <button class="btn btn-primary pull-right btn-sm" id="review-add-button">
+            <i class="fa fa-comment-o " id="review-add-button-icon"></i> Написать отзыв
+        </button>
+
+    </div>
+</div>

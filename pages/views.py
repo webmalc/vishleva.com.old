@@ -3,7 +3,7 @@ from django.conf import settings
 from datetime import date
 from django.http import JsonResponse
 from django.utils.translation import ugettext_lazy as _
-from .models import ExtendedFlatPage
+from .models import ExtendedFlatPage, Review
 from .forms import ContactForm
 from photologue.models import Gallery
 from photologue.views import GalleryDetailView
@@ -47,6 +47,7 @@ class MainView(TemplateView):
         context['extrahead'] = ExtendedFlatPage.objects.all().filter(url='/extrahead/').first()
         context['form'] = ContactForm()
         context['galleries'] = Gallery.objects.on_site().is_public()  # .exclude(slug='special')
+        context['reviews'] = Review.objects.filter(is_enabled=True)
 
         return context
 

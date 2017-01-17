@@ -647,6 +647,10 @@ figcaption a.no-border {
 .testimonails {
   min-height: 220px;
 }
+.testimonails .carousel-inner {
+  height: 220px;
+  overflow: hidden;
+}
 .testimonails img {
   max-height: 220px;
 }

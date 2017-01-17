@@ -1,0 +1,47 @@
+[
+{
+    "model": "pages.review",
+    "pk": 1,
+    "fields": {
+        "order": 0,
+        "created_at": "2017-01-16T13:31:10.977Z",
+        "modified_at": "2017-01-16T14:02:59.417Z",
+        "created_by": null,
+        "modified_by": null,
+        "text": "review one",
+        "client": 2,
+        "photo": null,
+        "is_enabled": true
+    }
+},
+{
+    "model": "pages.review",
+    "pk": 2,
+    "fields": {
+        "order": 1,
+        "created_at": "2017-01-16T13:44:22.091Z",
+        "modified_at": "2017-01-16T14:03:14.627Z",
+        "created_by": null,
+        "modified_by": null,
+        "text": "review two",
+        "client": 1,
+        "photo": null,
+        "is_enabled": true
+    }
+},
+{
+    "model": "pages.review",
+    "pk": 3,
+    "fields": {
+        "order": 2,
+        "created_at": "2017-01-16T14:03:49.323Z",
+        "modified_at": "2017-01-16T14:03:49.323Z",
+        "created_by": null,
+        "modified_by": null,
+        "text": "review three",
+        "client": 3,
+        "photo": null,
+        "is_enabled": false
+    }
+}
+]
