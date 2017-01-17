@@ -1,0 +1,6 @@
+<form action="{% url 'review_create' %}" method="post" id="review-form" class="contactform">
+    {% csrf_token %}
+    {{ form.text }}
+    {{ form.contacts }}
+    <input type="submit" class="hidden"/>
+</form>

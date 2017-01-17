@@ -10,6 +10,7 @@ from selenium.webdriver.common.by import By
 
 
 @tag('unit', 'view')
+@override_settings(CELERY_ALWAYS_EAGER=True)
 class ViewTestCase(TestCase):
 
     def _test_unauthorized_view(self, route_name, redirect_route='admin:login', params={}):

@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <div id="reviews" class="container spacer">
     <h2 class="text-center  wowload fadeInUp">Отзывы моих довольных клиентов</h2>
     <div class="clearfix"></div>
@@ -9,7 +11,7 @@
         <div class="carousel-inner">
             {% for review in reviews %}
                 <div class="item {{ forloop.counter0|yesno:",active" }} animated bounceInRight row">
-                    <div class="animated slideInLeft col-xs-2">
+                    <div class="animated slideInLeft col-sm-2 hidden-xs">
                         {% with gallery=review.photo.galleries.all|first %}
                             {% if review.photo %}
                                 {% if gallery %}
@@ -23,7 +25,7 @@
                             {% endif %}
                         {% endwith %}
                     </div>
-                    <div class="col-xs-10">
+                    <div class="col-sm-10">
                         {{ review.text|safe }}
                         <div><strong>{{ review.client }}</strong></div>
                     </div>
@@ -41,9 +43,27 @@
             <!-- Indicators -->
         </div>
 
-        <button class="btn btn-primary pull-right btn-sm" id="review-add-button">
+        <button class="btn btn-primary pull-right btn-sm" id="review-add-button" data-toggle="modal" data-target="#review-form-modal">
             <i class="fa fa-comment-o " id="review-add-button-icon"></i> Написать отзыв
         </button>
 
     </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="review-form-modal" tabindex="-1" role="dialog" aria-labelledby="review-form-label">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Написать отзыв</h4>
+      </div>
+      <div class="modal-body"></div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" id="review-form-send" data-close-text=" {% trans "close" %}">
+            {% trans "send" %}
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

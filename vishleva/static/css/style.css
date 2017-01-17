@@ -493,7 +493,8 @@ figcaption a.no-border {
 .pricing {
   margin: auto;
   background: #21abca;
-  width: 280px;
+  max-width: 320px;
+  min-width: 240px;
   padding: 40px 0 20px;
   color: #fff;
   -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
@@ -665,4 +666,11 @@ figcaption a.no-border {
 }
 #review-add-button {
   width: 180px;
+}
+#reviews.spacer {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+.modal-content {
+  border-radius: 0;
 }

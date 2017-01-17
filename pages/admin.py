@@ -16,9 +16,9 @@ from ordered_model.admin import OrderedModelAdmin
 class ReviewAdmin(VersionAdmin, OrderedModelAdmin):
     model = Review
     list_display = (
-        'id', 'client', 'admin_thumbnail', 'created_at', 'is_enabled', 'move_up_down_links'
+        'id', 'short_text', 'client', 'admin_thumbnail', 'created_at', 'is_enabled', 'move_up_down_links'
     )
-    list_display_links = ('id', 'client')
+    list_display_links = ('id', 'short_text')
     search_fields = (
          'id', 'text', 'client__last_name', 'client__first_name', 'client__phone', 'client__email'
     )

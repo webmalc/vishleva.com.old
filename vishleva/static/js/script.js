@@ -4,6 +4,49 @@
 $(document).ready(function ($) {
     "use strict";
 
+    // review modal
+    $('#review-form-modal').on('show.bs.modal', function () {
+        $(this).find('.modal-body').load('/review/create', function () {
+            var form = $('#review-form'),
+                button = $('#review-form-send');
+            button.text(gettext('send'));
+            button.unbind('click');
+            button.click(function (event) {
+                event.preventDefault();
+                $('#review-form').find(':submit').click();
+            });
+            form.submit(function (event) {
+                event.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: form.attr('action'),
+                    data: form.serialize(),
+                    success: function (response) {
+                        $('#review-form-modal .modal-body').html(
+                            '<span class="text-success">' + response.message + '</span>'
+                        );
+                        button.prop('disabled', false);
+                        button.unbind('click');
+                        button.text(gettext('close')).click(function (event) {
+                            event.preventDefault();
+                            $('#review-form-modal').modal('hide');
+                        });
+                    },
+                    error: function () {
+                        $('#review-form-modal .modal-body').html(
+                            '<span class="text-danger">' +
+                            gettext('Sorry! Error while sending message! Please refresh the page and try again') +
+                            '</span>'
+                        );
+                    },
+                    beforeSend: function () {
+                        button.prop('disabled', true);
+                    }
+                });
+            });
+        });
+    });
+
     // Ajax CSRFToken
     $.ajaxSetup({
         beforeSend: function (xhr, settings) {

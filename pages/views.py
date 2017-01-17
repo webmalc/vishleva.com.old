@@ -1,14 +1,15 @@
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, CreateView
 from django.conf import settings
 from datetime import date
 from django.http import JsonResponse
 from django.utils.translation import ugettext_lazy as _
 from .models import ExtendedFlatPage, Review
-from .forms import ContactForm
+from .forms import ContactForm, ClientReviewForm
 from photologue.models import Gallery
 from photologue.views import GalleryDetailView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from vishleva.tasks import mail_managers_task
+from vishleva.views import AjaxableResponseMixin
 
 
 class GalleryView(GalleryDetailView):
@@ -50,6 +51,27 @@ class MainView(TemplateView):
         context['reviews'] = Review.objects.filter(is_enabled=True)
 
         return context
+
+
+class CreateReview(AjaxableResponseMixin, CreateView):
+    """
+    Create review (frontend)
+    """
+    model = Review
+    form_class = ClientReviewForm
+
+    def form_valid(self, form):
+        review = form.save(commit=False)
+        review.text += "\n\nClient contacts: {}" . format(form.cleaned_data['contacts'])
+        review.is_enabled = False
+        review.save()
+
+        mail_managers_task.delay(
+            subject=_('New client review.'),
+            template='emails/client_review_manager.html',
+            data={'review': review.text}
+        )
+        return JsonResponse({'message': 'Отзыв успешно добавлен. Он появится на сайте в ближайшее время.'})
 
 
 def send_email(request):

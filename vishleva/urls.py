@@ -4,7 +4,7 @@ from photologue.views import PhotoDetailView
 from django.views.i18n import javascript_catalog
 from django.conf import settings
 from django.conf.urls.static import static
-from pages.views import MainView, send_email, GalleryView
+from pages.views import MainView, send_email, GalleryView, CreateReview
 
 js_info_dict = {
     'domain': 'django',
@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^pages/', include('pages.urls', namespace='pages')),
     url(r'^$', MainView.as_view(), name='index'),
     url(r'^send_email$', send_email, name='send_email'),
+    url(r'^review/create', CreateReview.as_view(), name='review_create'),
     url(r'^jsi18n/$', javascript_catalog, js_info_dict, name='javascript-catalog'),
 
     # photologue

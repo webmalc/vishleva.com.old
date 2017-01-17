@@ -1,8 +1,11 @@
 from django.core.urlresolvers import reverse
+from django.conf import settings
+from django.core import mail
 from django.contrib.auth.models import User
 from vishleva.lib.test import ViewTestCase, LiveTestCase
 from pages.models import ExtendedFlatPage
 from photologue.models import Gallery
+from pages.models import Review
 
 
 class PageViewTest(ViewTestCase):
@@ -74,6 +77,23 @@ class PageViewTest(ViewTestCase):
         self.assertContains(response, 'review one')
         self.assertContains(response, 'review two')
         self.assertNotContains(response, 'review three')
+
+    def test_reviews_create(self):
+        url = reverse('review_create')
+        response = self.client.post(url, {
+            'text': 'test_text',
+            'contacts': 'client contacts'
+        })
+        self.assertContains(
+            response, 'message'
+        )
+        review = Review.objects.filter(
+            text__startswith='test_text',
+            text__contains='client contacts',
+            is_enabled=False
+        )
+        self.assertGreater(review.count(), 0)
+        self.assertEqual(mail.outbox[0].subject, settings.EMAIL_SUBJECT_PREFIX + 'New client review.')
 
 
 class PageLiveTests(LiveTestCase):

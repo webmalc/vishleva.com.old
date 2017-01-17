@@ -1,0 +1,11 @@
+{% extends 'emails/base.html' %}
+{% load humanize %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Client review" %}
+{% endblock %}
+
+{% block content %}
+    {{ review|linebreaks }}
+{% endblock %}

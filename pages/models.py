@@ -1,6 +1,7 @@
 from django.contrib.flatpages.models import FlatPage
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
+from django.template.defaultfilters import truncatewords, strip_tags
 from photologue.models import Gallery
 from ordered_model.models import OrderedModel
 from vishleva.models import CommonInfo
@@ -28,7 +29,7 @@ class Review(OrderedModel, CommonInfo):
     Client reviews
     """
     text = models.TextField(db_index=True)
-    client = models.ForeignKey('events.Client')
+    client = models.ForeignKey('events.Client', on_delete=models.SET_NULL, null=True, blank=False)
     photo = models.ForeignKey('photologue.Photo', on_delete=models.SET_NULL, null=True, blank=True)
     is_enabled = models.BooleanField(default=True)
 
@@ -36,6 +37,10 @@ class Review(OrderedModel, CommonInfo):
         return self.photo.admin_thumbnail() if self.photo else None
     admin_thumbnail.short_description = _('Photo')
     admin_thumbnail.allow_tags = True
+
+    @property
+    def short_text(self):
+        return truncatewords(strip_tags(self.text), 10)
 
     def __str__(self):
         return "#{} review from {}".format(self.pk, self.client)
