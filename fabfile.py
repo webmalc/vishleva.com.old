@@ -17,6 +17,7 @@ def deploy():
             run('npm install')
             run('./manage.py collectstatic --no-input')
             run('./manage.py migrate --no-input')
+            run('./manage.py compilemessages')
     sudo('sudo supervisorctl restart vishleva')
     sudo('sudo supervisorctl restart celery')
     sudo('sudo supervisorctl restart celery-beat')
