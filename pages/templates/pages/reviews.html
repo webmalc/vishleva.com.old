@@ -17,9 +17,7 @@
                                 {% if gallery %}
                                     <a href="{{ gallery.get_absolute_url }}" title="{{ gallery.title }}">
                                 {% endif %}
-                            <img height="{{ review.photo.get_thumbnail_size.1 }}"
-                                 width="{{ review.photo.get_thumbnail_size.0 }}"
-                                 src="{{ review.photo.get_thumbnail_url }}" alt="{{ review.photo.title }}"
+                            <img src="{{ review.photo.get_thumbnail_url }}" alt="{{ review.photo.title }}"
                                  class="img-responsive">
                             {% if gallery %}</a>{% endif %}
                             {% endif %}
