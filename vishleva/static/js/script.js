@@ -6,7 +6,7 @@ $(document).ready(function ($) {
 
     // review modal
     $('#review-form-modal').on('show.bs.modal', function () {
-        $(this).find('.modal-body').load('/review/create', function () {
+        $(this).find('.modal-body').load('/pages/review/create', function () {
             var form = $('#review-form'),
                 button = $('#review-form-send');
             button.text(gettext('send'));

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-17 17:22+0300\n"
+"POT-Creation-Date: 2017-01-19 12:37+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -84,75 +84,67 @@ msgstr "описание"
 msgid "Photo"
 msgstr ""
 
+#: pages/templates/emails/client_review_manager.html:6
+msgid "Client review"
+msgstr ""
+
 #: pages/templates/pages/index.html:30
-#, fuzzy, python-format
-#| msgid "%(clients)s %(name)s"
-#| msgid_plural "%(clients)s %(name)s"
+#, python-format
 msgid "%(clients)s %(name)s"
-msgid_plural ""
-"%(clients)s\n"
-"                            %(name)s"
+msgid_plural "%(clients)s %(name)s"
 msgstr[0] "%(clients)s клиент"
 msgstr[1] "%(clients)s клиента"
 msgstr[2] "%(clients)s клиентов"
 msgstr[3] ""
 
-#: pages/templates/pages/index.html:35
-#, fuzzy, python-format
-#| msgid "%(orders)s %(name)s"
-#| msgid_plural "%(orders)s %(name)s"
+#: pages/templates/pages/index.html:34
+#, python-format
 msgid "%(orders)s %(name)s"
-msgid_plural ""
-"%(orders)s\n"
-"                            %(name)s"
+msgid_plural "%(orders)s %(name)s"
 msgstr[0] "%(orders)s заказ"
 msgstr[1] "%(orders)s заказа"
 msgstr[2] "%(orders)s заказов"
 msgstr[3] ""
 
-#: pages/templates/pages/index.html:40
-#, fuzzy, python-format
-#| msgid "%(photos)s %(name)s"
-#| msgid_plural "%(photos)s %(name)s"
+#: pages/templates/pages/index.html:38
+#, python-format
 msgid "%(photos)s %(name)s"
-msgid_plural ""
-"%(photos)s\n"
-"                            %(name)s"
+msgid_plural "%(photos)s %(name)s"
 msgstr[0] "%(photos)s фото"
 msgstr[1] "%(photos)s фото"
 msgstr[2] "%(photos)s фото"
 msgstr[3] ""
 
-#: pages/templates/pages/index.html:45
-#, fuzzy, python-format
-#| msgid "%(days)s %(name)s"
-#| msgid_plural "%(days)s %(name)s"
+#: pages/templates/pages/index.html:42
+#, python-format
 msgid "%(days)s %(name)s"
-msgid_plural ""
-"%(days)s\n"
-"                            %(name)s"
+msgid_plural "%(days)s %(name)s"
 msgstr[0] "%(days)s день"
 msgstr[1] "%(days)s дня"
 msgstr[2] "%(days)s дней"
 msgstr[3] ""
 
-#: pages/templates/pages/reviews.html:63
+#: pages/templates/pages/reviews.html:70
 msgid "close"
 msgstr "закрыть"
 
-#: pages/templates/pages/reviews.html:64
+#: pages/templates/pages/reviews.html:71
 msgid "send"
 msgstr "оправить"
 
-#: pages/views.py:84 vishleva/templates/emails/contact_form.html:6
+#: pages/views.py:70
+msgid "New client review."
+msgstr ""
+
+#: pages/views.py:97 vishleva/templates/emails/contact_form.html:6
 msgid "New message via contact form"
 msgstr "Новое сообщение с сайта"
 
-#: pages/views.py:88
+#: pages/views.py:101
 msgid "Your message was successfully sent"
 msgstr "Ваше сообщение успешно отправлено"
 
-#: pages/views.py:92
+#: pages/views.py:105
 msgid ""
 "Sorry! Error while sending message! Please refresh the page and try again"
 msgstr ""

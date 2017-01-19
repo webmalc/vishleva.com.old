@@ -37,6 +37,7 @@ class PageViewTest(ViewTestCase):
         self.assertContains(response, 'id="contact"')
         self.assertContains(response, 'prices content')
         self.assertContains(response, 'extrahead content')
+        self.assertContains(response, '{} {}'.format(response.context_data['clients'], 'клиент'))
 
     def test_special_on(self):
         """
@@ -79,7 +80,7 @@ class PageViewTest(ViewTestCase):
         self.assertNotContains(response, 'review three')
 
     def test_reviews_create(self):
-        url = reverse('review_create')
+        url = reverse('pages:review_create')
         response = self.client.post(url, {
             'text': 'test_text',
             'contacts': 'client contacts'

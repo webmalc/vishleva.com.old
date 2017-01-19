@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% load i18n %}
+{% load staticfiles %}
+
+{% block title %}{{ block.super }}. {{ gallery.title }}{% endblock %}
+
+{% block content %}
+
+    <div id="content-description" class="wowload fadeInLeft">
+        <strong>Отзывы</strong> <small>оставленные моими клиентами</small>
+        <div class="pull-right text-center">
+                <button class="btn btn-success btn-sm" id="review-add-button" data-toggle="modal"
+                        data-target="#review-form-modal">
+                    <i class="fa fa-comment-o " id="review-add-button-icon"></i> Написать отзыв
+                </button>
+            </div>
+    </div>
+
+    <div id="content-body" class="wowload fadeIn">
+        {% if is_paginated %}
+            <div class="text-center">
+                <ul class="pagination">
+                    {% for i in paginator.page_range %}
+                        <li {% if page_obj.number == i %}class="active"{% endif %}>
+                            <a href="{% url 'pages:review_list' %}?page={{ i }}">{{ i }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <div id="review-list-container" class="container">
+        {% for review in object_list %}
+            <div class="row">
+                <div class="col-xs-10 col-xs-offset-1 review-list-item {% if forloop.counter|divisibleby:2 %}even{% else %}odd{% endif %}">
+                     {% with gallery=review.photo.galleries.all|first %}
+                        {% if review.photo %}
+                            {% if gallery %}
+                                <a href="{{ gallery.get_absolute_url }}" title="{{ gallery.title }}">
+                            {% endif %}
+                        <img class="img-responsive pull-left hidden-xs" src="{{ review.photo.get_thumbnail_url }}" alt="{{ review.photo.title }}">
+                        {% if gallery %}</a>{% endif %}
+                        {% endif %}
+                    {% endwith %}
+                    {{ review.text|safe }}
+                    <div><strong>{{ review.client }}</strong></div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+
+        {% if is_paginated %}
+            <div class="text-center">
+                <ul class="pagination">
+                    {% for i in paginator.page_range %}
+                        <li {% if page_obj.number == i %}class="active"{% endif %}>
+                            <a href="{% url 'pages:review_list' %}?page={{ i }}">{{ i }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+
+    {% include 'pages/review_modal.html' %}
+
+{% endblock %}

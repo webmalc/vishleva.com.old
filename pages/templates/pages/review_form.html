@@ -1,4 +1,4 @@
-<form action="{% url 'review_create' %}" method="post" id="review-form" class="contactform">
+<form action="{% url 'pages:review_create' %}" method="post" id="review-form" class="contactform">
     {% csrf_token %}
     {{ form.text }}
     {{ form.contacts }}

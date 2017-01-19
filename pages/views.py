@@ -1,4 +1,4 @@
-from django.views.generic import TemplateView, CreateView
+from django.views.generic import TemplateView, CreateView, ListView
 from django.conf import settings
 from datetime import date
 from django.http import JsonResponse
@@ -48,7 +48,7 @@ class MainView(TemplateView):
         context['extrahead'] = ExtendedFlatPage.objects.all().filter(url='/extrahead/').first()
         context['form'] = ContactForm()
         context['galleries'] = Gallery.objects.on_site().is_public()  # .exclude(slug='special')
-        context['reviews'] = Review.objects.filter(is_enabled=True)
+        context['reviews'] = Review.objects.filter(is_enabled=True)[0:10]
 
         return context
 
@@ -72,6 +72,15 @@ class CreateReview(AjaxableResponseMixin, CreateView):
             data={'review': review.text}
         )
         return JsonResponse({'message': 'Отзыв успешно добавлен. Он появится на сайте в ближайшее время.'})
+
+
+class ReviewList(ListView):
+    """
+    All reviews 
+    """
+    model = Review
+    queryset = Review.objects.filter(is_enabled=True)
+    paginate_by = 30
 
 
 def send_email(request):

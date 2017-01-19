@@ -452,9 +452,13 @@ p {
   padding: 0;
   display: inline-block;
 }
-#gallery-description {
+#gallery-description,
+#content-description {
   padding: 7em 25px 2em 25px;
   font-size: 120%;
+}
+#content-body {
+  padding: 2em 25px 2em 25px;
 }
 figcaption {
   cursor: auto;
@@ -664,13 +668,30 @@ figcaption a.no-border {
   width: 15px;
   height: 15px;
 }
+#review-view-all {
+  width: 180px;
+  margin: 5px 0px 5px 0px;
+}
 #review-add-button {
   width: 180px;
+  margin: 5px 0px 5px 0px;
 }
 #reviews.spacer {
-  padding-left: 1em;
-  padding-right: 1em;
+  padding-left: 3em;
+  padding-right: 3em;
 }
 .modal-content {
   border-radius: 0;
+}
+.review-list-item {
+  margin-bottom: 50px;
+  padding: 30px;
+}
+.review-list-item img {
+  margin: 0px 20px 20px 0px;
+  max-height: 400px;
+  max-width: 400px;
+}
+.review-list-item.odd {
+  background-color: #e7e7e7;
 }

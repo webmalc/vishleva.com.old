@@ -41,27 +41,18 @@
             <!-- Indicators -->
         </div>
 
-        <button class="btn btn-primary pull-right btn-sm" id="review-add-button" data-toggle="modal" data-target="#review-form-modal">
-            <i class="fa fa-comment-o " id="review-add-button-icon"></i> Написать отзыв
-        </button>
+        <div class="pull-right text-center">
+            <a href="{% url 'pages:review_list' %}" class="btn btn-primary btn-sm" id="review-view-all">
+                <i class="fa fa-bars" id="review-add-button-icon"></i> Все отзывы
+            </a>
+
+            <button class="btn btn-success btn-sm" id="review-add-button" data-toggle="modal"
+                    data-target="#review-form-modal">
+                <i class="fa fa-comment-o " id="review-add-button-icon"></i> Написать отзыв
+            </button>
+        </div>
 
     </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="review-form-modal" tabindex="-1" role="dialog" aria-labelledby="review-form-label">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Написать отзыв</h4>
-      </div>
-      <div class="modal-body"></div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary" id="review-form-send" data-close-text=" {% trans "close" %}">
-            {% trans "send" %}
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
+{% include 'pages/review_modal.html' %}

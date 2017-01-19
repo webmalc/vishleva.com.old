@@ -77,9 +77,11 @@ p {
   background: rgba(0, 0, 0, 0.5);
   text-transform: uppercase;
 }
+
 .btn-sm {
   padding: 0.5em 0.5em;
 }
+
 .btn:hover, .btn:active {
   color: #fff;
 }
@@ -545,9 +547,12 @@ p {
   }
 }
 
-#gallery-description {
+#gallery-description, #content-description {
   padding: 7em 25px 2em 25px;
   font-size: 120%;
+}
+#content-body {
+  padding: 2em 25px 2em 25px;
 }
 
 figcaption {
@@ -722,26 +727,44 @@ figcaption {
 
 /*Keyframes*/
 @keyframes snow {
-0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
- 100% {background-position: 500px 1000px, 400px 400px, 300px 300px;}
+  0% {
+    background-position: 0px 0px, 0px 0px, 0px 0px;
+  }
+  100% {
+    background-position: 500px 1000px, 400px 400px, 300px 300px;
+  }
 }
 
 @-moz-keyframes snow {
-0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
-100% {background-position: 500px 1000px, 400px 400px, 300px 300px;}
+  0% {
+    background-position: 0px 0px, 0px 0px, 0px 0px;
+  }
+  100% {
+    background-position: 500px 1000px, 400px 400px, 300px 300px;
+  }
 }
 
 @-webkit-keyframes snow {
-0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
- 50% {background-color:#b4cfe0;}
- 100% {background-position: 500px 1000px, 400px 400px, 300px 300px; background-color:#6b92b9;}
+  0% {
+    background-position: 0px 0px, 0px 0px, 0px 0px;
+  }
+  50% {
+    background-color: #b4cfe0;
+  }
+  100% {
+    background-position: 500px 1000px, 400px 400px, 300px 300px;
+    background-color: #6b92b9;
+  }
 }
 
 @-ms-keyframes snow {
-0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
- 100% {background-position: 500px 1000px, 400px 400px, 300px 300px;}
+  0% {
+    background-position: 0px 0px, 0px 0px, 0px 0px;
+  }
+  100% {
+    background-position: 500px 1000px, 400px 400px, 300px 300px;
+  }
 }
-
 
 body {
 
@@ -757,6 +780,7 @@ body {
     max-height: 220px;
   }
 }
+
 .carousel-indicators {
   li {
     width: 12px;
@@ -768,16 +792,35 @@ body {
     height: 15px;
   }
 }
-#review-add-button {
+
+#review-view-all {
   width: 180px;
+  margin: 5px 0px 5px 0px;
 }
 
+#review-add-button {
+  width: 180px;
+  margin: 5px 0px 5px 0px;
+}
 
 #reviews.spacer {
-  padding-left: 1em;
-  padding-right: 1em;
+  padding-left: 3em;
+  padding-right: 3em;
 }
 
 .modal-content {
   border-radius: 0;
+}
+
+.review-list-item {
+    img {
+      margin: 0px 20px 20px 0px;
+      max-height: 400px;
+      max-width: 400px;
+    }
+  margin-bottom: 50px;
+  padding: 30px;
+}
+.review-list-item.odd {
+  background-color: #e7e7e7;
 }

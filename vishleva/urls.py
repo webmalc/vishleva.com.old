@@ -18,8 +18,8 @@ urlpatterns = [
     url(r'^pages/', include('pages.urls', namespace='pages')),
     url(r'^$', MainView.as_view(), name='index'),
     url(r'^send_email$', send_email, name='send_email'),
-    url(r'^review/create', CreateReview.as_view(), name='review_create'),
     url(r'^jsi18n/$', javascript_catalog, js_info_dict, name='javascript-catalog'),
+    url(r'^pages/', include('pages.urls', namespace="pages")),
 
     # photologue
     url(r'^photo/', include(

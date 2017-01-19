@@ -70,7 +70,7 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right scroll">
                         {% if request.user.is_staff %}
-                            <li><a href="{% url 'admin:index' %}"><i class="fa fa-cog"></i></a></li>
+                            <li class="hidden-sm"><a href="{% url 'admin:index' %}"><i class="fa fa-cog"></i></a></li>
                         {% endif %}
                         <li><a href="{% url 'index' %}#works">Фото</a></li>
                         <li><a href="{% url 'index' %}#about">Обо мне</a></li>
