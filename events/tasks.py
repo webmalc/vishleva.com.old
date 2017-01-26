@@ -29,7 +29,6 @@ def event_notifications_task():
 @app.task
 def event_autoclose_task():
     events = Event.objects.get_for_closing()
-    print(list(events))
     for event in events:
         event.status = 'closed'
         event.save()
