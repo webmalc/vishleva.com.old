@@ -171,7 +171,7 @@ CELERY_ALWAYS_EAGER = False
 CELERYBEAT_SCHEDULE = {
     'event_notifications_task': {
         'task': 'events.tasks.event_notifications_task',
-        'schedule': crontab(minute=0, hour='0,6,12,18')
+        'schedule': crontab(minute=0, hour='11,15,19,22')
     },
     'event_autoclose_task': {
         'task': 'events.tasks.event_autoclose_task',

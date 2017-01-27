@@ -3,6 +3,7 @@ from vishleva.celery import app
 from events.models import Event
 from django.utils import timezone
 from vishleva.messengers.mailer import Mailer
+from vishleva.messengers.sms.sender import Sender
 
 
 @app.task
@@ -22,6 +23,12 @@ def event_notifications_task():
                 data={'event': event},
                 email=client.email
             )
+        if client.phone:
+            sender = Sender()
+            sender.send_sms(
+                'Zdravstvuyte. Napominaju Vam, chto u Vas {} zaplanirovana fotosessija. S uvazheniem, Aleksandra Vishleva +7(903)735-60-96'.format(event.begin.strftime('%d.%m.%Y %H:%M')),
+                client=client)
+
         event.notified_at = timezone.now()
         event.save()
 
@@ -39,6 +46,3 @@ def event_autoclose_task():
             template='emails/closed_events_manager.html',
             data={'events': events},
         )
-
-
-
