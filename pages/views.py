@@ -48,7 +48,7 @@ class MainView(TemplateView):
         context['extrahead'] = ExtendedFlatPage.objects.all().filter(url='/extrahead/').first()
         context['form'] = ContactForm()
         context['galleries'] = Gallery.objects.on_site().is_public()  # .exclude(slug='special')
-        context['reviews'] = Review.objects.filter(is_enabled=True)[0:10]
+        context['reviews'] = Review.objects.filter(is_enabled=True)[0:20]
 
         return context
 
