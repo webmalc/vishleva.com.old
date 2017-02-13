@@ -2,7 +2,7 @@ from fabric.api import *
 
 env.hosts = ['52.57.111.193']
 env.port = 22
-env.key_filename = '/home/webmalc/Documents/vishleva.pem'
+env.key_filename = '/home/webmalc/.ssh/vishleva.pem'
 env.user = "ubuntu"
 env.project_dir = '/home/ubuntu/python/vishleva.com'
 env.activate = 'source /home/ubuntu/.virtualenvs/vishleva/bin/activate'
