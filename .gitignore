@@ -87,3 +87,7 @@ celerybeat-schedule*
 /nbproject/private/
 node_modules
 google_api_key.json
+.project
+.pydevproject
+tags
+
