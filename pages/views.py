@@ -44,10 +44,10 @@ class MainView(TemplateView):
         context['photos'] = days * 12 + date.today().weekday()
         context['about'] = ExtendedFlatPage.objects.all().filter(url='/about/').first()
         context['prices'] = ExtendedFlatPage.objects.all().filter(url='/prices/').first()
-        context['special'] = ExtendedFlatPage.objects.all().filter(url='/special/').first()
+        context['specials'] = ExtendedFlatPage.objects.all().filter(url__startswith='/special')
         context['extrahead'] = ExtendedFlatPage.objects.all().filter(url='/extrahead/').first()
         context['form'] = ContactForm()
-        context['galleries'] = Gallery.objects.on_site().is_public()  # .exclude(slug='special')
+        context['galleries'] = Gallery.objects.on_site().is_public() #.exclude(slug__startswith='special')
         context['reviews'] = Review.objects.filter(is_enabled=True)[0:20]
 
         return context

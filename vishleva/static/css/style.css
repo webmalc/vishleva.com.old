@@ -4,6 +4,9 @@ body {
   background-color: #fff;
   -webkit-font-smoothing: antialiased;
 }
+input, textarea, select {
+    background-color: #ffffff;
+}
 a {
   color: #00a9c6;
   text-decoration: none;
