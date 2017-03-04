@@ -15,7 +15,7 @@
                         {% else %}{{ gallery.description|safe }}
                         {% endif %}
                         </a><br>
-                        <a href="{{ gallery.get_absolute_url }}">Посмотреть</a></p>
+                        <a class="hidden-xs" href="{{ gallery.get_absolute_url }}">Посмотреть</a></p>
                 </figcaption>
             </figure>
         {% endwith %}

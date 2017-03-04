@@ -4,8 +4,43 @@ body {
   background-color: #fff;
   -webkit-font-smoothing: antialiased;
 }
-input, textarea, select {
-    background-color: #ffffff;
+input,
+textarea,
+select {
+  background-color: #ffffff;
+}
+a {
+  color: #00a9c6;
+  text-decoration: none;
+}
+a:hover {
+  color: #666;
+}
+.btn,
+a,
+.btn:hover,
+a:hover {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  outline: none !important;
+}
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  line-height: 1em;
+}
+h1 {
+  font: 700 5em Roboto, Arial, Helvetica;
+  margin: 0.25em 0;
+  text-transform: uppercase;
+}
+h2 {
+  font: 300 2.5em Roboto, Arial, Helvetica;
 }
 a {
   color: #00a9c6;
@@ -292,7 +327,7 @@ p {
   line-height: 0.5em;
 }
 .grid figure h2 {
-  font-size: 1.3em;
+  font-size: 1.2em;
 }
 @media (max-width: 1200px) {
   body {
@@ -305,7 +340,7 @@ p {
     margin: 0 0.5em;
   }
   .grid figure h2 {
-    font: 700 1.5em Roboto, Arial, Helvetica;
+    font: 700 1.1em Roboto, Arial, Helvetica;
   }
   figure.effect-oscar figcaption {
     padding: 12%;
