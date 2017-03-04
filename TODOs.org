@@ -1,0 +1,8 @@
+* Issues
+** DONE create issues list
+   CLOSED: [2017-03-17 Fri 22:47]
+** DONE add to .gitignore
+   CLOSED: [2017-03-17 Fri 22:54]
+** TODO add SMS model and admin
+** TODO create android app
+

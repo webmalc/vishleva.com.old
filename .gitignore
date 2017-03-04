@@ -82,6 +82,12 @@ bower_components/*
 celerybeat.pid
 celerybeat-schedule*
 
+#Emacs
+tags
+GPATH
+GRTAGS
+GTAGS
+
 #Project
 /vishleva/local_settings.py
 /nbproject/private/
@@ -89,5 +95,4 @@ node_modules
 google_api_key.json
 .project
 .pydevproject
-tags
 
