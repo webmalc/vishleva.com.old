@@ -10,6 +10,7 @@ from vishleva.models import CommonInfo
 class GalleryExtended(models.Model):
     gallery = models.OneToOneField(Gallery, related_name='extended')
     small_description = models.TextField()
+    order = models.IntegerField(default=0)
 
     class Meta:
         verbose_name = u'Extra fields'
