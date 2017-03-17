@@ -5,4 +5,6 @@
    CLOSED: [2017-03-17 Fri 22:54]
 ** TODO add SMS model and admin
 ** TODO create android app
+** TODO gift cards
+
 
