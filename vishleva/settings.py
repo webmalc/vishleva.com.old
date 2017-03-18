@@ -11,10 +11,11 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
-from django.core.urlresolvers import reverse_lazy
 from datetime import date, timedelta
 from urllib.parse import quote
+
 from celery.schedules import crontab
+from django.core.urlresolvers import reverse_lazy
 
 # Local settings
 try:
@@ -52,6 +53,7 @@ INSTALLED_APPS = [
     # vishleva apps
     'vishleva',
     'pages',
+    'mailing',
     'events'
 ]
 
@@ -94,22 +96,26 @@ WSGI_APPLICATION = 'vishleva.wsgi.application'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
 
 LANGUAGE_CODE = 'ru'
 
-LANGUAGES = (('ru', 'Russian'), ('en', 'English'),)
+LANGUAGES = (('ru', 'Russian'), ('en', 'English'), )
 
 ADMIN_LANGUAGE_CODE = 'en-US'
 
@@ -135,22 +141,15 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'vishleva/static'),
-    os.path.join(BASE_DIR, 'node_modules'),
-)
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'vishleva/static'),
+                    os.path.join(BASE_DIR, 'node_modules'), )
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder'
-)
-FIXTURE_DIRS = (
-    os.path.join(BASE_DIR, 'fixtures'),
-)
-LOCALE_PATHS = (
-    os.path.join(os.path.dirname(__file__), "locale"),
-    os.path.join(os.path.dirname(__file__), "app_locale"),
-)
+    'compressor.finders.CompressorFinder')
+FIXTURE_DIRS = (os.path.join(BASE_DIR, 'fixtures'), )
+LOCALE_PATHS = (os.path.join(os.path.dirname(__file__), "locale"),
+                os.path.join(os.path.dirname(__file__), "app_locale"), )
 
 EMAIL_SUBJECT_PREFIX = '[vishleva.com]: '
 
@@ -187,4 +186,3 @@ PHONENUMBER_DEFAULT_REGION = 'RU'
 SITE_START_DATE = date(2015, 3, 28)
 PHOTOS_PER_PAGE = 20
 EVENTS_CALENDAR_PERIOD = 45
-
