@@ -11,10 +11,11 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
-from django.core.urlresolvers import reverse_lazy
 from datetime import date, timedelta
 from urllib.parse import quote
+
 from celery.schedules import crontab
+from django.core.urlresolvers import reverse_lazy
 
 # Local settings
 try:
@@ -48,13 +49,14 @@ INSTALLED_APPS = [
     'reversion',
     'daterange_filter',
     'ordered_model',
+    'rainbowtests',
 
     # vishleva apps
     'vishleva',
     'pages',
+    'mailing',
     'events'
 ]
-
 MIDDLEWARE_CLASSES = [
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -89,27 +91,33 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'vishleva.wsgi.application'
 
+TEST_RUNNER = 'rainbowtests.test.runner.RainbowDiscoverRunner'
+TEST_RUNNER = 'rainbowtests.test.runner.RainbowDiscoverRunner'
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
 
 LANGUAGE_CODE = 'ru'
 
-LANGUAGES = (('ru', 'Russian'), ('en', 'English'),)
+LANGUAGES = (('ru', 'Russian'), ('en', 'English'), )
 
 ADMIN_LANGUAGE_CODE = 'en-US'
 
@@ -135,22 +143,15 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'vishleva/static'),
-    os.path.join(BASE_DIR, 'node_modules'),
-)
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'vishleva/static'),
+                    os.path.join(BASE_DIR, 'node_modules'), )
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder'
-)
-FIXTURE_DIRS = (
-    os.path.join(BASE_DIR, 'fixtures'),
-)
-LOCALE_PATHS = (
-    os.path.join(os.path.dirname(__file__), "locale"),
-    os.path.join(os.path.dirname(__file__), "app_locale"),
-)
+    'compressor.finders.CompressorFinder')
+FIXTURE_DIRS = (os.path.join(BASE_DIR, 'fixtures'), )
+LOCALE_PATHS = (os.path.join(os.path.dirname(__file__), "locale"),
+                os.path.join(os.path.dirname(__file__), "app_locale"), )
 
 EMAIL_SUBJECT_PREFIX = '[vishleva.com]: '
 
@@ -183,8 +184,10 @@ CELERYBEAT_SCHEDULE = {
 PHONENUMBER_DB_FORMAT = 'NATIONAL'
 PHONENUMBER_DEFAULT_REGION = 'RU'
 
+# Tests
+TEST_RUNNER = 'rainbowtests.test.runner.RainbowDiscoverRunner'
+
 # Vishleva.com
 SITE_START_DATE = date(2015, 3, 28)
 PHOTOS_PER_PAGE = 20
 EVENTS_CALENDAR_PERIOD = 45
-

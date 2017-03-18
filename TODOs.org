@@ -3,8 +3,13 @@
    CLOSED: [2017-03-17 Fri 22:47]
 ** DONE add to .gitignore
    CLOSED: [2017-03-17 Fri 22:54]
-** TODO add SMS model and admin
+** DONE add SMS model and admin
+   CLOSED: [2017-03-18 Sat 21:20]
+** TODO SMS sender && test
+** DONE fix admin select filter
+   CLOSED: [2017-03-19 Sun 13:02]
 ** TODO create android app
 ** TODO gift cards
 
 
+   

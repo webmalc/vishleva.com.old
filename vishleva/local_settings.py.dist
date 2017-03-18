@@ -30,7 +30,8 @@ AWS_SECRET_ACCESS_KEY = 'AWS_SECRET_ACCESS_KEY'
 AWS_ACCESS_KEY_ID = 'AWS_ACCESS_KEY_ID'
 AWS_SECRET_ACCESS_KEY = 'AWS_SECRET_ACCESS_KEY'
 
-SMS_SENDER = 'vishleva.messengers.sms.providers.epochta.Epochta'
+#SMS_SENDER = 'vishleva.messengers.sms.providers.epochta.Epochta'
+SMS_SENDER = 'vishleva.messengers.sms.providers.db.Db'
 
 EPOCHTA_PUBLIC_KEY = '375cf47d53e9b2a0bdc5924b39f3f6cc'
 EPOCHTA_PRIVATE_KEY = 'd2663673ca008c05a161689ac2fa10e8'
