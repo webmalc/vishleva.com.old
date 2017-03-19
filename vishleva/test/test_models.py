@@ -4,6 +4,7 @@ from django.core import mail
 from django.test import override_settings
 
 from events.models import Client
+from mailing.models import Sms
 from vishleva.lib.test import ModelTestCase
 from vishleva.messengers.mailer import Mailer
 from vishleva.messengers.sms.sender import Sender
@@ -11,6 +12,8 @@ from vishleva.messengers.sms.sender import Sender
 
 class MailerTest(ModelTestCase):
     fixtures = ['tests/users.json', 'tests/events.json']
+    phone = '+79253172873'
+    text = 'test message text'
 
     def test_mail_user(self):
         subject = 'Test user message'
@@ -22,18 +25,23 @@ class MailerTest(ModelTestCase):
         self.assertEqual(mail.outbox[0].subject,
                          settings.EMAIL_SUBJECT_PREFIX + subject)
 
+    def _test_sms_sender(self):
+        """ universal test for sms sender """
+        sender = Sender(test=True)
+        client = Client.objects.get(pk=1)
+        result = sender.send_sms(self.text, client=client)
+        self.assertTrue(result['result'])
+
+        result = sender.send_sms(self.text, phone=self.phone)
+        self.assertTrue(result['result'])
+
     @override_settings(SMS_SENDER='vishleva.messengers.sms.providers.db.Db')
     def test_db_sms_sender(self):
-        self.assertTrue(False)
+        self._test_sms_sender()
+        sms = Sms.objects.get(phone=self.phone, text=self.text)
+        self.assertTrue(sms)
 
     @override_settings(
         SMS_SENDER='vishleva.messengers.sms.providers.epochta.Epochta')
     def test_epochta_sms_sender(self):
-        sender = Sender(test=True)
-        client = Client.objects.get(pk=1)
-        text = 'test message'
-        result = sender.send_sms(text, client=client)
-        self.assertTrue(result['result'])
-
-        result = sender.send_sms(text, phone='+79037356096')
-        self.assertTrue(result['result'])
+        self._test_sms_sender()

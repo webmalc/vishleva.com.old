@@ -1,3 +1,5 @@
+from mailing.models import Sms
+
 from .base_provider import BaseProvider
 
 
@@ -8,4 +10,8 @@ class Db(BaseProvider):
         self.test = test
 
     def send(self, message, phone):
-        pass
+        sms = Sms.create(phone, message)
+        sms.save()
+        return {
+            'result': sms
+        }

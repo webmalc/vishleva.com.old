@@ -5,11 +5,11 @@
    CLOSED: [2017-03-17 Fri 22:54]
 ** DONE add SMS model and admin
    CLOSED: [2017-03-18 Sat 21:20]
-** TODO SMS sender && test
+** DONE SMS sender && test
+   CLOSED: [2017-03-19 Sun 16:28]
 ** DONE fix admin select filter
    CLOSED: [2017-03-19 Sun 13:02]
+** TODO json api for sms
+** TODO email mailing list
 ** TODO create android app
 ** TODO gift cards
-
-
-   
