@@ -38,7 +38,10 @@ class MailerTest(ModelTestCase):
     @override_settings(SMS_SENDER='vishleva.messengers.sms.providers.db.Db')
     def test_db_sms_sender(self):
         self._test_sms_sender()
+
         sms = Sms.objects.get(phone=self.phone, text=self.text)
+        self.assertTrue(sms)
+        sms = Sms.objects.get(client__id=1)
         self.assertTrue(sms)
 
     @override_settings(

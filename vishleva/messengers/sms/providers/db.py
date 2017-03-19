@@ -9,8 +9,9 @@ class Db(BaseProvider):
     def __init__(self, test=None):
         self.test = test
 
-    def send(self, message, phone):
+    def send(self, message, phone, client):
         sms = Sms.create(phone, message)
+        sms.client = client
         sms.save()
         return {
             'result': sms

@@ -1,5 +1,5 @@
-from django.utils.module_loading import import_string
 from django.conf import settings
+from django.utils.module_loading import import_string
 
 
 class Sender(object):
@@ -23,4 +23,4 @@ class Sender(object):
             phone = str(client.phone)
         if not phone:
             return False
-        return self.sender.send(message, phone)
+        return self.sender.send(message, phone, client=client)

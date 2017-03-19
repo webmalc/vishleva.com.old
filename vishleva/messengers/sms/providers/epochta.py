@@ -1,7 +1,10 @@
-import requests
 import hashlib
 import json
+
+import requests
+
 from django.conf import settings
+
 from .base_provider import BaseProvider
 
 
@@ -18,7 +21,7 @@ class Epochta(BaseProvider):
         if test:
             self.test = test
 
-    def send(self, message, phone):
+    def send(self, message, phone, client):
         data = {'text': message, 'phone': phone, 'sender': self.sender}
         response = self._send_request('sendSMS', data)
         return response
@@ -41,4 +44,3 @@ class Epochta(BaseProvider):
         return hashlib.md5(
             (''.join([str(params[k]) for k in sorted(params.keys())]) + self.private_key).encode('utf-8')
         ).hexdigest()
-

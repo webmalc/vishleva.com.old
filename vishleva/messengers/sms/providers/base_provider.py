@@ -7,13 +7,7 @@ class BaseProvider(metaclass=ABCMeta):
         """ init """
 
     @abstractmethod
-    def send(self, message, phone):
+    def send(self, message, phone, client):
         """
         Send sms message
-        :param message: message
-        :type message: str
-        :param phone: phone
-        :type phone: str
-        :return: send result
-        :rtype: dict
         """
