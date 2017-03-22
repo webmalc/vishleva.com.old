@@ -3,10 +3,15 @@ from datetime import datetime
 from daterange_filter.filter import DateRangeFilter
 from django.conf.urls import url
 from django.contrib import admin
+from django.http import HttpResponseRedirect
 from django.template.response import TemplateResponse
+from django.urls import reverse_lazy
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
+from django.views.generic.edit import FormView
 from reversion.admin import VersionAdmin
+
+from events.forms import SmsForm
 
 from .lib.calendar import Calendar
 from .models import Client, Event
@@ -135,9 +140,42 @@ class ClientAdmin(VersionAdmin):
     list_display_links = ('id', 'last_name', 'first_name')
     search_fields = ('id', 'last_name', 'phone', 'email', 'comment')
     list_filter = ('created_at', )
+    actions = ['send_sms']
     fieldsets = (('General', {
         'fields':
         ('first_name', 'last_name', 'patronymic', 'comment', 'gender')
     }), ('Contacts', {
         'fields': ('phone', 'social_url', 'email')
     }), )
+
+    def send_sms(modeladmin, request, queryset):
+        selected = request.POST.getlist(admin.ACTION_CHECKBOX_NAME)
+        return HttpResponseRedirect('{}?ids={}'.format(
+            reverse_lazy('admin:send_sms'), ','.join(selected)))
+
+    def get_urls(self):
+        """
+        Additional clients urls
+        """
+        return [
+            url(r'^send/sms$',
+                self.admin_site.admin_view(SmsView.as_view()),
+                name='send_sms')
+        ] + super(ClientAdmin, self).get_urls()
+
+
+class SmsView(FormView):
+    template_name = 'admin/events/sms.html'
+    form_class = SmsForm
+    success_url = reverse_lazy('admin:events_client_changelist')
+
+    def get_initial(self):
+        initial = super(SmsView, self).get_initial()
+        initial['clients'] = self.request.GET.get('ids').split(',')
+        return initial
+
+    def form_valid(self, form):
+        from django.contrib import messages
+        messages.add_message(self.request, messages.INFO,
+                             'Sms`s saved to mailing list')
+        return super(SmsView, self).form_valid(form)

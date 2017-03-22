@@ -1,0 +1,20 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static humanize %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+        &rsaquo; <a href="{% url 'admin:events_client_changelist' %}">Clients</a>
+        &rsaquo; Send sms
+    </div>
+{% endblock %}
+  
+{% block content %}
+   <h1>Sms send</h1>
+   <p>Enter sms text. Max 140 chars</p>
+   <form action="" method="post" novalidate>
+        {% csrf_token %}{% block form_top %}{% endblock %}
+        {{ form.as_p }}
+    <input type="submit" value="Send message" />
+</form>
+{% endblock %}
