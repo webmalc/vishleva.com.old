@@ -2,7 +2,7 @@ from datetime import datetime
 
 from daterange_filter.filter import DateRangeFilter
 from django.conf.urls import url
-from django.contrib import admin
+from django.contrib import admin, messages
 from django.http import HttpResponseRedirect
 from django.template.response import TemplateResponse
 from django.urls import reverse_lazy
@@ -12,6 +12,7 @@ from django.views.generic.edit import FormView
 from reversion.admin import VersionAdmin
 
 from events.forms import SmsForm
+from vishleva.messengers.sms.sender import Sender
 
 from .lib.calendar import Calendar
 from .models import Client, Event
@@ -175,7 +176,11 @@ class SmsView(FormView):
         return initial
 
     def form_valid(self, form):
-        from django.contrib import messages
+        data = form.cleaned_data
+        for client in data['clients']:
+            sender = Sender()
+            sender.add_sms(data['message'], client=client)
+        sender.process()
         messages.add_message(self.request, messages.INFO,
                              'Sms`s saved to mailing list')
         return super(SmsView, self).form_valid(form)

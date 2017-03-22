@@ -11,3 +11,15 @@ class BaseProvider(metaclass=ABCMeta):
         """
         Send sms message
         """
+
+    @abstractmethod
+    def add(self, message, phone, client):
+        """
+        Add sms message for processing
+        """
+
+    @abstractmethod
+    def process(self):
+        """
+        Process added messages
+        """

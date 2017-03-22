@@ -3,9 +3,9 @@ from django.utils.module_loading import import_string
 
 
 class Sender(object):
-
     def __init__(self, **kwargs):
-        self.sender = import_string(kwargs.get('sender_path', settings.SMS_SENDER))(kwargs.get('test'))
+        self.sender = import_string(
+            kwargs.get('sender_path', settings.SMS_SENDER))(kwargs.get('test'))
 
     def send_sms(self, message, phone=None, client=None):
         """
@@ -24,3 +24,15 @@ class Sender(object):
         if not phone:
             return False
         return self.sender.send(message, phone, client=client)
+
+    def process(self):
+        """ Process added sms """
+        return self.sender.process()
+
+    def add_sms(self, message, phone=None, client=None):
+        """ Add sms for processing """
+        if not phone:
+            phone = str(client.phone)
+        if not phone:
+            return False
+        return self.sender.add(message, phone, client=client)
