@@ -1,8 +1,6 @@
 import hashlib
-import json
 
 import requests
-
 from django.conf import settings
 
 from .base_provider import BaseProvider
@@ -35,12 +33,19 @@ class Epochta(BaseProvider):
         response = requests.post(url, data=data)
         json_response = response.json()
         if 'error' in json_response:
-            raise RuntimeError('Epochta error! {error} Code: {code}'.format(**json_response))
+            raise RuntimeError(
+                'Epochta error! {error} Code: {code}'.format(**json_response))
         return json_response
 
     def _signature(self, action, params):
         params['version'] = self.version
         params['action'] = action
         return hashlib.md5(
-            (''.join([str(params[k]) for k in sorted(params.keys())]) + self.private_key).encode('utf-8')
-        ).hexdigest()
+            (''.join([str(params[k]) for k in sorted(params.keys())]) +
+             self.private_key).encode('utf-8')).hexdigest()
+
+    def add(self, message, phone, client):
+        pass
+
+    def process(self):
+        pass

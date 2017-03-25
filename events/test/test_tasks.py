@@ -1,16 +1,16 @@
-from django.core import mail
-from vishleva.lib.test import TaskTestCase
-from events.tasks import event_notifications_task, event_autoclose_task
 from django.conf import settings
-from events.models import Event, Client
-from django.utils import timezone
+from django.core import mail
+from django.utils import make_aware, timezone
+
+from events.models import Client, Event
+from events.tasks import event_autoclose_task, event_notifications_task
+from vishleva.lib.test import TaskTestCase
 
 
 class EventsTasksTest(TaskTestCase):
-
     def setUp(self):
         super(TaskTestCase, self).setUp()
-        self.now = timezone.now()
+        self.now = make_aware(timezone.now())
 
         client = Client()
         client.email = 'client@example.com'
@@ -33,8 +33,11 @@ class EventsTasksTest(TaskTestCase):
         event_notifications_task.delay()
         self.assertEqual(len(mail.outbox), 2)
         event = Event.objects.first()
-        self.assertEqual(mail.outbox[0].subject, settings.EMAIL_SUBJECT_PREFIX + 'Upcoming event - ' + event.title)
-        self.assertEqual(mail.outbox[1].subject, settings.EMAIL_SUBJECT_PREFIX + 'Напоминание о предстоящей фотосессии')
+        self.assertEqual(
+            mail.outbox[0].subject,
+            settings.EMAIL_SUBJECT_PREFIX + 'Upcoming event - ' + event.title)
+        self.assertEqual(mail.outbox[1].subject, settings.EMAIL_SUBJECT_PREFIX
+                         + 'Напоминание о предстоящей фотосессии')
         self.assertNotEqual(event.notified_at, None)
 
 
@@ -47,6 +50,7 @@ class EventsFixturesTasksTest(TaskTestCase):
         """
         event_autoclose_task.delay()
         self.assertEqual(len(mail.outbox), 1)
-        self.assertEqual(mail.outbox[0].subject, settings.EMAIL_SUBJECT_PREFIX + 'Auto closed events')
+        self.assertEqual(mail.outbox[0].subject,
+                         settings.EMAIL_SUBJECT_PREFIX + 'Auto closed events')
         events = Event.objects.get_for_closing()
         self.assertEqual(events.count(), 0)

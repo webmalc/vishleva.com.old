@@ -1,11 +1,13 @@
-from vishleva.lib.test import ModelTestCase
-from events.models import Event, Client
-from django.utils import timezone
-from events.lib.calendar import Calendar
-from django.conf import settings
-import pytz
-import arrow
 import copy
+
+import arrow
+import pytz
+from django.conf import settings
+from django.utils import timezone
+
+from events.lib.calendar import Calendar
+from events.models import Client, Event
+from vishleva.lib.test import ModelTestCase
 
 
 class EventModelTest(ModelTestCase):
@@ -49,8 +51,12 @@ class EventModelTest(ModelTestCase):
         manager = Event.objects
         self.assertEqual(33580, manager.get_total())
         self.assertEqual(32530, manager.get_total(with_expenses=True))
-        self.assertEqual(25500, manager.get_total(queryset=manager.filter(status='open')))
-        self.assertEqual(24450, manager.get_total(queryset=manager.filter(status='open'), with_expenses=True))
+        self.assertEqual(
+            25500, manager.get_total(queryset=manager.filter(status='open')))
+        self.assertEqual(24450,
+                         manager.get_total(
+                             queryset=manager.filter(status='open'),
+                             with_expenses=True))
 
     def test_events_paid(self):
         manager = Event.objects
@@ -83,6 +89,3 @@ class EventModelTest(ModelTestCase):
             for hour in element.hours:
                 if event.begin <= hour.date < event.end:
                     self.assertIn(event, hour.events)
-
-
-

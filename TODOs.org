@@ -10,6 +10,7 @@
 ** DONE fix admin select filter
    CLOSED: [2017-03-19 Sun 13:02]
 ** TODO sms send: batch client action
+** TODO gallery infinity scroll
 ** TODO json api for sms
 ** TODO email mailing list
 ** TODO create android app
