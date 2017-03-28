@@ -34,15 +34,25 @@ class MailerTest(ModelTestCase):
 
         result = sender.send_sms(self.text, phone=self.phone)
         self.assertTrue(result['result'])
+        return sender
 
     @override_settings(SMS_SENDER='vishleva.messengers.sms.providers.db.Db')
     def test_db_sms_sender(self):
-        self._test_sms_sender()
+        sender = self._test_sms_sender()
 
         sms = Sms.objects.get(phone=self.phone, text=self.text)
         self.assertTrue(sms)
         sms = Sms.objects.get(client__id=1)
         self.assertTrue(sms)
+
+        Sms.objects.all().delete()
+        sender.add_sms(self.text + '1', self.phone)
+        sender.add_sms(self.text + '2', self.phone)
+        sender.process()
+        sms_objects = Sms.objects.all().order_by('text')
+        self.assertEqual(2, len(sms_objects))
+        self.assertEqual([self.text + '1', self.text + '2'],
+                         [m.text for m in sms_objects])
 
     @override_settings(
         SMS_SENDER='vishleva.messengers.sms.providers.epochta.Epochta')
