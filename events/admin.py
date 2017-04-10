@@ -9,9 +9,8 @@ from django.urls import reverse_lazy
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic.edit import FormView
-from reversion.admin import VersionAdmin
-
 from events.forms import SmsForm
+from reversion.admin import VersionAdmin
 from vishleva.messengers.sms.sender import Sender
 
 from .lib.calendar import Calendar
@@ -177,8 +176,8 @@ class SmsView(FormView):
 
     def form_valid(self, form):
         data = form.cleaned_data
+        sender = Sender()
         for client in data['clients']:
-            sender = Sender()
             sender.add_sms(data['message'], client=client)
         sender.process()
         messages.add_message(self.request, messages.INFO,
