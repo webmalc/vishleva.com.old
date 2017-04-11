@@ -9,7 +9,8 @@
    CLOSED: [2017-03-19 Sun 16:28]
 ** DONE fix admin select filter
    CLOSED: [2017-03-19 Sun 13:02]
-** TODO sms send: batch client action
+** DONE sms send: batch client action
+   CLOSED: [2017-04-11 Tue 16:30]
 ** TODO gallery infinity scroll
 ** TODO json api for sms
 ** TODO email mailing list
