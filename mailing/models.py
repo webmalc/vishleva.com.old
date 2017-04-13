@@ -25,3 +25,4 @@ class Sms(CommonInfo):
 
     class Meta:
         verbose_name_plural = 'Sms'
+        ordering = ['created_at']

@@ -17,7 +17,7 @@ EMAIL_HOST_PASSWORD = 'password'
 DEFAULT_FROM_EMAIL = 'Vishleva.com <admin@example.ru>'
 SERVER_EMAIL = 'Vishleva.com <admin@example.ru>'
 
-ADMINS = (('Name', 'admin@example.com'),)
+ADMINS = (('Name', 'admin@example.com'), )
 MANAGERS = ADMINS
 
 SECRET_KEY = 'my_super_secret_key'
@@ -30,10 +30,10 @@ AWS_SECRET_ACCESS_KEY = 'AWS_SECRET_ACCESS_KEY'
 AWS_ACCESS_KEY_ID = 'AWS_ACCESS_KEY_ID'
 AWS_SECRET_ACCESS_KEY = 'AWS_SECRET_ACCESS_KEY'
 
-#SMS_SENDER = 'vishleva.messengers.sms.providers.epochta.Epochta'
+# SMS_SENDER = 'vishleva.messengers.sms.providers.epochta.Epochta'
 SMS_SENDER = 'vishleva.messengers.sms.providers.db.Db'
 
-EPOCHTA_PUBLIC_KEY = '375cf47d53e9b2a0bdc5924b39f3f6cc'
-EPOCHTA_PRIVATE_KEY = 'd2663673ca008c05a161689ac2fa10e8'
+EPOCHTA_PUBLIC_KEY = 'password'
+EPOCHTA_PRIVATE_KEY = 'password'
 
-
+API_KEY = 'super_secret_key'
