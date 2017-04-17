@@ -5,7 +5,6 @@ from django.core import serializers
 from django.http import HttpResponseNotFound, JsonResponse
 from django.utils.timezone import now
 from django.views import View
-
 from mailing.models import Sms
 
 

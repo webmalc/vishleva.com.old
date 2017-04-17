@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'daterange_filter',
     'ordered_model',
     'rainbowtests',
+    'corsheaders',
 
     # vishleva apps
     'vishleva',
@@ -58,6 +59,7 @@ INSTALLED_APPS = [
     'events'
 ]
 MIDDLEWARE_CLASSES = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -183,6 +185,9 @@ CELERYBEAT_SCHEDULE = {
 # Django phonenumber
 PHONENUMBER_DB_FORMAT = 'NATIONAL'
 PHONENUMBER_DEFAULT_REGION = 'RU'
+
+# CORS
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Tests
 TEST_RUNNER = 'rainbowtests.test.runner.RainbowDiscoverRunner'
