@@ -188,7 +188,7 @@ PHONENUMBER_DEFAULT_REGION = 'RU'
 
 # CORS
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_URLS_REGEX = r'^mailing\/sms\/list.*$'
+CORS_URLS_REGEX = r'.*mailing\/sms\/list.*$'
 
 # Tests
 TEST_RUNNER = 'rainbowtests.test.runner.RainbowDiscoverRunner'
