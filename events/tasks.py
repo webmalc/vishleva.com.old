@@ -1,7 +1,9 @@
 from __future__ import absolute_import
-from vishleva.celery import app
-from events.models import Event
+
 from django.utils import timezone
+
+from events.models import Event
+from vishleva.celery import app
 from vishleva.messengers.mailer import Mailer
 from vishleva.messengers.sms.sender import Sender
 
@@ -13,21 +15,21 @@ def event_notifications_task():
         Mailer.mail_managers(
             subject='Upcoming event' + ' - ' + event.title,
             template='emails/upcoming_event_manager.html',
-            data={'event': event}
-        )
+            data={'event': event})
         client = event.client
         if client.email:
             Mailer.mail_user(
                 subject='Напоминание о предстоящей фотосессии',
                 template='emails/upcoming_event_client.html',
                 data={'event': event},
-                email=client.email
-            )
+                email=client.email)
         if client.phone:
             sender = Sender()
             sender.send_sms(
-                'Zdravstvuyte. Napominaju Vam, chto u Vas {} zaplanirovana fotosessija. S uvazheniem, Aleksandra Vishleva +7(903)735-60-96'.format(event.begin.strftime('%d.%m.%Y %H:%M')),
-                client=client)
+                'Zdravstvuyte. Napominaju Vam, chto u Vas {} zaplanirovana fotosessija. S uvazheniem, Aleksandra Vishleva +7(903)735-60-96'.
+                format(event.begin.strftime('%d.%m.%Y %H:%M')),
+                client=client,
+                send_before=event.begin)
 
         event.notified_at = timezone.now()
         event.save()
@@ -44,5 +46,4 @@ def event_autoclose_task():
         Mailer.mail_managers(
             subject='Auto closed events',
             template='emails/closed_events_manager.html',
-            data={'events': events},
-        )
+            data={'events': events}, )

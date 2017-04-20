@@ -7,7 +7,7 @@ class Sender(object):
         self.sender = import_string(
             kwargs.get('sender_path', settings.SMS_SENDER))(kwargs.get('test'))
 
-    def send_sms(self, message, phone=None, client=None):
+    def send_sms(self, message, phone=None, client=None, send_before=None):
         """
         Send sms via sms provider
         :param message: text
@@ -23,16 +23,16 @@ class Sender(object):
             phone = str(client.phone)
         if not phone:
             return False
-        return self.sender.send(message, phone, client=client)
+        return self.sender.send(message, phone, client, send_before)
 
     def process(self):
         """ Process added sms """
         return self.sender.process()
 
-    def add_sms(self, message, phone=None, client=None):
+    def add_sms(self, message, phone=None, client=None, send_before=None):
         """ Add sms for processing """
         if not phone:
             phone = str(client.phone)
         if not phone:
             return False
-        return self.sender.add(message, phone, client=client)
+        return self.sender.add(message, phone, client, send_before)

@@ -40,5 +40,20 @@
         "send_at": "2017-04-13T08:26:38.925Z",
         "client": null
     }
+},
+{
+    "model": "mailing.sms",
+    "pk": 4,
+    "fields": {
+        "created_at": "2017-04-13T08:26:38.925Z",
+        "modified_at": "2017-04-13T08:26:38.925Z",
+        "send_before": "2017-04-13T08:26:38.925Z",
+        "created_by": null,
+        "modified_by": null,
+        "phone": "+79253172878",
+        "text": "test sms 4",
+        "send_at": null,
+        "client": null
+    }
 }
 ]

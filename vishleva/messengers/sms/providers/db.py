@@ -10,15 +10,17 @@ class Db(BaseProvider):
         self.test = test
         self.storage = []
 
-    def send(self, message, phone, client):
+    def send(self, message, phone, client, send_before):
         sms = Sms.create(phone, message)
         sms.client = client
+        sms.send_before = send_before
         sms.save()
         return {'result': sms}
 
-    def add(self, message, phone, client):
+    def add(self, message, phone, client, send_before):
         sms = Sms.create(phone, message)
         sms.client = client
+        sms.send_before = send_before
         self.storage.append(sms)
 
     def process(self):

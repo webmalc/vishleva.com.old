@@ -25,6 +25,7 @@ class MailingViewTest(ViewTestCase):
         self.assertContains(response, 'test sms 2')
         self.assertContains(response, '+79037356096')
         self.assertNotContains(response, 'test sms 3')
+        self.assertNotContains(response, 'test sms 4')
 
         response = self.client.get(url + '?key=' + key)
         self.assertNotContains(response, 'test sms 1')

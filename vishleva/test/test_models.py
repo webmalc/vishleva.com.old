@@ -54,7 +54,7 @@ class MailerTest(ModelTestCase):
         self.assertEqual([self.text + '1', self.text + '2'],
                          [m.text for m in sms_objects])
 
-    @override_settings(
-        SMS_SENDER='vishleva.messengers.sms.providers.epochta.Epochta')
-    def test_epochta_sms_sender(self):
-        self._test_sms_sender()
+    # @override_settings(
+    #     SMS_SENDER='vishleva.messengers.sms.providers.epochta.Epochta')
+    # def test_epochta_sms_sender(self):
+    #     self._test_sms_sender()

@@ -7,13 +7,13 @@ class BaseProvider(metaclass=ABCMeta):
         """ init """
 
     @abstractmethod
-    def send(self, message, phone, client):
+    def send(self, message, phone, client, send_before):
         """
         Send sms message
         """
 
     @abstractmethod
-    def add(self, message, phone, client):
+    def add(self, message, phone, client, send_before):
         """
         Add sms message for processing
         """
