@@ -503,7 +503,7 @@ figcaption {
 }
 figcaption h2 {
   white-space: nowrap;
-  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.4);
 }
 figcaption h2 a {
   border: 0px !important;
