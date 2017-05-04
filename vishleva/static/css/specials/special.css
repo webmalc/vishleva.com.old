@@ -22,3 +22,17 @@
   background-color: #288035;
   background-image: none;
 }
+.works-special-banner {
+  background-color: #961D29;
+  color: #ffffff;
+  position: absolute;
+  top: 15px;
+  left: 0px;
+  width: 80px;
+  z-index: 999;
+  padding: 8px 0px;
+  font-size: 1em;
+}
+figure:hover .works-special-banner {
+  display: none;
+}
