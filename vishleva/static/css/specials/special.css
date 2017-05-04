@@ -23,15 +23,15 @@
   background-image: none;
 }
 .works-special-banner {
-  background-color: #961D29;
-  color: #ffffff;
+  background-color: #ffd02e;
+  color: #000000;
   position: absolute;
   top: 15px;
   left: 0px;
-  width: 80px;
+  width: 90px;
   z-index: 999;
-  padding: 8px 0px;
-  font-size: 1em;
+  padding: 10px 0px;
+  font: 300 15px/15px Roboto, Arial, Helvetica;
 }
 figure:hover .works-special-banner {
   display: none;
