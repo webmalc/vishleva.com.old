@@ -38,7 +38,7 @@ var admin = {
             toolbar2: 'print preview media | forecolor backcolor emoticons | codesample spellchecker',
             spellchecker_languages: "Russian=ru,Ukrainian=uk,English=en",
             spellchecker_language: "ru",  // default language
-            spellchecker_rpc_url: "http://speller.yandex.net/services/tinyspell",
+            spellchecker_rpc_url: "https://speller.yandex.net/services/tinyspell",
             image_advtab: true
         });
     },
