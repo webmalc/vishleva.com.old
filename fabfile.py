@@ -20,5 +20,5 @@ def deploy():
             run('./manage.py compilemessages')
     sudo('sudo supervisorctl restart vishleva')
     sudo('sudo supervisorctl restart celery')
-    sudo('sudo supervisorctl restart celery-beat')
+    sudo('sudo supervisorctl restart celery_beat')
     sudo('sudo service nginx restart')
