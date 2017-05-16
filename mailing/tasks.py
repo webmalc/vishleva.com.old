@@ -2,6 +2,7 @@ from __future__ import absolute_import
 
 from mailing.models import Sms
 from vishleva.celery import app
+from vishleva.messengers.ionic import Ionic
 from vishleva.messengers.mailer import Mailer
 
 
@@ -13,3 +14,5 @@ def new_sms_notifications_task():
             subject='New sms waiting',
             template='emails/new_sms_manager.html',
             data={'sms': sms})
+
+        Ionic.send_push('New sms entries waiting')

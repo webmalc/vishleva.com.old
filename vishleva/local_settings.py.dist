@@ -37,3 +37,4 @@ EPOCHTA_PUBLIC_KEY = 'password'
 EPOCHTA_PRIVATE_KEY = 'password'
 
 API_KEY = 'super_secret_key'
+IONIC_API_KEY = 'super_secret_key'

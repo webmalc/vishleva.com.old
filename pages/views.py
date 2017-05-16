@@ -16,7 +16,7 @@ from .models import ExtendedFlatPage, Review
 
 class GalleryView(GalleryDetailView):
     """
-    Gallery vie
+    Gallery view
     """
 
     def get_context_data(self, **kwargs):
@@ -110,11 +110,12 @@ def send_email(request):
                 subject=_('New message via contact form'),
                 template='emails/contact_form.html',
                 data=form.cleaned_data)
-            return JsonResponse(
-                {
-                    'success': True,
-                    'message': _('Your message was successfully sent')
-                })
+            return JsonResponse({
+                'success':
+                True,
+                'message':
+                _('Your message was successfully sent')
+            })
 
     return JsonResponse({
         'success':
