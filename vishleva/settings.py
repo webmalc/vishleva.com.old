@@ -176,6 +176,10 @@ CELERYBEAT_SCHEDULE = {
         'task': 'events.tasks.event_notifications_task',
         'schedule': crontab(minute=0, hour='11,15,19,22')
     },
+    'new_sms_notifications_task': {
+        'task': 'mailing.tasks.new_sms_notifications_task',
+        'schedule': crontab(minute=0, hour='11,15,19,22')
+    },
     'event_autoclose_task': {
         'task': 'events.tasks.event_autoclose_task',
         'schedule': crontab(minute=0, hour='1')

@@ -1,0 +1,15 @@
+{% extends 'emails/base.html' %}
+{% load humanize %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "New sms" %}
+{% endblock %}
+
+{% block content %}
+{% for entry in sms %}
+<p>
+{{ entry.phone }} - {{ entry.text }}
+</p>
+{% endfor %}
+{% endblock %}

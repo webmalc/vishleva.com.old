@@ -14,6 +14,8 @@
 ** DONE json api for sms
    CLOSED: [2017-04-13 Thu 17:05]
 ** TODO gallery infinity scroll
-** TODO create android app
+** DONE create android app
+   CLOSED: [2017-05-16 Tue 14:42]
+** TODO send notifications on new sms
 ** TODO email mailing list
 ** TODO gift cards

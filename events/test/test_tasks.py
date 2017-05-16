@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.core import mail
-from django.utils import make_aware, timezone
+from django.utils import timezone
 
 from events.models import Client, Event
 from events.tasks import event_autoclose_task, event_notifications_task
@@ -10,7 +10,7 @@ from vishleva.lib.test import TaskTestCase
 class EventsTasksTest(TaskTestCase):
     def setUp(self):
         super(TaskTestCase, self).setUp()
-        self.now = make_aware(timezone.now())
+        self.now = timezone.now()
 
         client = Client()
         client.email = 'client@example.com'
