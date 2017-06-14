@@ -7,6 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.views.generic import CreateView, ListView, TemplateView
 from photologue.models import Gallery
 from photologue.views import GalleryDetailView
+
 from vishleva.tasks import mail_managers_task
 from vishleva.views import AjaxableResponseMixin
 
@@ -55,8 +56,10 @@ class MainView(TemplateView):
         context['extrahead'] = ExtendedFlatPage.objects.all().filter(
             url='/extrahead/').first()
         context['form'] = ContactForm()
-        context['galleries'] = Gallery.objects.on_site().is_public().order_by(
-            '-extended__order')  #.exclude(slug__startswith='special')
+        galleries = Gallery.objects.on_site().is_public().order_by(
+            '-extended__order')  # .exclude(slug__startswith='special')
+        context['galleries'] = galleries
+        context['galleries_even'] = len(galleries) % 2 == 0
         context['reviews'] = Review.objects.filter(is_enabled=True)[0:20]
 
         return context

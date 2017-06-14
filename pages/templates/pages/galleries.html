@@ -1,7 +1,22 @@
 {% load staticfiles %}
 
-<div id="works" class="clearfix grid">
+{% if galleries_even %}
+<style>
+    .grid figure {
+        width: 50%;
+    }
+    @media screen and (max-width: 50em) {
+        .grid figure {
+        	width: 50%;
+        }
+    }
+    @media (max-width: 639px) {
+        .grid figure {width: 100%;}
+    }
+</style>
+{% endif %}
 
+<div id="works" class="clearfix grid">
     {% for gallery in galleries %}
         {% with photo=gallery.photos.all|first %}
             <figure class="effect-oscar  wowload fadeIn">
