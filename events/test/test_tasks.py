@@ -1,9 +1,11 @@
+import arrow
 from django.conf import settings
 from django.core import mail
 from django.utils import timezone
 
 from events.models import Client, Event
 from events.tasks import event_autoclose_task, event_notifications_task
+from mailing.models import Sms
 from vishleva.lib.test import TaskTestCase
 
 
@@ -39,6 +41,9 @@ class EventsTasksTest(TaskTestCase):
         self.assertEqual(mail.outbox[1].subject, settings.EMAIL_SUBJECT_PREFIX
                          + 'Напоминание о предстоящей фотосессии')
         self.assertNotEqual(event.notified_at, None)
+        begin = arrow.get(event.begin).to(settings.TIME_ZONE).datetime
+        sms = Sms.objects.first()
+        self.assertTrue(begin.strftime('%d.%m.%Y %H:%M') in sms.text)
 
 
 class EventsFixturesTasksTest(TaskTestCase):

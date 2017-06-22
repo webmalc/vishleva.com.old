@@ -2,6 +2,8 @@ from __future__ import absolute_import
 
 from datetime import timedelta
 
+import arrow
+from django.conf import settings
 from django.utils import timezone
 
 from events.models import Event
@@ -27,11 +29,12 @@ def event_notifications_task():
                 email=client.email)
         if client.phone:
             sender = Sender()
+            begin = arrow.get(event.begin).to(settings.TIME_ZONE).datetime
             sender.send_sms(
                 'Zdravstvuyte. Napominaju Vam, chto u Vas {} zaplanirovana fotosessija. Aleksandra Vishleva +7(903)735-60-96'.
-                format(event.begin.strftime('%d.%m.%Y %H:%M')),
+                format(begin.strftime('%d.%m.%Y %H:%M')),
                 client=client,
-                send_before=event.begin - timedelta(hours=6))
+                send_before=begin - timedelta(hours=6))
 
         event.notified_at = timezone.now()
         event.save()
