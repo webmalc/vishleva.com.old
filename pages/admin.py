@@ -1,13 +1,14 @@
-import io
 import os
+import urllib.parse
 import zipfile
 
 from daterange_filter.filter import DateRangeFilter
-from django.contrib import admin
+from django.conf import settings
+from django.contrib import admin, messages
 from django.contrib.flatpages.admin import FlatPageAdmin
 from django.contrib.flatpages.forms import FlatpageForm
 from django.contrib.flatpages.models import FlatPage
-from django.http import HttpResponse
+from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 from ordered_model.admin import OrderedModelAdmin
 from photologue.admin import GalleryAdmin as GalleryAdminDefault
@@ -52,26 +53,30 @@ class PhotoAdmin(PhotoAdminDefault):
 
     def export(self, request, queryset):
         """
-        Download selected files as ZIP
+        Download selected photos as ZIP
         """
         zip_subdir = 'photos'
         zip_filename = '{}.zip'.format(zip_subdir)
-        zip_bytes = io.BytesIO()
+        zip_file = os.path.join(settings.MEDIA_ROOT, PHOTOLOGUE_DIR,
+                                zip_filename)
+        try:
+            os.remove(zip_file)
+        except OSError:
+            pass
 
-        with zipfile.ZipFile(zip_bytes, "w") as zf:
+        with zipfile.ZipFile(zip_file, "a") as zf:
             for photo in queryset.all():
                 path = photo.image.path
-                fdir, fname = os.path.split(path)
-                zip_path = os.path.join(zip_subdir, fname)
+                if os.path.isfile(path):
+                    fdir, fname = os.path.split(path)
+                    zip_path = os.path.join(zip_subdir, fname)
+                    zf.write(path, zip_path)
 
-                zf.write(path, zip_path)
-
-        response = HttpResponse(
-            zip_bytes.getvalue(), content_type="application/zip")
-        response['Content-Disposition'] = 'attachment; filename={}'.format(
-            zip_filename)
-
-        return response
+        messages.add_message(
+            request, messages.INFO,
+            mark_safe('Photos download link: <a href="{0}">{0}</a>'.format(
+                urllib.parse.urljoin(settings.MEDIA_URL, PHOTOLOGUE_DIR + '/' +
+                                     zip_filename))))
 
     export.short_description = 'Download photos'
 
