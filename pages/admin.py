@@ -61,22 +61,22 @@ class PhotoAdmin(PhotoAdminDefault):
                                 zip_filename)
         try:
             os.remove(zip_file)
-            with zipfile.ZipFile(zip_file, "a") as zf:
-                for photo in queryset.all():
-                    path = photo.image.path
-                    if os.path.isfile(path):
-                        fdir, fname = os.path.split(path)
-                        zip_path = os.path.join(zip_subdir, fname)
-                        zf.write(path, zip_path)
-
-            messages.add_message(
-                request, messages.INFO,
-                mark_safe('Photos download link: <a href="{0}">{0}</a>'.format(
-                    urllib.parse.urljoin(settings.MEDIA_URL, PHOTOLOGUE_DIR +
-                                         '/' + zip_filename))))
         except OSError:
-            messages.add_message(request, messages.WARNING,
-                                 'Error! Old photo.zip not deleted')
+            pass
+
+        with zipfile.ZipFile(zip_file, "a") as zf:
+            for photo in queryset.all():
+                path = photo.image.path
+                if os.path.isfile(path):
+                    fdir, fname = os.path.split(path)
+                    zip_path = os.path.join(zip_subdir, fname)
+                    zf.write(path, zip_path)
+
+        messages.add_message(
+            request, messages.INFO,
+            mark_safe('Photos download link: <a href="{0}">{0}</a>'.format(
+                urllib.parse.urljoin(settings.MEDIA_URL, PHOTOLOGUE_DIR + '/' +
+                                     zip_filename))))
 
     export.short_description = 'Download photos'
 
