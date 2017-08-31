@@ -1,6 +1,7 @@
 import os
 import urllib.parse
 import zipfile
+from time import time
 
 from daterange_filter.filter import DateRangeFilter
 from django.conf import settings
@@ -72,11 +73,10 @@ class PhotoAdmin(PhotoAdminDefault):
                     zip_path = os.path.join(zip_subdir, fname)
                     zf.write(path, zip_path)
 
-        messages.add_message(
-            request, messages.INFO,
-            mark_safe('Photos download link: <a href="{0}">{0}</a>'.format(
-                urllib.parse.urljoin(settings.MEDIA_URL, PHOTOLOGUE_DIR + '/' +
-                                     zip_filename))))
+        link = 'Photos download link: <a href="{0}?v={1}">{0}</a>'.format(
+            urllib.parse.urljoin(settings.MEDIA_URL,
+                                 PHOTOLOGUE_DIR + '/' + zip_filename), time())
+        messages.add_message(request, messages.INFO, mark_safe(link))
 
     export.short_description = 'Download photos'
 
