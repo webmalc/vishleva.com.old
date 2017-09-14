@@ -55,6 +55,7 @@ class GalleryAdmin(GalleryAdminDefault):
         return obj.extended.order
 
     get_order.short_description = 'Order'
+    get_order.admin_order_field = 'extended__order'
 
 
 class PhotoAdmin(PhotoAdminDefault):
