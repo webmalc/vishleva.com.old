@@ -57,7 +57,8 @@ class MainView(TemplateView):
             url='/extrahead/').first()
         context['form'] = ContactForm()
         galleries = Gallery.objects.on_site().is_public().order_by(
-            '-extended__order')  # .exclude(slug__startswith='special')
+            'extended__order').select_related('extended').prefetch_related(
+                'photos')  # .exclude(slug__startswith='special')
         context['galleries'] = galleries
         context['galleries_even'] = len(galleries) % 2 == 0
         context['reviews'] = Review.objects.filter(is_enabled=True)[0:20]

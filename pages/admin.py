@@ -44,9 +44,17 @@ class GalleryExtendedInline(admin.StackedInline):
 
 
 class GalleryAdmin(GalleryAdminDefault):
+
+    list_display = GalleryAdminDefault.list_display + ('get_order', )
+    select_related = True
     inlines = [
         GalleryExtendedInline,
     ]
+
+    def get_order(self, obj):
+        return obj.extended.order
+
+    get_order.short_description = 'Order'
 
 
 class PhotoAdmin(PhotoAdminDefault):
