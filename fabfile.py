@@ -1,6 +1,6 @@
 from fabric.api import *
 
-env.hosts = ['52.57.111.193']
+env.hosts = ['vishleva.com']
 env.port = 22
 env.key_filename = '/home/webmalc/.ssh/vishleva.pem'
 env.user = "ubuntu"
