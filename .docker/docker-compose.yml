@@ -1,0 +1,76 @@
+version: '3'
+
+services:
+  postgres:
+    restart: always
+    image: postgres:12
+    hostname: postgres
+    env_file:
+      - pgsql-variables.env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+
+  memcached:
+    restart: always
+    image: memcached:alpine
+
+  redis:
+    restart: always
+    image: redis:alpine
+
+  web:
+    restart: always
+    build:
+      context: ..
+      dockerfile: ./.docker/Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
+    hostname: web
+    # env_file:
+    #   - ./.env
+    volumes:
+      - ..:/usr/src/app
+    # ports:
+    #   - "8000:8000"
+    depends_on:
+      - postgres
+      - memcached
+      - redis
+
+  celery:
+    restart: always
+    build:
+      context: ..
+      dockerfile: ./.docker/Dockerfile
+    command: celery worker -A vishleva -l WARNING
+    volumes:
+      - ..:/usr/src/app
+    depends_on:
+      - web
+      - redis
+
+  celerybeat:
+    restart: always
+    build:
+      context: ..
+      dockerfile: ./.docker/Dockerfile
+    command: celery beat -A vishleva -l WARNING
+    volumes:
+      - ..:/usr/src/app
+    depends_on:
+      - web
+      - redis
+
+  nginx:
+    restart: always
+    build: ./nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ..:/usr/src/app
+    depends_on:
+      - web
+
+volumes:
+  pgdata:

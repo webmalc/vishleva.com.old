@@ -119,7 +119,10 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ru'
 
-LANGUAGES = (('ru', 'Russian'), ('en', 'English'), )
+LANGUAGES = (
+    ('ru', 'Russian'),
+    ('en', 'English'),
+)
 
 ADMIN_LANGUAGE_CODE = 'en-US'
 
@@ -145,15 +148,19 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'vishleva/static'),
-                    os.path.join(BASE_DIR, 'node_modules'), )
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'vishleva/static'),
+    os.path.join(BASE_DIR, 'node_modules'),
+)
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'compressor.finders.CompressorFinder')
 FIXTURE_DIRS = (os.path.join(BASE_DIR, 'fixtures'), )
-LOCALE_PATHS = (os.path.join(os.path.dirname(__file__), "locale"),
-                os.path.join(os.path.dirname(__file__), "app_locale"), )
+LOCALE_PATHS = (
+    os.path.join(os.path.dirname(__file__), "locale"),
+    os.path.join(os.path.dirname(__file__), "app_locale"),
+)
 
 EMAIL_SUBJECT_PREFIX = '[vishleva.com]: '
 
@@ -163,8 +170,6 @@ LOGIN_URL = 'two_factor:login'
 LOGOUT_URL = "admin:logout"
 
 # Celery
-BROKER_URL = 'redis://localhost:6379'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 CELERY_SEND_TASK_ERROR_EMAILS = True
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'

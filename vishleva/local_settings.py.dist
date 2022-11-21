@@ -1,13 +1,16 @@
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'db_name',
-        'USER': 'username',
+        'NAME': 'vishleva',
+        'USER': 'vishleva',
         'PASSWORD': 'password',
-        'HOST': '127.0.0.1',
+        'HOST': 'postgres',
         'PORT': '5432'
     }
 }
+
+CELERY_BROKER_URL = "redis://redis:6379"
+CELERY_RESULT_BACKEND = "redis://redis:6379"
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.example.com'
