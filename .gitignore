@@ -98,4 +98,6 @@ google_api_key.json
 
 .docker/pgsql-variables.env
 .docker/nginx/nginx.conf
+.docker/nginx/cert.pem
+.docker/nginx/key.pem
 
