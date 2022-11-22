@@ -9,8 +9,8 @@ services:
       - pgsql-variables.env
     volumes:
       - pgdata:/var/lib/postgresql/data
-    ports:
-      - "5433:5432"
+    # ports:
+    #   - "5433:5432"
 
   memcached:
     restart: always
@@ -67,6 +67,7 @@ services:
     build: ./nginx
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - ..:/usr/src/app
     depends_on:
